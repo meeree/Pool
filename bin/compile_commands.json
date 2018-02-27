@@ -1,0 +1,13 @@
+[
+    {
+        "arguments": [
+            "c++", 
+            "-c", 
+            "-std=c++11", 
+            "-ggdb", 
+            "../src/main.cpp"
+        ], 
+        "directory": "/home/jhazelden/Pool/bin", 
+        "file": "../src/main.cpp"
+    }
+]
