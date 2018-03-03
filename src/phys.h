@@ -3,6 +3,7 @@
 
 #include "quaternion.h"
 #include "constraints.h"
+#include "../../SGV3D/src/logger.h"
 
 #include <vector>
 #include <float.h>
@@ -26,71 +27,73 @@ private:
     Collidable* m_col;
 
 public:
-    RigidBody (float const& mass, arma::fmat33 const& inertia, arma::fvec3 const& pos, Collidable* col, arma::fvec3 const& vel={0.0f,0.0f,0.0f}, float const& damping=1.0f, float const& restitution=1.0f) 
-        : m_invMass{1.0f/mass}, m_invIntertiaBody{inertia.i()}, m_invIntertia{m_invIntertiaBody}, m_orientation{1.0f}, m_damping{damping}, m_restitution{restitution}, m_pos{pos}, m_vel{vel}, m_angVel{0.0f}, m_force{0.0f}, m_torque{0.0f}, m_col{col}, m_quatOrientation{1.0f, 0.0f, 0.0f, 0.0f} {}
+    RigidBody (float const& mass, arma::fmat33 const& inertia, arma::fvec3 const& pos, Collidable* col, arma::fvec3 const& vel={0.0f,0.0f,0.0f}, float const& damping=1.0f, float const& restitution=1.0f);
 
     void Update (float const& dt);
 
-    FORCE_INLINE void Fix () {m_invMass = 0.0f;}
+    inline void Fix () {m_invMass = 0.0f;}
 
-    FORCE_INLINE float const& InvMass () const {return m_invMass;}
-    FORCE_INLINE void SetInvMass (float const& invMass) {m_invMass = invMass;}
+    inline float const& InvMass () const {return m_invMass;}
+    inline void SetInvMass (float const& invMass) {m_invMass = invMass;}
 
-    FORCE_INLINE float Mass () const {return m_invMass <= FLT_EPSILON ? HUGE_VALF : 1.0f/m_invMass;}
-    FORCE_INLINE void SetMass (float const& mass) {m_invMass = 1.0f / mass;}
+    inline float Mass () const {return m_invMass <= FLT_EPSILON ? HUGE_VALF : 1.0f/m_invMass;}
+    inline void SetMass (float const& mass) {m_invMass = 1.0f / mass;}
 
-    FORCE_INLINE float const& Damping () const {return m_damping;}
-    FORCE_INLINE void SetDamping (float const& damping) {m_damping = clamp(damping, 0.0f, 1.0f);} 
+    inline float const& Damping () const {return m_damping;}
+    inline void SetDamping (float const& damping) {m_damping = clamp(damping, 0.0f, 1.0f);} 
 
-    FORCE_INLINE float const& Restitution () const {return m_restitution;}
-    FORCE_INLINE void SetRestitution (float const& restitution) {m_restitution = clamp(restitution, 0.0f, 1.0f);} 
+    inline float const& Restitution () const {return m_restitution;}
+    inline void SetRestitution (float const& restitution) {m_restitution = clamp(restitution, 0.0f, 1.0f);} 
 
-    FORCE_INLINE arma::fvec3 const& Position () const {return m_pos;}
-    FORCE_INLINE void SetPosition (arma::fvec3 const& pos) {m_pos = pos;}
-    FORCE_INLINE void IncPosition (arma::fvec3 const& pos) {m_pos += pos;}
+    inline arma::fvec3 const& Position () const {return m_pos;}
+    inline void SetPosition (arma::fvec3 const& pos) {m_pos = pos;}
+    inline void IncPosition (arma::fvec3 const& pos) {m_pos += pos;}
 
-    FORCE_INLINE arma::fvec3 const& Velocity () const {return m_vel;}
-    FORCE_INLINE void SetVelocity (arma::fvec3 const& vel) {m_vel = vel;}
-    FORCE_INLINE void IncVelocity (arma::fvec3 const& vel) {m_vel += vel;}
+    inline arma::fvec3 const& Velocity () const {return m_vel;}
+    inline void SetVelocity (arma::fvec3 const& vel) {m_vel = vel;}
+    inline void IncVelocity (arma::fvec3 const& vel) {m_vel += vel;}
 
-    FORCE_INLINE arma::fvec3 const& AngularVelocity () const {return m_angVel;}
-    FORCE_INLINE void SetAngularVelocity (arma::fvec3 const& angVel) {m_angVel = angVel;}
-    FORCE_INLINE void IncAngularVelocity (arma::fvec3 const& angVel) {m_angVel += angVel;}
+    inline arma::fvec3 const& AngularVelocity () const {return m_angVel;}
+    inline void SetAngularVelocity (arma::fvec3 const& angVel) {m_angVel = angVel;}
+    inline void IncAngularVelocity (arma::fvec3 const& angVel) {m_angVel += angVel;}
 
-    FORCE_INLINE arma::fvec3 LinearMomentum () const {return m_vel / m_invMass;}
-    FORCE_INLINE arma::fvec AngularMomentum () const {return m_invIntertia.i() * m_angVel;}
+    inline arma::fvec3 LinearMomentum () const {return m_vel / m_invMass;}
+    inline arma::fvec AngularMomentum () const {return m_invIntertia.i() * m_angVel;}
 
-    FORCE_INLINE arma::fvec3 const& Force () const {return m_force;}
-    FORCE_INLINE void SetForce (arma::fvec3 const& force) {m_force = force;}
-    FORCE_INLINE void ApplyForce (arma::fvec3 const& force) {m_force += force;}
+    inline arma::fvec3 const& Force () const {return m_force;}
+    inline void SetForce (arma::fvec3 const& force) {m_force = force;}
+    inline void ApplyForce (arma::fvec3 const& force) {m_force += force;}
     void ApplyForceAtPoint (arma::fvec3 const& force, arma::fvec3 const& pt) {m_force += force; m_torque += arma::cross(pt, force);}
 
-    FORCE_INLINE arma::fvec3 const& Torque () const {return m_torque;}
-    FORCE_INLINE void SetTorque (arma::fvec3 const& torque) {m_torque = torque;}
-    FORCE_INLINE void ApplyTorque (arma::fvec3 const& torque) {m_torque += torque;}
+    inline arma::fvec3 const& Torque () const {return m_torque;}
+    inline void SetTorque (arma::fvec3 const& torque) {m_torque = torque;}
+    inline void ApplyTorque (arma::fvec3 const& torque) {m_torque += torque;}
 
-    FORCE_INLINE void ApplyImpulse (arma::fvec3 const& impulse) {m_vel += impulse * m_invMass;}
-    FORCE_INLINE void ApplyTorqueImpulse (arma::fvec3 const& torqueImpulse) {m_angVel += m_invIntertia * torqueImpulse;}
+    inline void ApplyImpulse (arma::fvec3 const& impulse) {m_vel += impulse * m_invMass;}
+    inline void ApplyTorqueImpulse (arma::fvec3 const& torqueImpulse) {m_angVel += m_invIntertia * torqueImpulse;}
     void ApplyImpulseAtPoint (arma::fvec3 const& impulse, arma::fvec3 const& pt) {ApplyImpulse(impulse); ApplyTorqueImpulse(arma::cross(impulse, pt));}
 
-    FORCE_INLINE arma::fmat33 const& Orientation () const {return m_orientation;}
-    FORCE_INLINE void SetOrientation (Quaternion const& orientation) {m_quatOrientation = orientation;}
-    FORCE_INLINE void RotateOrientation (float const& t, arma::fvec3 const& u) {m_quatOrientation = Quaternion::UnitRotation(t, u) * m_quatOrientation;}
+    inline arma::fmat33 const& Orientation () const {return m_orientation;}
+    inline void SetOrientation (Quaternion const& orientation) {m_quatOrientation = orientation;}
+    inline void RotateOrientation (float const& t, arma::fvec3 const& u) {m_quatOrientation = Quaternion::UnitRotation(t, u) * m_quatOrientation;}
 
-    FORCE_INLINE Quaternion const& QuaternionOrientation () const {return m_quatOrientation;}
+    inline Quaternion const& QuaternionOrientation () const {return m_quatOrientation;}
 
-    FORCE_INLINE arma::fmat33 const& InverseInertia () const {return m_invIntertia;}
-    FORCE_INLINE arma::fmat33 Inertia () const {return m_invIntertia.i();}
-    FORCE_INLINE arma::fmat33 const& InitialInverseInertia () const {return m_invIntertiaBody;}
-    FORCE_INLINE arma::fmat33 InitialInertia () const {return m_invIntertiaBody.i();}
+    inline arma::fmat33 const& InverseInertia () const {return m_invIntertia;}
+    inline arma::fmat33 Inertia () const {return m_invIntertia.i();}
+    inline arma::fmat33 const& InitialInverseInertia () const {return m_invIntertiaBody;}
+    inline arma::fmat33 InitialInertia () const {return m_invIntertiaBody.i();}
 
-    FORCE_INLINE Collidable* GetCollidable () const {return m_col;}
-    FORCE_INLINE void SetCollidable (Collidable* col) {m_col = col;}
+    inline Collidable* GetCollidable () const {return m_col;}
+    inline void SetCollidable (Collidable* col) {m_col = col;}
 };
+
+class Endpoint;
 
 class Collidable 
 {
-
+public:
+    virtual void CalculateBoundingBox(Endpoint* (&min)[3], Endpoint* (&max)[3], RigidBody* rb) = 0;
 };
 
 class SphereCollidable : public Collidable
@@ -99,7 +102,9 @@ private:
     float m_rad;
 
 public:
-    SphereCollidable (float const& rad) : m_rad{rad} {}
+    SphereCollidable (float const& rad) : m_rad{rad} {ASSERT(m_rad >= -FLT_EPSILON);}
+
+    virtual void CalculateBoundingBox(Endpoint* (&min)[3], Endpoint* (&max)[3], RigidBody* rb) final;
 
     float const& Radius () const {return m_rad;}
 };
@@ -172,6 +177,8 @@ public:
     void SetCallback (ForceCallback const& callback) {m_callback = callback;}
 };
 
+class BroadPhase;
+
 class Engine 
 {
 private:
@@ -191,15 +198,15 @@ private:
     std::unique_ptr<ConstraintSolver> m_solver;
 
 public:
-    Engine () {}
-    Engine (std::vector<Entity*> const& ents);
-    Engine (std::vector<Entity*>&& ents);
+    Engine (unsigned const& solverIterations=10) : m_solver(new ConstraintSolver(solverIterations)) {}
+    Engine (std::vector<Entity*> const& ents, unsigned const& solverIterations=10);
+    Engine (std::vector<Entity*>&& ents, unsigned const& solverIterations=10);
 
-    bool CollisionDetection ();
+    bool CollisionDetection (BroadPhase& bp);
 
 //    void UpdatePrimary (float const& dt, std::vector<std::pair<arma::fvec3,arma::fvec3>>& primary);
 //    void SolveConstraints (float& dt);
-    void Run (float& dt);
+    void Run (float& dt, BroadPhase& bp);
 
     void AddForceToSystem (IForce* const& force) {m_forces.push_back(force);}
     void AddForcesToSystem (std::vector<IForce*> const& forces) {m_forces.insert(m_forces.end(), forces.begin(), forces.end());}
@@ -212,8 +219,32 @@ public:
     std::vector<Entity*> const& GetEntities () const {return m_ents;}
     double const& Time () const {return m_t;}
 
-    FORCE_INLINE void SetGravity (float const& grav) {m_grav = grav;}
-    FORCE_INLINE float const& GetGravity () const {return m_grav;}
+    inline void SetGravity (float const& grav) {m_grav = grav;}
+    inline float const& GetGravity () const {return m_grav;}
 };  
+
+class Spring 
+{
+private:
+    RigidBody* m_rb1, * m_rb2;
+    float m_k;
+    float m_length;
+
+public:
+    Spring (float const& k=1.0f);
+    Spring (RigidBody* rb1, RigidBody* rb2, float const& k=1.0f);
+
+    void Apply () const;
+
+    inline void SetBody1 (RigidBody* rb1) {m_rb1 = rb1;}
+    inline void SetBody2 (RigidBody* rb2) {m_rb2 = rb2;}
+    inline RigidBody* GetBody1 () const {return m_rb1;}
+    inline RigidBody* GetBody2 () const {return m_rb2;}
+
+    inline void SetHookesConstant (float const& k) {m_k = k;}
+    inline float const& HookesConstant () const {return m_k;}
+
+    inline void ResetDisplacement ();
+};
 
 #endif //__PHYS_H__

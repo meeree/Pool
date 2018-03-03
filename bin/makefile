@@ -4,14 +4,17 @@ CFLAGS=-std=c++11 $(GDB) $(GPROF)
 OPENGL=-L/usr/local/lib -lGLEW -lGLU -lm -lglfw3 -lrt -lm -ldl -lXrandr -lXinerama -lXi -lXcursor -lXrender -lGL -lm -lpthread -ldl -ldrm -lXdamage -lXfixes -lX11-xcb -lxcb-glx -lxcb-dri2 -lXxf86vm -lXext -lX11 -lpthread -lxcb -lXau -lXdmcp
 ARMA=-lblas -llapack -I /home/jhazelden/Downloads/armadillo-7.500.2/include -DARMA_DONT_USE_WRAPPER
 
-physics : main.o phys.o renderer.o base.o quaternion.o constraints.o bookKeeping.o logger.o runtimeOptions.o graphics_internal.o camera.o
-	g++ main.o phys.o renderer.o base.o quaternion.o constraints.o bookKeeping.o logger.o runtimeOptions.o graphics_internal.o camera.o -o physics -lblas -llapack $(CFLAGS) $(OPENGL) 
+physics : main.o phys.o renderer.o collision_detection.o base.o quaternion.o constraints.o bookKeeping.o logger.o runtimeOptions.o graphics_internal.o camera.o
+	g++ main.o phys.o renderer.o collision_detection.o base.o quaternion.o constraints.o bookKeeping.o logger.o runtimeOptions.o graphics_internal.o camera.o -o physics -lblas -llapack $(CFLAGS) $(OPENGL) 
 	
-main.o : ../src/main.cpp ../src/phys.cpp ../src/renderer.cpp
+main.o : ../src/main.cpp ../src/phys.cpp ../src/renderer.cpp ../src/collision_detection.cpp
 	g++ -c ../src/main.cpp $(ARMA) $(CFLAGS)
 
-phys.o : ../src/phys.cpp ../src/quaternion.cpp ../src/constraints.cpp
+phys.o : ../src/phys.cpp ../src/quaternion.cpp ../src/constraints.cpp ../../SGV3D/src/logger.cpp ../src/collision_detection.cpp 
 	g++ -c ../src/phys.cpp $(ARMA) $(CFLAGS)
+
+collision_detection.o : ../src/collision_detection.cpp ../src/phys.cpp
+	g++ -c ../src/collision_detection.cpp $(ARMA) $(CFLAGS)
 
 constraints.o : ../src/constraints.cpp ../src/phys.cpp ../../SGV3D/src/logger.cpp
 	g++ -c ../src/constraints.cpp $(ARMA) $(CFLAGS)
@@ -20,7 +23,7 @@ quaternion.o : ../src/quaternion.cpp
 	g++ -c ../src/quaternion.cpp $(ARMA) $(CFLAGS)
 
 bookKeeping.o : ../src/bookKeeping.cpp
-	g++ -c ../src/bookKeeping.cpp $(CFLAGS)
+	g++ -c ../src/bookKeeping.cpp $(ARMA) $(CFLAGS)
 	
 renderer.o : ../src/renderer.cpp ../../SGV3D/src/graphics_internal.cpp
 	g++ -c ../src/renderer.cpp $(ARMA) $(CFLAGS) 

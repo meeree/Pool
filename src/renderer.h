@@ -38,6 +38,7 @@ public:
 
     void SetCamera (FreeRoamCamera const& camera) {m_camera = camera;}
     FreeRoamCamera const& GetCamera () const {return m_camera;}
+    FreeRoamCamera& GetCameraRef () {return m_camera;}
     void AddEntity (GLProgram& program, Entity* const& ent);
     void AddEntities (GLProgram& program, std::vector<Entity*> const& ents);
 

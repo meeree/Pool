@@ -1,18 +1,229 @@
 #include "phys.h"
 #include <unordered_map>
+#include <time.h>
+#include "collision_detection.h"
 
-//TODO: FIX BISECTION
 //NO DAMPING !!!!
 
 #define BIAS 0.0f
 
-Engine::Engine (std::vector<Entity*> const& ents)
-    : m_ents{ents}, m_t{0.0}, m_grav{-9.81f}, m_solver{new ConstraintSolver}
+RigidBody::RigidBody (float const& mass, arma::fmat33 const& inertia, arma::fvec3 const& pos, Collidable* col, arma::fvec3 const& vel, float const& damping, float const& restitution) 
+    : m_invMass{1.0f/mass}, 
+      m_invIntertiaBody{inertia.i()}, m_invIntertia{m_invIntertiaBody}, 
+      m_orientation{1.0f}, m_pos{pos}, m_quatOrientation{1.0f, 0.0f, 0.0f, 0.0f},
+      m_vel{vel}, m_angVel{0.0f}, 
+      m_force{0.0f}, m_torque{0.0f},  
+      m_col{col},
+      m_damping{damping}, m_restitution{restitution} 
 {}
 
-Engine::Engine (std::vector<Entity*>&& ents) 
-    : m_ents{ents}, m_t{0.0}, m_grav{-9.81f}, m_solver{new ConstraintSolver}
+Engine::Engine (std::vector<Entity*> const& ents, unsigned const& solverIterations)
+    : m_ents{ents}, m_t{0.0}, m_grav{0.0f}, m_solver{new ConstraintSolver(solverIterations)}
 {}
+
+Engine::Engine (std::vector<Entity*>&& ents, unsigned const& solverIterations) 
+    : m_ents{ents}, m_t{0.0}, m_grav{0.0f}, m_solver{new ConstraintSolver(solverIterations)}
+{}
+
+void SphereCollidable::CalculateBoundingBox(Endpoint* (&min)[3], Endpoint* (&max)[3], RigidBody* rb) 
+{
+    arma::fvec3 pos{rb->Position()};
+
+    for(uint8_t axisIdx = 0; axisIdx < 3; ++axisIdx)
+    {
+        if(min)
+            min[axisIdx]->SetValue(pos[axisIdx] - m_rad);
+
+        if(max)
+            max[axisIdx]->SetValue(pos[axisIdx] + m_rad);
+    }
+}
+
+bool Engine::CollisionDetection (BroadPhase& bp)
+{
+    std::vector<OverlapCache::OverlappingPair> const& overlappingPairs{bp.FindOverlappingBoxes()};
+    for(auto const& overlappingPair: overlappingPairs)
+    {
+        RigidBody* rb1{bp.RetrieveBox(overlappingPair.rbIdx1).rb};
+        RigidBody* rb2{bp.RetrieveBox(overlappingPair.rbIdx2).rb};
+
+        float rad1{static_cast<SphereCollidable*>(rb1->GetCollidable())->Radius()};
+        float rad2{static_cast<SphereCollidable*>(rb2->GetCollidable())->Radius()};
+
+        arma::fvec3 diff{rb1->Position() - rb2->Position()};
+        float totalDist{arma::norm(diff)};
+        float dist{totalDist - (rad1 + rad2)}; //Gap between the two objects 
+
+        if(dist > FLT_EPSILON) //Are the objects not in contact?
+            continue;
+
+        arma::fvec3 normOnSphere1{-1.0f, 0.0f, 0.0f};
+        if(totalDist > 0.0f)
+            normOnSphere1 = -diff / totalDist;
+
+        arma::fvec3 contactPt{(rb1->Position() + rb2->Position() + (rad2 - rad1) * normOnSphere1)/2.0f};
+
+        PairWiseConstraint* constraint{new ContactConstraint{overlappingPair.rbIdx1, overlappingPair.rbIdx2, contactPt, normOnSphere1}};
+        m_solver->AddConstraint(constraint, 0.0f);
+    }
+
+//    for(unsigned i = 0; i < m_ents.size(); ++i)
+//    {
+//        RigidBody* rb1{m_ents[i]->GetRigidBody()};
+//        float rad1{static_cast<SphereCollidable*>(rb1->GetCollidable())->Radius()};
+//
+//        for(unsigned j = i+1; j < m_ents.size(); ++j)
+//        {
+//            RigidBody* rb2{m_ents[j]->GetRigidBody()};
+//            float rad2{static_cast<SphereCollidable*>(rb2->GetCollidable())->Radius()};
+//
+//            arma::fvec3 diff{rb1->Position() - rb2->Position()};
+//            float totalDist{arma::norm(diff)};
+//            float dist{totalDist - (rad1 + rad2)}; //Gap between the two objects 
+//
+//            if(dist > FLT_EPSILON) //Are the objects not in contact?
+//                continue;
+//
+//            arma::fvec3 normOnSphere1{-1.0f, 0.0f, 0.0f};
+//            if(totalDist > 0.0f)
+//                normOnSphere1 = -diff / totalDist;
+//
+//            arma::fvec3 contactPt{(rb1->Position() + rb2->Position() + (rad2 - rad1) * normOnSphere1)/2.0f};
+//
+//            PairWiseConstraint* constraint{new ContactConstraint{i, j, contactPt, normOnSphere1}};
+//            m_solver->AddConstraint(constraint, 0.0f);
+//        }
+//    }
+
+    return true;
+}
+
+void Engine::Run (float& dt, BroadPhase& bp)
+{
+    for(Entity* ent: m_ents)
+    {
+        RigidBody* rb{ent->GetRigidBody()};
+        if(rb->InvMass() > FLT_EPSILON)
+            rb->ApplyForce({0.0f, -ent->GetRigidBody()->Mass() * m_grav, 0.0f}); 
+    }
+
+    CollisionDetection(bp);
+
+    if(m_solver->ConstraintCount() > 0)
+    {
+        unsigned n{(unsigned)m_ents.size()};
+        arma::fvec V(6*n), Fext(6*n);
+        for(unsigned i = 0; i < n; ++i)
+        {
+            RigidBody* rb{m_ents[i]->GetRigidBody()};
+            V(6*i + 0) = rb->Velocity()(0);
+            V(6*i + 1) = rb->Velocity()(1);
+            V(6*i + 2) = rb->Velocity()(2);
+            V(6*i + 3) = rb->AngularVelocity()(0);
+            V(6*i + 4) = rb->AngularVelocity()(1);
+            V(6*i + 5) = rb->AngularVelocity()(2);
+
+            Fext(6*i + 0) = rb->Force()(0);
+            Fext(6*i + 1) = rb->Force()(1);
+            Fext(6*i + 2) = rb->Force()(2);
+            Fext(6*i + 3) = rb->Torque()(0);
+            Fext(6*i + 4) = rb->Torque()(1);
+            Fext(6*i + 5) = rb->Torque()(2);
+        }
+
+        std::chrono::time_point<std::chrono::system_clock> start;
+        std::chrono::time_point<std::chrono::system_clock> end; 
+
+        start = std::chrono::system_clock::now();
+
+        m_solver->SolveConstraints(m_ents, V, Fext, dt);
+
+        end = std::chrono::system_clock::now();
+        float timeElapsed = std::chrono::duration<float>(end-start).count();
+
+//        std::cout<<timeElapsed<<std::endl;
+
+        //Update the rigid bodies from V and using semi-implicit Euler's method
+        //I should use std::move here : IMPROVE THIS
+        for(unsigned i = 0; i < m_ents.size(); ++i)
+        {
+            RigidBody* rb{m_ents[i]->GetRigidBody()};
+            rb->SetVelocity({V(6*i + 0), V(6*i + 1), V(6*i + 2)});
+            rb->SetAngularVelocity({V(6*i + 3), V(6*i + 4), V(6*i + 5)});
+
+            rb->Update(dt);
+        }
+    }
+    else
+    {
+        for(Entity* ent: m_ents)
+        {
+            RigidBody* rb{ent->GetRigidBody()};
+            rb->IncVelocity(dt * rb->InvMass() * rb->Force());
+            rb->IncAngularVelocity(dt * rb->InverseInertia() * rb->Torque());
+
+            rb->Update(dt);
+        }
+    }
+
+    m_t += dt;
+    m_solver->ClearConstraints();
+}
+
+void RigidBody::Update (float const& dt)
+{
+//    m_vel = m_vel * m_damping + dt * m_force * m_invMass;
+    m_pos += dt * m_vel;
+
+//    m_angVel += m_invIntertia * m_torque * dt;
+    m_quatOrientation += 0.5f * dt * m_angVel * m_quatOrientation;
+    m_quatOrientation.Normalize();
+
+    m_orientation = Quaternion::QuatToMat(m_quatOrientation);
+    m_invIntertia = m_orientation * m_invIntertiaBody * m_orientation.t();
+
+    m_force.zeros();
+    m_torque.zeros();
+}
+
+Spring::Spring (float const& k) 
+    : m_rb1{nullptr}, m_rb2{nullptr}, m_k{k}, m_length{0.0f}
+{
+}
+
+Spring::Spring (RigidBody* rb1, RigidBody* rb2, float const& k)
+    : m_rb1{rb1}, m_rb2{rb2}, m_k{k}, m_length{arma::norm(m_rb1->Position() - m_rb2->Position())}
+{
+}
+
+
+void Spring::Apply () const
+{
+    if(!m_rb1 || !m_rb2)
+        return;
+
+    arma::fvec3 f{m_rb1->Position() - m_rb2->Position()};
+    float dist{arma::norm(f)};
+
+    f = arma::normalise(f);
+    f *= m_k * (m_length - dist); //Hooke's law
+
+    if(m_rb1->InvMass() > FLT_EPSILON)
+        m_rb1->ApplyForce(f);
+
+    if(m_rb2->InvMass() > FLT_EPSILON)
+        m_rb2->ApplyForce(-f);
+}
+
+inline void Spring::ResetDisplacement ()
+{
+    if(m_rb1 && m_rb2)
+        m_length = arma::norm(m_rb1->Position() - m_rb2->Position());
+    else
+        m_length = 0.0f;
+}
+
+//OLD IMPULSE METHOD
 //
 //void Engine::UpdatePrimary (float const& dt, std::vector<std::pair<arma::vec3, arma::vec3>>& primary) 
 //{
@@ -99,126 +310,9 @@ Engine::Engine (std::vector<Entity*>&& ents)
 ////
 ////    return true;
 //}
-
-bool Engine::CollisionDetection ()
-{
-    for(unsigned i = 0; i < m_ents.size(); ++i)
-    {
-        RigidBody* rb1{m_ents[i]->GetRigidBody()};
-        float rad1{static_cast<SphereCollidable*>(rb1->GetCollidable())->Radius()};
-
-        for(unsigned j = i+1; j < m_ents.size(); ++j)
-        {
-            RigidBody* rb2{m_ents[j]->GetRigidBody()};
-            float rad2{static_cast<SphereCollidable*>(rb2->GetCollidable())->Radius()};
-
-            arma::fvec3 diff{rb1->Position() - rb2->Position()};
-            float totalDist{arma::norm(diff)};
-            float dist{totalDist - (rad1 + rad2)}; //Gap between the two objects 
-
-            if(dist > FLT_EPSILON) //Are the objects not in contact?
-                continue;
-
-            arma::fvec3 normOnSphere1{-1.0f, 0.0f, 0.0f};
-            if(totalDist > 0.0f)
-                normOnSphere1 = -diff / totalDist;
-
-            arma::fvec3 contactPt{(rb1->Position() + rb2->Position() + (rad2 - rad1) * normOnSphere1)/2.0f};
-
-            PairWiseConstraint* constraint{new ContactConstraint{i, j, contactPt, normOnSphere1}};
-            m_solver->AddConstraint(constraint, 0.0f);
-
-//            if(dist < maxPenetration)
-//                return false;
-        }
-    }
-
-    return true;
-}
-
-#define IT_MAX 20 
-
-void Engine::Run (float& dt)
-{
-    for(Entity* ent: m_ents)
-    {
-        RigidBody* rb{ent->GetRigidBody()};
-        if(rb->InvMass() <= FLT_EPSILON)
-            rb->SetForce({0.0f, 0.0f, 0.0f}); 
-        else
-            rb->SetForce({0.0f, -ent->GetRigidBody()->Mass() * m_grav, 0.0f}); 
-
-        rb->SetTorque({0.0f,0.0f,0.0f}); 
-    }
-
-    for(IForce* force: m_forces)
-    {
-        force->Apply(m_t);
-    }
-
-    CollisionDetection();
-
-    if(m_solver->ConstraintCount() > 0)
-    {
-        unsigned n{(unsigned)m_ents.size()};
-        arma::fvec V(6*n), Fext(6*n);
-        for(unsigned i = 0; i < n; ++i)
-        {
-            RigidBody* rb{m_ents[i]->GetRigidBody()};
-            V(6*i + 0) = rb->Velocity()(0);
-            V(6*i + 1) = rb->Velocity()(1);
-            V(6*i + 2) = rb->Velocity()(2);
-            V(6*i + 3) = rb->AngularVelocity()(0);
-            V(6*i + 4) = rb->AngularVelocity()(1);
-            V(6*i + 5) = rb->AngularVelocity()(2);
-
-            Fext(6*i + 0) = rb->Force()(0);
-            Fext(6*i + 1) = rb->Force()(1);
-            Fext(6*i + 2) = rb->Force()(2);
-            Fext(6*i + 3) = rb->Torque()(0);
-            Fext(6*i + 4) = rb->Torque()(1);
-            Fext(6*i + 5) = rb->Torque()(2);
-        }
-
-        std::chrono::time_point<std::chrono::system_clock> start;
-        std::chrono::time_point<std::chrono::system_clock> end; 
-
-        start = std::chrono::system_clock::now();
-
-        m_solver->SolveConstraints(m_ents, V, Fext, dt, IT_MAX);
-
-        end = std::chrono::system_clock::now();
-        dt = std::chrono::duration<float>(end-start).count();
-
-        std::cout<<dt<<std::endl;
-
-        //Update the rigid bodies from V and using semi-implicit Euler's method
-        //I should use std::move here : IMPROVE THIS
-        for(unsigned i = 0; i < m_ents.size(); ++i)
-        {
-            RigidBody* rb{m_ents[i]->GetRigidBody()};
-            rb->SetVelocity({V(6*i + 0), V(6*i + 1), V(6*i + 2)});
-            rb->SetAngularVelocity({V(6*i + 3), V(6*i + 4), V(6*i + 5)});
-
-            rb->Update(dt);
-        }
-    }
-    else
-    {
-        for(Entity* ent: m_ents)
-        {
-            RigidBody* rb{ent->GetRigidBody()};
-            rb->IncVelocity(dt * rb->InvMass() * rb->Force());
-            rb->IncAngularVelocity(dt * rb->InverseInertia() * rb->Torque());
-
-            rb->Update(dt);
-        }
-    }
-
-    m_t += dt;
-    m_solver->ClearConstraints();
-}
-
+//
+//OTHER OLD SOLVER
+//
 //void Engine::SolveConstraints (float& dt)
 //{
 //    if(m_ents.empty())
@@ -317,19 +411,3 @@ void Engine::Run (float& dt)
 //
 //    m_t += dt;
 //}
-
-void RigidBody::Update (float const& dt)
-{
-//    m_vel = m_vel * m_damping + dt * m_force * m_invMass;
-    m_pos += dt * m_vel;
-
-//    m_angVel += m_invIntertia * m_torque * dt;
-    m_quatOrientation += 0.5f * dt * m_angVel * m_quatOrientation;
-    m_quatOrientation.Normalize();
-
-    m_orientation = Quaternion::QuatToMat(m_quatOrientation);
-    m_invIntertia = m_orientation * m_invIntertiaBody * m_orientation.t();
-
-    m_force.zeros();
-    m_torque.zeros();
-}

@@ -53,6 +53,8 @@ class ConstraintSolver
 private:
     arma::fvec m_bias;
     std::vector<PairWiseConstraint*> m_constraints;
+
+    unsigned m_solverIterations;
     
     struct LambdaBounds 
     {
@@ -67,9 +69,9 @@ private:
     FORCE_INLINE float const& LookupMax (PairWiseConstraint* constraint) const {return m_boundLookup[constraint->Type()].boundMax;}
 
 public:
-    ConstraintSolver () {std::copy(ms_defBoundLookup, ms_defBoundLookup + ConstraintType::eCount, m_boundLookup);}
+    ConstraintSolver (unsigned const& solverIterations);
 
-    void SolveConstraints (std::vector<Entity*> const& ents, arma::fvec& V, arma::fvec& Fext, float const& dt, unsigned const& itMax);
+    void SolveConstraints (std::vector<Entity*> const& ents, arma::fvec& V, arma::fvec& Fext, float const& dt);
     
     void AddConstraint (PairWiseConstraint* constraint, float const& bias);
 
@@ -78,6 +80,9 @@ public:
     inline size_t ConstraintCount () {return m_constraints.size();}
 
     inline void SetLambdaBounds (LambdaBounds const (&boundLookup)[ConstraintType::eCount]) {std::copy(boundLookup, boundLookup + ConstraintType::eCount, m_boundLookup);}
+
+    inline unsigned const& SolverIterations () const {return m_solverIterations;}
+    inline void SetSolverIterations (unsigned const& solverIterations) {m_solverIterations = solverIterations;}
 };
 
 #endif //__CONSTRAINTS_H__

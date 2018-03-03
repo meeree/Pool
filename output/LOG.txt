@@ -1,1272 +1,2176 @@
-1<<DEBUG>> ../src/main.cpp[225], main(): Beginning main loop
-1<<DEBUG>> ../../SGV3D/src/graphics_internal.cpp[85], GLFWContext(): Constructed GLFWContext
-1<<DEBUG>> ../../SGV3D/src/graphics_internal.cpp[95], Initailize(): Initializing GLFWContext "Physics Fun"; window width 1080.0, height 1920.0; for OpenGL v.4.5
-1<<DEBUG>> ../../SGV3D/src/graphics_internal.cpp[143], Initailize(): Successfully initialized GLFWContext
-1<<DEBUG>> ../../SGV3D/src/graphics_internal.cpp[11], CacheUniforms(): Beginning to cache uniforms for current shader program
-1<<DEBUG>> ../../SGV3D/src/graphics_internal.cpp[33], CacheUniforms(): Cached uniform "camPos" to location 6
-2<<DEBUG>> ../../SGV3D/src/graphics_internal.cpp[33], CacheUniforms(): Cached uniform "model" to location 5
-3<<DEBUG>> ../../SGV3D/src/graphics_internal.cpp[33], CacheUniforms(): Cached uniform "projection" to location 3
-4<<DEBUG>> ../../SGV3D/src/graphics_internal.cpp[33], CacheUniforms(): Cached uniform "view" to location 4
-1<<DEBUG>> ../src/renderer.cpp[85], SaveImportantUniforms(): Stored model matrix shader location as 5
-1<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-2<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-3<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-4<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-5<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-6<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-7<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-8<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-9<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-10<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-11<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-12<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-13<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-14<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-15<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-16<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-17<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-18<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-19<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-20<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-21<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-22<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-23<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-24<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-25<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-26<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-27<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-28<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-29<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-30<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-31<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-32<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-33<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-34<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-35<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-36<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-37<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-38<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-39<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-40<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-41<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-42<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-43<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-44<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-45<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-46<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-47<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-48<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-49<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-50<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-51<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-52<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-53<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-54<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-55<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-56<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-57<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-58<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-59<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-60<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-61<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-62<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-63<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-64<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-65<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-66<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-67<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-68<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-69<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-70<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-71<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-72<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-73<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-74<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-75<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-76<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-77<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-78<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-79<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-80<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-81<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-82<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-83<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-84<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-85<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-86<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-87<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-88<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-89<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-90<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-91<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-92<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-93<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-94<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-95<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-96<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-97<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-98<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-99<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-100<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-101<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-102<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-103<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-104<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-105<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-106<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-107<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-108<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-109<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-110<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-111<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-112<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-113<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-114<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-115<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-116<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-117<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-118<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-119<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-120<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-121<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-122<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-123<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-124<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-125<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-126<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-127<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-128<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-129<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-130<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-131<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-132<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-133<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-134<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-135<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-136<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-137<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-138<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-139<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-140<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-141<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-142<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-143<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-144<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-145<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-146<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-147<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-148<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-149<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-150<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-151<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-152<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-153<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-154<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-155<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-156<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-157<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-158<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-159<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-160<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-161<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-162<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-163<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-164<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-165<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-166<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-167<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-168<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-169<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-170<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-171<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-172<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-173<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-174<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-175<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-176<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-177<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-178<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-179<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-180<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-181<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-182<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-183<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-184<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-185<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-186<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-187<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-188<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-189<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-190<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-191<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-192<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-193<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-194<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-195<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-196<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-197<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-198<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-199<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-200<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-201<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-202<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-203<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-204<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-205<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-206<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-207<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-208<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-209<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-210<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-211<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-212<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-213<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-214<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-215<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-216<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-217<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-218<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-219<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-220<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-221<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-222<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-223<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-224<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-225<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-226<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-227<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-228<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-229<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-230<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-231<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-232<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-233<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-234<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-235<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-236<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-237<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-238<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-239<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-240<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-241<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-242<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-243<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-244<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-245<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-246<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-247<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-248<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-249<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-250<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-251<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-252<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-253<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-254<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-255<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-256<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-257<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-258<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-259<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-260<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-261<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-262<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-263<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-264<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-265<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-266<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-267<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-268<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-269<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-270<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-271<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-272<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-273<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-274<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-275<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-276<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-277<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-278<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-279<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-280<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-281<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-282<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-283<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-284<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-285<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-286<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-287<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-288<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-289<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-290<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-291<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-292<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-293<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-294<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-295<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-296<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-297<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-298<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-299<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-300<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-301<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-302<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-303<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-304<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-305<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-306<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-307<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-308<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-309<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-310<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-311<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-312<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-313<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-314<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-315<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-316<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-317<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-318<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-319<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-320<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-321<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-322<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-323<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-324<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-325<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-326<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-327<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-328<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-329<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-330<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-331<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-332<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-333<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-334<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-335<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-336<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-337<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-338<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-339<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-340<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-341<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-342<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-343<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-344<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-345<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-346<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-347<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-348<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-349<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-350<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-351<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-352<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-353<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-354<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-355<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-356<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-357<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-358<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-359<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-360<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-361<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-362<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-363<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-364<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-365<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-366<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-367<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-368<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-369<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-370<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-371<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-372<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-373<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-374<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-375<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-376<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-377<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-378<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-379<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-380<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-381<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-382<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-383<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-384<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-385<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-386<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-387<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-388<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-389<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-390<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-391<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-392<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-393<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-394<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-395<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-396<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-397<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-398<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-399<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-400<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-401<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-402<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-403<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-404<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-405<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-406<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-407<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-408<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-409<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-410<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-411<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-412<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-413<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-414<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-415<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-416<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-417<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-418<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-419<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-420<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-421<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-422<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-423<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-424<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-425<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-426<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-427<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-428<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-429<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-430<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-431<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-432<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-433<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-434<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-435<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-436<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-437<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-438<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-439<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-440<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-441<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-442<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-443<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-444<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-445<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-446<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-447<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-448<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-449<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-450<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-451<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-452<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-453<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-454<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-455<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-456<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-457<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-458<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-459<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-460<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-461<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-462<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-463<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-464<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-465<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-466<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-467<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-468<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-469<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-470<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-471<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-472<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-473<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-474<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-475<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-476<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-477<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-478<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-479<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-480<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-481<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-482<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-483<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-484<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-485<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-486<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-487<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-488<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-489<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-490<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-491<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-492<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-493<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-494<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-495<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-496<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-497<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-498<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-499<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-500<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-501<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-502<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-503<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-504<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-505<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-506<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-507<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-508<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-509<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-510<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-511<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-512<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-513<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-514<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-515<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-516<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-517<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-518<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-519<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-520<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-521<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-522<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-523<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-524<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-525<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-526<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-527<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-528<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-529<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-530<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-531<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-532<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-533<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-534<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-535<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-536<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-537<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-538<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-539<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-540<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-541<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-542<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-543<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-544<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-545<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-546<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-547<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-548<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-549<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-550<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-551<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-552<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-553<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-554<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-555<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-556<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-557<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-558<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-559<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-560<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-561<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-562<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-563<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-564<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-565<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-566<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-567<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-568<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-569<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-570<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-571<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-572<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-573<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-574<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-575<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-576<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-577<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-578<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-579<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-580<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-581<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-582<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-583<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-584<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-585<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-586<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-587<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-588<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-589<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-590<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-591<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-592<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-593<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-594<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-595<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-596<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-597<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-598<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-599<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-600<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-601<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-602<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-603<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-604<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-605<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-606<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-607<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-608<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-609<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-610<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-611<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-612<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-613<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-614<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-615<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-616<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-617<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-618<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-619<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-620<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-621<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-622<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-623<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-624<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-625<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-626<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-627<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-628<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-629<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-630<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-631<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-632<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-633<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-634<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-635<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-636<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-637<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-638<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-639<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-640<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-641<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-642<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-643<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-644<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-645<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-646<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-647<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-648<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-649<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-650<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-651<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-652<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-653<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-654<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-655<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-656<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-657<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-658<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-659<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-660<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-661<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-662<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-663<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-664<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-665<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-666<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-667<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-668<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-669<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-670<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-671<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-672<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-673<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-674<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-675<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-676<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-677<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-678<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-679<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-680<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-681<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-682<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-683<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-684<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-685<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-686<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-687<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-688<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-689<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-690<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-691<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-692<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-693<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-694<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-695<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-696<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-697<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-698<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-699<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-700<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-701<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-702<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-703<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-704<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-705<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-706<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-707<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-708<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-709<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-710<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-711<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-712<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-713<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-714<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-715<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-716<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-717<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-718<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-719<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-720<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-721<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-722<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-723<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-724<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-725<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-726<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-727<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-728<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-729<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-730<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-731<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-732<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-733<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-734<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-735<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-736<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-737<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-738<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-739<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-740<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-741<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-742<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-743<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-744<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-745<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-746<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-747<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-748<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-749<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-750<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-751<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-752<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-753<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-754<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-755<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-756<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-757<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-758<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-759<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-760<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-761<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-762<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-763<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-764<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-765<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-766<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-767<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-768<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-769<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-770<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-771<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-772<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-773<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-774<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-775<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-776<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-777<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-778<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-779<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-780<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-781<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-782<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-783<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-784<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-785<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-786<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-787<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-788<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-789<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-790<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-791<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-792<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-793<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-794<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-795<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-796<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-797<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-798<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-799<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-800<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-801<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-802<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-803<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-804<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-805<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-806<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-807<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-808<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-809<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-810<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-811<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-812<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-813<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-814<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-815<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-816<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-817<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-818<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-819<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-820<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-821<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-822<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-823<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-824<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-825<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-826<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-827<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-828<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-829<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-830<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-831<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-832<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-833<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-834<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-835<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-836<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-837<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-838<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-839<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-840<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-841<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-842<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-843<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-844<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-845<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-846<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-847<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-848<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-849<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-850<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-851<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-852<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-853<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-854<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-855<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-856<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-857<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-858<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-859<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-860<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-861<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-862<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-863<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-864<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-865<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-866<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-867<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-868<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-869<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-870<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-871<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-872<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-873<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-874<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-875<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-876<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-877<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-878<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-879<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-880<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-881<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-882<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-883<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-884<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-885<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-886<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-887<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-888<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-889<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-890<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-891<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-892<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-893<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-894<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-895<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-896<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-897<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-898<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-899<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-900<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-901<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-902<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-903<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-904<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-905<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-906<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-907<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-908<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-909<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-910<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-911<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-912<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-913<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-914<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-915<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-916<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-917<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-918<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-919<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-920<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-921<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-922<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-923<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-924<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-925<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-926<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-927<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-928<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-929<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-930<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-931<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-932<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-933<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-934<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-935<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-936<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-937<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-938<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-939<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-940<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-941<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-942<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-943<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-944<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-945<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-946<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-947<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-948<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-949<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-950<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-951<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-952<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-953<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-954<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-955<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-956<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-957<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-958<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-959<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-960<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-961<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-962<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-963<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-964<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-965<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-966<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-967<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-968<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-969<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-970<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-971<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-972<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-973<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-974<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-975<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-976<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-977<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-978<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-979<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-980<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-981<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-982<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-983<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-984<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-985<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-986<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-987<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-988<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-989<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-990<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-991<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-992<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-993<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-994<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-995<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-996<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-997<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-998<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-999<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1000<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1001<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1002<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1003<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1004<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1005<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1006<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1007<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1008<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1009<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1010<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1011<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1012<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1013<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1014<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1015<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1016<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1017<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1018<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1019<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1020<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1021<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1022<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1023<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1024<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1025<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1026<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1027<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1028<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1029<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1030<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1031<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1032<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1033<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1034<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1035<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1036<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1037<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1038<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1039<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1040<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1041<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1042<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1043<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1044<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1045<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1046<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1047<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1048<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1049<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1050<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1051<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1052<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1053<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1054<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1055<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1056<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1057<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1058<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1059<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1060<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1061<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1062<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1063<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1064<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1065<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1066<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1067<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1068<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1069<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1070<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1071<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1072<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1073<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1074<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1075<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1076<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1077<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1078<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1079<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1080<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1081<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1082<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1083<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1084<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1085<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1086<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1087<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1088<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1089<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1090<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1091<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1092<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1093<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1094<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1095<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1096<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1097<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1098<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1099<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1100<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1101<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1102<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1103<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1104<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1105<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1106<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1107<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1108<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1109<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1110<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1111<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1112<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1113<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1114<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1115<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1116<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1117<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1118<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1119<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1120<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1121<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1122<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1123<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1124<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1125<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1126<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1127<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1128<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1129<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1130<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1131<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1132<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1133<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1134<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1135<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1136<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1137<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1138<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1139<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1140<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1141<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1142<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1143<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1144<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1145<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1146<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1147<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1148<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1149<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1150<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1151<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1152<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1153<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1154<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1155<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1156<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1157<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1158<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1159<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1160<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1161<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1162<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1163<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1164<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1165<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1166<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1167<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1168<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1169<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1170<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1171<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1172<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1173<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1174<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1175<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1176<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1177<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1178<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1179<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1180<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1181<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1182<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1183<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1184<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1185<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1186<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1187<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1188<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1189<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1190<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1191<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1192<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1193<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1194<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1195<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1196<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1197<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1198<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1199<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1200<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1201<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1202<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1203<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1204<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1205<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1206<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1207<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1208<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1209<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1210<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1211<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1212<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1213<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1214<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1215<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1216<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1217<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1218<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1219<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1220<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1221<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1222<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1223<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1224<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1225<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1226<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1227<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1228<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1229<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1230<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1231<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1232<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1233<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1234<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1235<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1236<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1237<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1238<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1239<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1240<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1241<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1242<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1243<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1244<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1245<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1246<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1247<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1248<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1249<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1250<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1251<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1252<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1253<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1254<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1255<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1256<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1257<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1258<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1259<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1260<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1261<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
-1262<<WARNING>> ../src/../../SGV3D/src/base.h[42], Indexer(): Constructed invalid Indexer
+0.000000, -0.000000, 0.000000
+0.000000, -0.091855, 0.000000
+0.000000, -0.966031, 0.000000
+0.000000, -2.723903, 0.000000
+0.000000, -4.377676, 0.000000
+0.000000, -6.064892, 0.000000
+0.000000, -7.762472, 0.000000
+0.000000, -9.490767, 0.000000
+0.000000, -11.697946, 0.000000
+0.000000, -12.873239, 0.000000
+0.000000, -14.596934, 0.000000
+0.000000, -16.286711, 0.000000
+0.000000, -17.981741, 0.000000
+0.000000, -19.681330, 0.000000
+0.000000, -21.380386, 0.000000
+0.000000, -23.075022, 0.000000
+0.000000, -24.773926, 0.000000
+0.000000, -26.472502, 0.000000
+0.000000, -28.180012, 0.000000
+0.000000, -29.884407, 0.000000
+0.000000, -31.590948, 0.000000
+0.000000, -33.295616, 0.000000
+0.000000, -34.992031, 0.000000
+0.000000, -36.687790, 0.000000
+0.000000, -38.379192, 0.000000
+0.000000, -40.081783, 0.000000
+0.000000, -41.783146, 0.000000
+0.000000, -43.493607, 0.000000
+0.000000, -45.191875, 0.000000
+0.000000, -46.887146, 0.000000
+0.000000, -48.594078, 0.000000
+0.000000, -50.283607, 0.000000
+0.000000, -51.973778, 0.000000
+0.000000, -53.669872, 0.000000
+0.000000, -55.372925, 0.000000
+0.000000, -57.075638, 0.000000
+0.000000, -58.777287, 0.000000
+0.000000, -60.479721, 0.000000
+0.000000, -62.179718, 0.000000
+0.000000, -63.879261, 0.000000
+0.000000, -66.194450, 0.000000
+0.000000, -67.273903, 0.000000
+0.000000, -68.981995, 0.000000
+0.000000, -70.680847, 0.000000
+0.000000, -72.381523, 0.000000
+0.000000, -74.081657, 0.000000
+0.000000, -75.785721, 0.000000
+0.000000, -77.479485, 0.000000
+0.000000, -79.183220, 0.000000
+0.000000, -80.880074, 0.000000
+0.000000, -82.580544, 0.000000
+0.000000, -84.286789, 0.000000
+0.000000, -85.988121, 0.000000
+0.000000, -87.679810, 0.000000
+0.000000, -89.385956, 0.000000
+0.000000, -91.084015, 0.000000
+0.000000, -92.785873, 0.000000
+0.000000, -94.490967, 0.000000
+0.000000, -96.186462, 0.000000
+0.000000, -97.891617, 0.000000
+0.000000, -99.588188, 0.000000
+0.000000, -101.290558, 0.000000
+0.000000, -102.990677, 0.000000
+0.000000, -104.684647, 0.000000
+0.000000, -106.389717, 0.000000
+0.000000, -108.090698, 0.000000
+0.000000, -109.791527, 0.000000
+0.000000, -111.484161, 0.000000
+0.000000, -113.189461, 0.000000
+0.000000, -114.890594, 0.000000
+0.000000, -116.592377, 0.000000
+0.000000, -118.287437, 0.000000
+0.000000, -119.993622, 0.000000
+0.000000, -121.689545, 0.000000
+0.000000, -123.389297, 0.000000
+0.000000, -125.090973, 0.000000
+0.000000, -126.778870, 0.000000
+0.000000, -128.492172, 0.000000
+0.000000, -130.188171, 0.000000
+0.000000, -131.885712, 0.000000
+0.000000, -133.584518, 0.000000
+0.000000, -135.292618, 0.000000
+0.000000, -136.981400, 0.000000
+0.000000, -138.688553, 0.000000
+0.000000, -140.378754, 0.000000
+0.000000, -142.084961, 0.000000
+0.000000, -143.782730, 0.000000
+0.000000, -145.487534, 0.000000
+0.000000, -147.204330, 0.000000
+0.000000, -148.880280, 0.000000
+0.000000, -150.588074, 0.000000
+0.000000, -152.285629, 0.000000
+0.000000, -153.976303, 0.000000
+0.000000, -155.672974, 0.000000
+0.000000, -157.378662, 0.000000
+0.000000, -159.078491, 0.000000
+0.000000, -160.782135, 0.000000
+0.000000, -162.480591, 0.000000
+0.000000, -164.177399, 0.000000
+0.000000, -165.887115, 0.000000
+0.000000, -167.591354, 0.000000
+0.000000, -169.283920, 0.000000
+0.000000, -170.990204, 0.000000
+0.000000, -172.686890, 0.000000
+0.000000, -174.387360, 0.000000
+0.000000, -176.076035, 0.000000
+0.000000, -177.781204, 0.000000
+0.000000, -179.486206, 0.000000
+0.000000, -181.185226, 0.000000
+0.000000, -182.878510, 0.000000
+0.000000, -184.578735, 0.000000
+0.000000, -186.274246, 0.000000
+0.000000, -187.974319, 0.000000
+0.000000, -189.699234, 0.000000
+0.000000, -191.380905, 0.000000
+0.000000, -193.082870, 0.000000
+0.000000, -194.781982, 0.000000
+0.000000, -196.495163, 0.000000
+0.000000, -198.520401, 0.000000
+0.000000, -199.884857, 0.000000
+0.000000, -201.582504, 0.000000
+0.000000, -203.291153, 0.000000
+0.000000, -204.994797, 0.000000
+0.000000, -206.694168, 0.000000
+0.000000, -208.392426, 0.000000
+0.000000, -210.085251, 0.000000
+0.000000, -211.787201, 0.000000
+0.000000, -213.476746, 0.000000
+0.000000, -215.179764, 0.000000
+0.000000, -216.883850, 0.000000
+0.000000, -218.592438, 0.000000
+0.000000, -220.287262, 0.000000
+0.000000, -221.992920, 0.000000
+0.000000, -223.688599, 0.000000
+0.000000, -225.386124, 0.000000
+0.000000, -227.091827, 0.000000
+0.000000, -228.791122, 0.000000
+0.000000, -230.487885, 0.000000
+0.000000, -232.192368, 0.000000
+0.000000, -233.875427, 0.000000
+0.000000, -235.577896, 0.000000
+0.000000, -237.281738, 0.000000
+0.000000, -238.978851, 0.000000
+0.000000, -240.675720, 0.000000
+0.000000, -242.391632, 0.000000
+0.000000, -244.083771, 0.000000
+0.000000, -245.790939, 0.000000
+0.000000, -247.469940, 0.000000
+0.000000, -249.177353, 0.000000
+0.000000, -250.883133, 0.000000
+0.000000, -252.585266, 0.000000
+0.000000, -254.280167, 0.000000
+0.000000, -255.977173, 0.000000
+0.000000, -257.683319, 0.000000
+0.000000, -259.390839, 0.000000
+0.000000, -261.092651, 0.000000
+0.000000, -262.779938, 0.000000
+0.000000, -264.475830, 0.000000
+0.000000, -266.186157, 0.000000
+0.000000, -267.874237, 0.000000
+0.000000, -269.585205, 0.000000
+0.000000, -271.285736, 0.000000
+0.000000, -272.986237, 0.000000
+0.000000, -274.683380, 0.000000
+0.000000, -276.381561, 0.000000
+0.000000, -278.081329, 0.000000
+0.000000, -279.774689, 0.000000
+0.000000, -281.494293, 0.000000
+0.000000, -283.185730, 0.000000
+0.000000, -284.886566, 0.000000
+0.000000, -286.570862, 0.000000
+0.000000, -288.269714, 0.000000
+0.000000, -289.984375, 0.000000
+0.000000, -291.676910, 0.000000
+0.000000, -293.374542, 0.000000
+0.000000, -295.077850, 0.000000
+0.000000, -296.775909, 0.000000
+0.000000, -298.478241, 0.000000
+0.000000, -300.176056, 0.000000
+0.000000, -301.877045, 0.000000
+0.000000, -303.584442, 0.000000
+0.000000, -305.272766, 0.000000
+0.000000, -306.974792, 0.000000
+0.000000, -308.674316, 0.000000
+0.000000, -310.372559, 0.000000
+0.000000, -312.083282, 0.000000
+0.000000, -313.792297, 0.000000
+0.000000, -315.468140, 0.000000
+0.000000, -317.183655, 0.000000
+0.000000, -318.882233, 0.000000
+0.000000, -320.589264, 0.000000
+0.000000, -322.276917, 0.000000
+0.000000, -323.973755, 0.000000
+0.000000, -325.683472, 0.000000
+0.000000, -327.396149, 0.000000
+0.000000, -329.093048, 0.000000
+0.000000, -330.784241, 0.000000
+0.000000, -332.497070, 0.000000
+0.000000, -334.192596, 0.000000
+0.000000, -335.904755, 0.000000
+0.000000, -337.586273, 0.000000
+0.000000, -339.291412, 0.000000
+0.000000, -340.991913, 0.000000
+0.000000, -342.685089, 0.000000
+0.000000, -344.390289, 0.000000
+0.000000, -346.086792, 0.000000
+0.000000, -347.801910, 0.000000
+0.000000, -349.491882, 0.000000
+0.000000, -351.193939, 0.000000
+0.000000, -352.895996, 0.000000
+0.000000, -354.579193, 0.000000
+0.000000, -356.286133, 0.000000
+0.000000, -357.982635, 0.000000
+0.000000, -359.677612, 0.000000
+0.000000, -361.391235, 0.000000
+0.000000, -363.090820, 0.000000
+0.000000, -364.794800, 0.000000
+0.000000, -366.488953, 0.000000
+0.000000, -368.197571, 0.000000
+0.000000, -369.899048, 0.000000
+0.000000, -371.593750, 0.000000
+0.000000, -373.299622, 0.000000
+0.000000, -374.982635, 0.000000
+0.000000, -376.702118, 0.000000
+0.000000, -378.392395, 0.000000
+0.000000, -380.107117, 0.000000
+0.000000, -381.799225, 0.000000
+0.000000, -383.508179, 0.000000
+0.000000, -385.186310, 0.000000
+0.000000, -386.877106, 0.000000
+0.000000, -388.589081, 0.000000
+0.000000, -390.277649, 0.000000
+0.000000, -391.992645, 0.000000
+0.000000, -393.690704, 0.000000
+0.000000, -395.395142, 0.000000
+0.000000, -397.092743, 0.000000
+0.000000, -398.796051, 0.000000
+0.000000, -400.483154, 0.000000
+0.000000, -402.190674, 0.000000
+0.000000, -403.893890, 0.000000
+0.000000, -405.593048, 0.000000
+0.000000, -407.294403, 0.000000
+0.000000, -404.969971, 0.000000
+0.000000, -406.652283, 0.000000
+0.000000, -408.311218, 0.000000
+0.000000, -409.967865, 0.000000
+0.000000, -411.586853, 0.000000
+0.000000, -413.223236, 0.000000
+0.000000, -414.844238, 0.000000
+0.000000, -416.447784, 0.000000
+0.000000, -418.040894, 0.000000
+0.000000, -419.618622, 0.000000
+0.000000, -421.192200, 0.000000
+0.000000, -422.761475, 0.000000
+0.000000, -424.301392, 0.000000
+0.000000, -425.832550, 0.000000
+0.000000, -427.348236, 0.000000
+0.000000, -428.872559, 0.000000
+0.000000, -430.362030, 0.000000
+0.000000, -431.857056, 0.000000
+0.000000, -433.335693, 0.000000
+0.000000, -434.796997, 0.000000
+0.000000, -436.246735, 0.000000
+0.000000, -437.681152, 0.000000
+0.000000, -439.117645, 0.000000
+0.000000, -440.538971, 0.000000
+0.000000, -441.935059, 0.000000
+0.000000, -443.315002, 0.000000
+0.000000, -444.707245, 0.000000
+0.000000, -446.070984, 0.000000
+0.000000, -447.437897, 0.000000
+0.000000, -448.763550, 0.000000
+0.000000, -450.081879, 0.000000
+0.000000, -451.407715, 0.000000
+0.000000, -452.708008, 0.000000
+0.000000, -454.009003, 0.000000
+0.000000, -455.293518, 0.000000
+0.000000, -456.560059, 0.000000
+0.000000, -457.816833, 0.000000
+0.000000, -459.071136, 0.000000
+0.000000, -460.301575, 0.000000
+0.000000, -461.503632, 0.000000
+0.000000, -462.718109, 0.000000
+0.000000, -463.908112, 0.000000
+0.000000, -465.090515, 0.000000
+0.000000, -466.263214, 0.000000
+0.000000, -467.406311, 0.000000
+0.000000, -468.558838, 0.000000
+0.000000, -469.687592, 0.000000
+0.000000, -470.803436, 0.000000
+0.000000, -471.904205, 0.000000
+0.000000, -472.993347, 0.000000
+0.000000, -474.071930, 0.000000
+0.000000, -475.134460, 0.000000
+0.000000, -476.185211, 0.000000
+0.000000, -477.225311, 0.000000
+0.000000, -478.234192, 0.000000
+0.000000, -479.251526, 0.000000
+0.000000, -480.253326, 0.000000
+0.000000, -481.238464, 0.000000
+0.000000, -482.211578, 0.000000
+0.000000, -483.170013, 0.000000
+0.000000, -484.113373, 0.000000
+0.000000, -485.038483, 0.000000
+0.000000, -485.962769, 0.000000
+0.000000, -486.868164, 0.000000
+0.000000, -487.757324, 0.000000
+0.000000, -488.640808, 0.000000
+0.000000, -489.503815, 0.000000
+0.000000, -490.353729, 0.000000
+0.000000, -491.189575, 0.000000
+0.000000, -492.012146, 0.000000
+0.000000, -492.826355, 0.000000
+0.000000, -493.620789, 0.000000
+0.000000, -494.403809, 0.000000
+0.000000, -495.175964, 0.000000
+0.000000, -495.929291, 0.000000
+0.000000, -496.674133, 0.000000
+0.000000, -497.406067, 0.000000
+0.000000, -498.120422, 0.000000
+0.000000, -498.817841, 0.000000
+0.000000, -499.507568, 0.000000
+0.000000, -500.185913, 0.000000
+0.000000, -500.840790, 0.000000
+0.000000, -501.485992, 0.000000
+0.000000, -502.123260, 0.000000
+0.000000, -502.737885, 0.000000
+0.000000, -503.343079, 0.000000
+0.000000, -503.940613, 0.000000
+0.000000, -504.517487, 0.000000
+0.000000, -505.081726, 0.000000
+0.000000, -505.633392, 0.000000
+0.000000, -506.163818, 0.000000
+0.000000, -506.683411, 0.000000
+0.000000, -507.195740, 0.000000
+0.000000, -507.691101, 0.000000
+0.000000, -508.172577, 0.000000
+0.000000, -508.640900, 0.000000
+0.000000, -509.088959, 0.000000
+0.000000, -509.532104, 0.000000
+0.000000, -509.949677, 0.000000
+0.000000, -510.363190, 0.000000
+0.000000, -510.759125, 0.000000
+0.000000, -511.140289, 0.000000
+0.000000, -511.510193, 0.000000
+0.000000, -511.865967, 0.000000
+0.000000, -512.205017, 0.000000
+0.000000, -512.532654, 0.000000
+0.000000, -512.845398, 0.000000
+0.000000, -513.142456, 0.000000
+0.000000, -513.427429, 0.000000
+0.000000, -513.697205, 0.000000
+0.000000, -513.953003, 0.000000
+0.000000, -514.194763, 0.000000
+0.000000, -514.422546, 0.000000
+0.000000, -514.635742, 0.000000
+0.000000, -514.834900, 0.000000
+0.000000, -515.020203, 0.000000
+0.000000, -515.191345, 0.000000
+0.000000, -515.346680, 0.000000
+0.000000, -515.490540, 0.000000
+0.000000, -515.619324, 0.000000
+0.000000, -515.733704, 0.000000
+0.000000, -515.834290, 0.000000
+0.000000, -515.919861, 0.000000
+0.000000, -515.991394, 0.000000
+0.000000, -516.049683, 0.000000
+0.000000, -516.093262, 0.000000
+0.000000, -516.122681, 0.000000
+0.000000, -516.138062, 0.000000
+0.000000, -516.139099, 0.000000
+0.000000, -516.126099, 0.000000
+0.000000, -516.098877, 0.000000
+0.000000, -516.057617, 0.000000
+0.000000, -516.002197, 0.000000
+0.000000, -515.932617, 0.000000
+0.000000, -515.848328, 0.000000
+0.000000, -515.750854, 0.000000
+0.000000, -515.638489, 0.000000
+0.000000, -515.512268, 0.000000
+0.000000, -515.371216, 0.000000
+0.000000, -515.217102, 0.000000
+0.000000, -515.048096, 0.000000
+0.000000, -514.864380, 0.000000
+0.000000, -514.668213, 0.000000
+0.000000, -514.458435, 0.000000
+0.000000, -514.232971, 0.000000
+0.000000, -513.993164, 0.000000
+0.000000, -513.738831, 0.000000
+0.000000, -513.471252, 0.000000
+0.000000, -513.193542, 0.000000
+0.000000, -512.895264, 0.000000
+0.000000, -512.586609, 0.000000
+0.000000, -512.263000, 0.000000
+0.000000, -511.924683, 0.000000
+0.000000, -511.571136, 0.000000
+0.000000, -511.203552, 0.000000
+0.000000, -510.824158, 0.000000
+0.000000, -510.428955, 0.000000
+0.000000, -510.020355, 0.000000
+0.000000, -509.599091, 0.000000
+0.000000, -509.162781, 0.000000
+0.000000, -508.717407, 0.000000
+0.000000, -508.252838, 0.000000
+0.000000, -507.773712, 0.000000
+0.000000, -507.282349, 0.000000
+0.000000, -506.776825, 0.000000
+0.000000, -506.259613, 0.000000
+0.000000, -505.723114, 0.000000
+0.000000, -505.174225, 0.000000
+0.000000, -504.614075, 0.000000
+0.000000, -504.041016, 0.000000
+0.000000, -503.450409, 0.000000
+0.000000, -502.849487, 0.000000
+0.000000, -502.230286, 0.000000
+0.000000, -501.603699, 0.000000
+0.000000, -500.960266, 0.000000
+0.000000, -500.302155, 0.000000
+0.000000, -499.628937, 0.000000
+0.000000, -498.948578, 0.000000
+0.000000, -498.246094, 0.000000
+0.000000, -497.535339, 0.000000
+0.000000, -496.809418, 0.000000
+0.000000, -496.068359, 0.000000
+0.000000, -495.316742, 0.000000
+0.000000, -494.556305, 0.000000
+0.000000, -493.770813, 0.000000
+0.000000, -492.977844, 0.000000
+0.000000, -492.170807, 0.000000
+0.000000, -491.345795, 0.000000
+0.000000, -490.513519, 0.000000
+0.000000, -489.669159, 0.000000
+0.000000, -488.808350, 0.000000
+0.000000, -487.932922, 0.000000
+0.000000, -487.043365, 0.000000
+0.000000, -486.138458, 0.000000
+0.000000, -485.233856, 0.000000
+0.000000, -484.307831, 0.000000
+0.000000, -483.367004, 0.000000
+0.000000, -482.414215, 0.000000
+0.000000, -481.445923, 0.000000
+0.000000, -480.466888, 0.000000
+0.000000, -479.473724, 0.000000
+0.000000, -478.283600, 0.000000
+0.000000, -477.460327, 0.000000
+0.000000, -476.420654, 0.000000
+0.000000, -475.369720, 0.000000
+0.000000, -474.312592, 0.000000
+0.000000, -473.238525, 0.000000
+0.000000, -472.153503, 0.000000
+0.000000, -471.055756, 0.000000
+0.000000, -469.944885, 0.000000
+0.000000, -468.816162, 0.000000
+0.000000, -467.697205, 0.000000
+0.000000, -466.533966, 0.000000
+0.000000, -465.375275, 0.000000
+0.000000, -464.196503, 0.000000
+0.000000, -463.010437, 0.000000
+0.000000, -461.807556, 0.000000
+0.000000, -460.600372, 0.000000
+0.000000, -459.380035, 0.000000
+0.000000, -458.132721, 0.000000
+0.000000, -456.882477, 0.000000
+0.000000, -455.624146, 0.000000
+0.000000, -454.349457, 0.000000
+0.000000, -453.058289, 0.000000
+0.000000, -451.759033, 0.000000
+0.000000, -450.446411, 0.000000
+0.000000, -427.711395, 0.000000
+0.000000, -385.829010, 0.000000
+0.000000, -327.429901, 0.000000
+0.000000, -256.297546, 0.000000
+0.000000, -176.460602, 0.000000
+0.000000, -92.437782, 0.000000
+0.000000, -9.451143, 0.000000
+0.000000, 70.195007, 0.000000
+0.000000, 142.739502, 0.000000
+0.000000, 204.223450, 0.000000
+0.000000, 252.227600, 0.000000
+0.000000, 286.027985, 0.000000
+0.000000, 303.487946, 0.000000
+0.000000, 304.993988, 0.000000
+0.000000, 306.305328, 0.000000
+0.000000, 307.620483, 0.000000
+0.000000, 308.919250, 0.000000
+0.000000, 310.216614, 0.000000
+0.000000, 311.495697, 0.000000
+0.000000, 312.775146, 0.000000
+0.000000, 314.040497, 0.000000
+0.000000, 315.300354, 0.000000
+0.000000, 316.543427, 0.000000
+0.000000, 317.791626, 0.000000
+0.000000, 319.021851, 0.000000
+0.000000, 320.241119, 0.000000
+0.000000, 321.457916, 0.000000
+0.000000, 322.658173, 0.000000
+0.000000, 323.856750, 0.000000
+0.000000, 325.026306, 0.000000
+0.000000, 326.217590, 0.000000
+0.000000, 327.386200, 0.000000
+0.000000, 328.542023, 0.000000
+0.000000, 329.696411, 0.000000
+0.000000, 330.837982, 0.000000
+0.000000, 331.975586, 0.000000
+0.000000, 333.096954, 0.000000
+0.000000, 334.195679, 0.000000
+0.000000, 335.300659, 0.000000
+0.000000, 336.395905, 0.000000
+0.000000, 337.482605, 0.000000
+0.000000, 338.549652, 0.000000
+0.000000, 339.620605, 0.000000
+0.000000, 340.679138, 0.000000
+0.000000, 341.735931, 0.000000
+0.000000, 342.772522, 0.000000
+0.000000, 343.809204, 0.000000
+0.000000, 344.829895, 0.000000
+0.000000, 345.840149, 0.000000
+0.000000, 346.847534, 0.000000
+0.000000, 347.833344, 0.000000
+0.000000, 348.822418, 0.000000
+0.000000, 349.791016, 0.000000
+0.000000, 350.753296, 0.000000
+0.000000, 351.713470, 0.000000
+0.000000, 352.652191, 0.000000
+0.000000, 353.587708, 0.000000
+0.000000, 354.517029, 0.000000
+0.000000, 355.427490, 0.000000
+0.000000, 356.333038, 0.000000
+0.000000, 357.232941, 0.000000
+0.000000, 358.112488, 0.000000
+0.000000, 358.992432, 0.000000
+0.000000, 359.861938, 0.000000
+0.000000, 360.707428, 0.000000
+0.000000, 361.560516, 0.000000
+0.000000, 362.399933, 0.000000
+0.000000, 363.224335, 0.000000
+0.000000, 364.041809, 0.000000
+0.000000, 364.847839, 0.000000
+0.000000, 365.643829, 0.000000
+0.000000, 366.430389, 0.000000
+0.000000, 367.206635, 0.000000
+0.000000, 367.970673, 0.000000
+0.000000, 368.722351, 0.000000
+0.000000, 369.473694, 0.000000
+0.000000, 370.208282, 0.000000
+0.000000, 370.933990, 0.000000
+0.000000, 371.650116, 0.000000
+0.000000, 372.355133, 0.000000
+0.000000, 373.041260, 0.000000
+0.000000, 373.728638, 0.000000
+0.000000, 374.405884, 0.000000
+0.000000, 375.069244, 0.000000
+0.000000, 375.724304, 0.000000
+0.000000, 376.367493, 0.000000
+0.000000, 377.001251, 0.000000
+0.000000, 377.626099, 0.000000
+0.000000, 378.236023, 0.000000
+0.000000, 378.838196, 0.000000
+0.000000, 379.428894, 0.000000
+0.000000, 380.010559, 0.000000
+0.000000, 380.583313, 0.000000
+0.000000, 381.143738, 0.000000
+0.000000, 381.693542, 0.000000
+0.000000, 382.232513, 0.000000
+0.000000, 382.761353, 0.000000
+0.000000, 383.278961, 0.000000
+0.000000, 383.784302, 0.000000
+0.000000, 384.280945, 0.000000
+0.000000, 384.768036, 0.000000
+0.000000, 385.242401, 0.000000
+0.000000, 385.706177, 0.000000
+0.000000, 386.163177, 0.000000
+0.000000, 386.606201, 0.000000
+0.000000, 387.034363, 0.000000
+0.000000, 387.460815, 0.000000
+0.000000, 387.872589, 0.000000
+0.000000, 388.274841, 0.000000
+0.000000, 388.666351, 0.000000
+0.000000, 389.047424, 0.000000
+0.000000, 389.413055, 0.000000
+0.000000, 389.774567, 0.000000
+0.000000, 390.121643, 0.000000
+0.000000, 390.458771, 0.000000
+0.000000, 390.785126, 0.000000
+0.000000, 391.101196, 0.000000
+0.000000, 391.404510, 0.000000
+0.000000, 391.701477, 0.000000
+0.000000, 391.985016, 0.000000
+0.000000, 392.255249, 0.000000
+0.000000, 392.519043, 0.000000
+0.000000, 392.767731, 0.000000
+0.000000, 393.009491, 0.000000
+0.000000, 393.237152, 0.000000
+0.000000, 393.455872, 0.000000
+0.000000, 393.663818, 0.000000
+0.000000, 393.859741, 0.000000
+0.000000, 394.046295, 0.000000
+0.000000, 394.222382, 0.000000
+0.000000, 394.387299, 0.000000
+0.000000, 394.539948, 0.000000
+0.000000, 394.683350, 0.000000
+0.000000, 394.813934, 0.000000
+0.000000, 394.934418, 0.000000
+0.000000, 395.045227, 0.000000
+0.000000, 395.144379, 0.000000
+0.000000, 395.232758, 0.000000
+0.000000, 395.310516, 0.000000
+0.000000, 395.376770, 0.000000
+0.000000, 395.432129, 0.000000
+0.000000, 395.477264, 0.000000
+0.000000, 395.511078, 0.000000
+0.000000, 395.534058, 0.000000
+0.000000, 395.546234, 0.000000
+0.000000, 395.547638, 0.000000
+0.000000, 395.538116, 0.000000
+0.000000, 395.517578, 0.000000
+0.000000, 395.486176, 0.000000
+0.000000, 395.443939, 0.000000
+0.000000, 395.390778, 0.000000
+0.000000, 395.326752, 0.000000
+0.000000, 395.251953, 0.000000
+0.000000, 395.166718, 0.000000
+0.000000, 395.070892, 0.000000
+0.000000, 394.962372, 0.000000
+0.000000, 394.844025, 0.000000
+0.000000, 394.714630, 0.000000
+0.000000, 394.574890, 0.000000
+0.000000, 394.423889, 0.000000
+0.000000, 394.261658, 0.000000
+0.000000, 394.089996, 0.000000
+0.000000, 393.906830, 0.000000
+0.000000, 393.713562, 0.000000
+0.000000, 393.507935, 0.000000
+0.000000, 393.293427, 0.000000
+0.000000, 393.065765, 0.000000
+0.000000, 392.827057, 0.000000
+0.000000, 392.578369, 0.000000
+0.000000, 392.318695, 0.000000
+0.000000, 392.049408, 0.000000
+0.000000, 391.770020, 0.000000
+0.000000, 391.478516, 0.000000
+0.000000, 391.175629, 0.000000
+0.000000, 390.863312, 0.000000
+0.000000, 390.539581, 0.000000
+0.000000, 390.204132, 0.000000
+0.000000, 389.857788, 0.000000
+0.000000, 389.508026, 0.000000
+0.000000, 389.138702, 0.000000
+0.000000, 388.761200, 0.000000
+0.000000, 388.373291, 0.000000
+0.000000, 387.974701, 0.000000
+0.000000, 387.563141, 0.000000
+0.000000, 387.141602, 0.000000
+0.000000, 386.714905, 0.000000
+0.000000, 386.272980, 0.000000
+0.000000, 385.819489, 0.000000
+0.000000, 385.356628, 0.000000
+0.000000, 384.881592, 0.000000
+0.000000, 384.401001, 0.000000
+0.000000, 383.903656, 0.000000
+0.000000, 383.402954, 0.000000
+0.000000, 382.885132, 0.000000
+0.000000, 382.363831, 0.000000
+0.000000, 381.823700, 0.000000
+0.000000, 381.280640, 0.000000
+0.000000, 380.720764, 0.000000
+0.000000, 380.151611, 0.000000
+0.000000, 379.571930, 0.000000
+0.000000, 378.987457, 0.000000
+0.000000, 378.388580, 0.000000
+0.000000, 377.781281, 0.000000
+0.000000, 377.156219, 0.000000
+0.000000, 376.532776, 0.000000
+0.000000, 375.883240, 0.000000
+0.000000, 375.241486, 0.000000
+0.000000, 374.572083, 0.000000
+0.000000, 373.909485, 0.000000
+0.000000, 373.218781, 0.000000
+0.000000, 372.527893, 0.000000
+0.000000, 371.822754, 0.000000
+0.000000, 371.116089, 0.000000
+0.000000, 370.389648, 0.000000
+0.000000, 369.657501, 0.000000
+0.000000, 368.910339, 0.000000
+0.000000, 368.161285, 0.000000
+0.000000, 367.394897, 0.000000
+0.000000, 366.618134, 0.000000
+0.000000, 365.839020, 0.000000
+0.000000, 365.046387, 0.000000
+0.000000, 364.237701, 0.000000
+0.000000, 363.430542, 0.000000
+0.000000, 362.607117, 0.000000
+0.000000, 361.771423, 0.000000
+0.000000, 360.934662, 0.000000
+0.000000, 360.083649, 0.000000
+0.000000, 359.212006, 0.000000
+0.000000, 358.338257, 0.000000
+0.000000, 357.455322, 0.000000
+0.000000, 356.556030, 0.000000
+0.000000, 355.654480, 0.000000
+0.000000, 354.748291, 0.000000
+0.000000, 353.820648, 0.000000
+0.000000, 352.884430, 0.000000
+0.000000, 351.951874, 0.000000
+0.000000, 350.996246, 0.000000
+0.000000, 350.031372, 0.000000
+0.000000, 349.061584, 0.000000
+0.000000, 348.088837, 0.000000
+0.000000, 347.099884, 0.000000
+0.000000, 346.101105, 0.000000
+0.000000, 345.091858, 0.000000
+0.000000, 344.072327, 0.000000
+0.000000, 343.047211, 0.000000
+0.000000, 342.005280, 0.000000
+0.000000, 340.962921, 0.000000
+0.000000, 339.901733, 0.000000
+0.000000, 338.840363, 0.000000
+0.000000, 337.759125, 0.000000
+0.000000, 336.678101, 0.000000
+0.000000, 335.589478, 0.000000
+0.000000, 334.491364, 0.000000
+0.000000, 333.380371, 0.000000
+0.000000, 332.259460, 0.000000
+0.000000, 331.129181, 0.000000
+0.000000, 329.985626, 0.000000
+0.000000, 328.827698, 0.000000
+0.000000, 327.670135, 0.000000
+0.000000, 326.510010, 0.000000
+0.000000, 325.333160, 0.000000
+0.000000, 324.150085, 0.000000
+0.000000, 322.957489, 0.000000
+0.000000, 321.744568, 0.000000
+0.000000, 320.534729, 0.000000
+0.000000, 319.314972, 0.000000
+0.000000, 318.086182, 0.000000
+0.000000, 316.856812, 0.000000
+0.000000, 315.604248, 0.000000
+0.000000, 314.341034, 0.000000
+0.000000, 313.077057, 0.000000
+0.000000, 311.814026, 0.000000
+0.000000, 310.524567, 0.000000
+0.000000, 309.241760, 0.000000
+0.000000, 307.934021, 0.000000
+0.000000, 306.634125, 0.000000
+0.000000, 305.313416, 0.000000
+0.000000, 304.016571, 0.000000
+0.000000, 302.674255, 0.000000
+0.000000, 301.335266, 0.000000
+0.000000, 299.975037, 0.000000
+0.000000, 298.623749, 0.000000
+0.000000, 297.278839, 0.000000
+0.000000, 295.914062, 0.000000
+0.000000, 294.521057, 0.000000
+0.000000, 293.130646, 0.000000
+0.000000, 291.734283, 0.000000
+0.000000, 290.323425, 0.000000
+0.000000, 288.907227, 0.000000
+0.000000, 287.486786, 0.000000
+0.000000, 286.058380, 0.000000
+0.000000, 284.621552, 0.000000
+0.000000, 283.172943, 0.000000
+0.000000, 281.730499, 0.000000
+0.000000, 280.258301, 0.000000
+0.000000, 278.799011, 0.000000
+0.000000, 277.318054, 0.000000
+0.000000, 275.835022, 0.000000
+0.000000, 274.343750, 0.000000
+0.000000, 272.861145, 0.000000
+0.000000, 271.346680, 0.000000
+0.000000, 269.831329, 0.000000
+0.000000, 268.311493, 0.000000
+0.000000, 266.785645, 0.000000
+0.000000, 265.249695, 0.000000
+0.000000, 263.706024, 0.000000
+0.000000, 262.177124, 0.000000
+0.000000, 260.621490, 0.000000
+0.000000, 259.052795, 0.000000
+0.000000, 257.482483, 0.000000
+0.000000, 255.903854, 0.000000
+0.000000, 254.305862, 0.000000
+0.000000, 252.717896, 0.000000
+0.000000, 251.119339, 0.000000
+0.000000, 249.515152, 0.000000
+0.000000, 247.900238, 0.000000
+0.000000, 246.280518, 0.000000
+0.000000, 244.648651, 0.000000
+0.000000, 243.011765, 0.000000
+0.000000, 241.376968, 0.000000
+0.000000, 239.722977, 0.000000
+0.000000, 238.068359, 0.000000
+0.000000, 236.412399, 0.000000
+0.000000, 234.746948, 0.000000
+0.000000, 233.070236, 0.000000
+0.000000, 231.387131, 0.000000
+0.000000, 229.706711, 0.000000
+0.000000, 228.018127, 0.000000
+0.000000, 226.317368, 0.000000
+0.000000, 224.614334, 0.000000
+0.000000, 222.916367, 0.000000
+0.000000, 221.213211, 0.000000
+0.000000, 219.517303, 0.000000
+0.000000, 217.814651, 0.000000
+0.000000, 216.118164, 0.000000
+0.000000, 214.417114, 0.000000
+0.000000, 212.714920, 0.000000
+0.000000, 211.000397, 0.000000
+0.000000, 209.317459, 0.000000
+0.000000, 207.605209, 0.000000
+0.000000, 205.931610, 0.000000
+0.000000, 204.211975, 0.000000
+0.000000, 202.512390, 0.000000
+0.000000, 200.814850, 0.000000
+0.000000, 199.123566, 0.000000
+0.000000, 197.432800, 0.000000
+0.000000, 195.720612, 0.000000
+0.000000, 194.017639, 0.000000
+0.000000, 192.316376, 0.000000
+0.000000, 190.610123, 0.000000
+0.000000, 188.913895, 0.000000
+0.000000, 187.211365, 0.000000
+0.000000, 185.509323, 0.000000
+0.000000, 183.816833, 0.000000
+0.000000, 182.123856, 0.000000
+0.000000, 180.410690, 0.000000
+0.000000, 178.710449, 0.000000
+0.000000, 177.006332, 0.000000
+0.000000, 175.317352, 0.000000
+0.000000, 173.622757, 0.000000
+0.000000, 171.905548, 0.000000
+0.000000, 170.225830, 0.000000
+0.000000, 168.526016, 0.000000
+0.000000, 166.829163, 0.000000
+0.000000, 165.133636, 0.000000
+0.000000, 163.411285, 0.000000
+0.000000, 161.712769, 0.000000
+0.000000, 160.008331, 0.000000
+0.000000, 158.308868, 0.000000
+0.000000, 156.609116, 0.000000
+0.000000, 154.927475, 0.000000
+0.000000, 153.212250, 0.000000
+0.000000, 151.507202, 0.000000
+0.000000, 149.810181, 0.000000
+0.000000, 148.108597, 0.000000
+0.000000, 146.420319, 0.000000
+0.000000, 144.718384, 0.000000
+0.000000, 143.005035, 0.000000
+0.000000, 141.319275, 0.000000
+0.000000, 139.617294, 0.000000
+0.000000, 137.917953, 0.000000
+0.000000, 136.222000, 0.000000
+0.000000, 134.512558, 0.000000
+0.000000, 132.816635, 0.000000
+0.000000, 131.122055, 0.000000
+0.000000, 129.407913, 0.000000
+0.000000, 127.705505, 0.000000
+0.000000, 126.018410, 0.000000
+0.000000, 124.308548, 0.000000
+0.000000, 122.639046, 0.000000
+0.000000, 120.912247, 0.000000
+0.000000, 119.213783, 0.000000
+0.000000, 117.513100, 0.000000
+0.000000, 115.813332, 0.000000
+0.000000, 114.119293, 0.000000
+0.000000, 112.411964, 0.000000
+0.000000, 110.738098, 0.000000
+0.000000, 109.025146, 0.000000
+0.000000, 107.320633, 0.000000
+0.000000, 105.611412, 0.000000
+0.000000, 103.921165, 0.000000
+0.000000, 102.208641, 0.000000
+0.000000, 100.511093, 0.000000
+0.000000, 98.826653, 0.000000
+0.000000, 97.130524, 0.000000
+0.000000, 95.440193, 0.000000
+0.000000, 93.731400, 0.000000
+0.000000, 92.019104, 0.000000
+0.000000, 90.323715, 0.000000
+0.000000, 88.632721, 0.000000
+0.000000, 86.921051, 0.000000
+0.000000, 85.223106, 0.000000
+0.000000, 83.523003, 0.000000
+0.000000, 81.810196, 0.000000
+0.000000, 80.111565, 0.000000
+0.000000, 78.415039, 0.000000
+0.000000, 76.712463, 0.000000
+0.000000, 75.006180, 0.000000
+0.000000, 73.307228, 0.000000
+0.000000, 71.615021, 0.000000
+0.000000, 69.912979, 0.000000
+0.000000, 68.215897, 0.000000
+0.000000, 66.525558, 0.000000
+0.000000, 64.815918, 0.000000
+0.000000, 63.131878, 0.000000
+0.000000, 61.419842, 0.000000
+0.000000, 59.713356, 0.000000
+0.000000, 58.007862, 0.000000
+0.000000, 56.311470, 0.000000
+0.000000, 54.611324, 0.000000
+0.000000, 52.912231, 0.000000
+0.000000, 51.204731, 0.000000
+0.000000, 49.521370, 0.000000
+0.000000, 47.811001, 0.000000
+0.000000, 46.115746, 0.000000
+0.000000, 44.417618, 0.000000
+0.000000, 42.729660, 0.000000
+0.000000, 41.013180, 0.000000
+0.000000, 39.314167, 0.000000
+0.000000, 37.614731, 0.000000
+0.000000, 35.908981, 0.000000
+0.000000, 34.209099, 0.000000
+0.000000, 32.529758, 0.000000
+0.000000, 30.817739, 0.000000
+0.000000, 29.122887, 0.000000
+0.000000, 27.418936, 0.000000
+0.000000, 25.711864, 0.000000
+0.000000, 24.029745, 0.000000
+0.000000, 22.317869, 0.000000
+0.000000, 20.622196, 0.000000
+0.000000, 18.939423, 0.000000
+0.000000, 17.219997, 0.000000
+0.000000, 15.523399, 0.000000
+0.000000, 13.813969, 0.000000
+0.000000, 12.112844, 0.000000
+0.000000, 10.415057, 0.000000
+0.000000, 8.714057, 0.000000
+0.000000, 7.023764, 0.000000
+0.000000, 5.329386, 0.000000
+0.000000, 3.613693, 0.000000
+0.000000, 1.924970, 0.000000
+0.000000, 0.213534, 0.000000
+0.000000, -1.469429, 0.000000
+0.000000, -3.181071, 0.000000
+0.000000, -4.870192, 0.000000
+0.000000, -6.556022, 0.000000
+0.000000, -8.269764, 0.000000
+0.000000, -9.976901, 0.000000
+0.000000, -11.680578, 0.000000
+0.000000, -13.384272, 0.000000
+0.000000, -15.082708, 0.000000
+0.000000, -16.751690, 0.000000
+0.000000, -18.456182, 0.000000
+0.000000, -20.168167, 0.000000
+0.000000, -21.870188, 0.000000
+0.000000, -23.566078, 0.000000
+0.000000, -25.265791, 0.000000
+0.000000, -26.949259, 0.000000
+0.000000, -28.663713, 0.000000
+0.000000, -30.369516, 0.000000
+0.000000, -32.071640, 0.000000
+0.000000, -33.767792, 0.000000
+0.000000, -35.474537, 0.000000
+0.000000, -37.164860, 0.000000
+0.000000, -38.872616, 0.000000
+0.000000, -40.569725, 0.000000
+0.000000, -42.260399, 0.000000
+0.000000, -43.977997, 0.000000
+0.000000, -45.676720, 0.000000
+0.000000, -47.373081, 0.000000
+0.000000, -49.052048, 0.000000
+0.000000, -50.768261, 0.000000
+0.000000, -52.467693, 0.000000
+0.000000, -54.168617, 0.000000
+0.000000, -55.859989, 0.000000
+0.000000, -57.575024, 0.000000
+0.000000, -59.275852, 0.000000
+0.000000, -60.974541, 0.000000
+0.000000, -62.678913, 0.000000
+0.000000, -64.379219, 0.000000
+0.000000, -66.078964, 0.000000
+0.000000, -67.779198, 0.000000
+0.000000, -69.482002, 0.000000
+0.000000, -71.182274, 0.000000
+0.000000, -72.884209, 0.000000
+0.000000, -74.580597, 0.000000
+0.000000, -76.271645, 0.000000
+0.000000, -77.983955, 0.000000
+0.000000, -79.676872, 0.000000
+0.000000, -81.387100, 0.000000
+0.000000, -83.080040, 0.000000
+0.000000, -84.768921, 0.000000
+0.000000, -86.479660, 0.000000
+0.000000, -88.179527, 0.000000
+0.000000, -89.874641, 0.000000
+0.000000, -91.577400, 0.000000
+0.000000, -93.268181, 0.000000
+0.000000, -94.976524, 0.000000
+0.000000, -96.660271, 0.000000
+0.000000, -98.372337, 0.000000
+0.000000, -100.059052, 0.000000
+0.000000, -101.776756, 0.000000
+0.000000, -103.474487, 0.000000
+0.000000, -105.153725, 0.000000
+0.000000, -106.860138, 0.000000
+0.000000, -108.559113, 0.000000
+0.000000, -110.259201, 0.000000
+0.000000, -111.964096, 0.000000
+0.000000, -113.658638, 0.000000
+0.000000, -115.359230, 0.000000
+0.000000, -117.052246, 0.000000
+0.000000, -118.758217, 0.000000
+0.000000, -120.465919, 0.000000
+0.000000, -122.165863, 0.000000
+0.000000, -123.860344, 0.000000
+0.000000, -125.574707, 0.000000
+0.000000, -127.272881, 0.000000
+0.000000, -128.976379, 0.000000
+0.000000, -130.684906, 0.000000
+0.000000, -132.357330, 0.000000
+0.000000, -134.061874, 0.000000
+0.000000, -135.763153, 0.000000
+0.000000, -137.465454, 0.000000
+0.000000, -139.169159, 0.000000
+0.000000, -140.866379, 0.000000
+0.000000, -142.559586, 0.000000
+0.000000, -144.272964, 0.000000
+0.000000, -145.970596, 0.000000
+0.000000, -147.668747, 0.000000
+0.000000, -149.371109, 0.000000
+0.000000, -151.067047, 0.000000
+0.000000, -152.773987, 0.000000
+0.000000, -154.472031, 0.000000
+0.000000, -156.177780, 0.000000
+0.000000, -157.871841, 0.000000
+0.000000, -159.577194, 0.000000
+0.000000, -161.262360, 0.000000
+0.000000, -162.978378, 0.000000
+0.000000, -164.671326, 0.000000
+0.000000, -166.376068, 0.000000
+0.000000, -168.077469, 0.000000
+0.000000, -169.782745, 0.000000
+0.000000, -171.468369, 0.000000
+0.000000, -173.155930, 0.000000
+0.000000, -174.867477, 0.000000
+0.000000, -176.568771, 0.000000
+0.000000, -178.257233, 0.000000
+0.000000, -179.965912, 0.000000
+0.000000, -181.651398, 0.000000
+0.000000, -183.365479, 0.000000
+0.000000, -185.063095, 0.000000
+0.000000, -186.768143, 0.000000
+0.000000, -188.476624, 0.000000
+0.000000, -190.164261, 0.000000
+0.000000, -191.874481, 0.000000
+0.000000, -193.561890, 0.000000
+0.000000, -195.264282, 0.000000
+0.000000, -196.967926, 0.000000
+0.000000, -198.667664, 0.000000
+0.000000, -200.367355, 0.000000
+0.000000, -202.071121, 0.000000
+0.000000, -200.536789, 0.000000
+0.000000, -202.234238, 0.000000
+0.000000, -203.933533, 0.000000
+0.000000, -205.610657, 0.000000
+0.000000, -207.303986, 0.000000
+0.000000, -209.005569, 0.000000
+0.000000, -210.704651, 0.000000
+0.000000, -212.417770, 0.000000
+0.000000, -214.119125, 0.000000
+0.000000, -215.809448, 0.000000
+0.000000, -217.512894, 0.000000
+0.000000, -219.214340, 0.000000
+0.000000, -220.926987, 0.000000
+0.000000, -222.619431, 0.000000
+0.000000, -224.323425, 0.000000
+0.000000, -226.027023, 0.000000
+0.000000, -227.717545, 0.000000
+0.000000, -229.425552, 0.000000
+0.000000, -231.134689, 0.000000
+0.000000, -232.831604, 0.000000
+0.000000, -234.534271, 0.000000
+0.000000, -236.233856, 0.000000
+0.000000, -237.935913, 0.000000
+0.000000, -239.636871, 0.000000
+0.000000, -241.346130, 0.000000
+0.000000, -243.034454, 0.000000
+0.000000, -244.729218, 0.000000
+0.000000, -246.445908, 0.000000
+0.000000, -248.140289, 0.000000
+0.000000, -249.822983, 0.000000
+0.000000, -251.535599, 0.000000
+0.000000, -253.230896, 0.000000
+0.000000, -254.935913, 0.000000
+0.000000, -256.641205, 0.000000
+0.000000, -258.335144, 0.000000
+0.000000, -258.653412, 0.000000
+0.000000, -260.215271, 0.000000
+0.000000, -261.749817, 0.000000
+0.000000, -263.290924, 0.000000
+0.000000, -264.820465, 0.000000
+0.000000, -266.333832, 0.000000
+0.000000, -267.862793, 0.000000
+0.000000, -269.362091, 0.000000
+0.000000, -270.867310, 0.000000
+0.000000, -272.354614, 0.000000
+0.000000, -273.844604, 0.000000
+0.000000, -275.313904, 0.000000
+0.000000, -276.793030, 0.000000
+0.000000, -278.253174, 0.000000
+0.000000, -279.688110, 0.000000
+0.000000, -281.153992, 0.000000
+0.000000, -282.593079, 0.000000
+0.000000, -284.029633, 0.000000
+0.000000, -285.449951, 0.000000
+0.000000, -286.873199, 0.000000
+0.000000, -288.255615, 0.000000
+0.000000, -289.664246, 0.000000
+0.000000, -291.070374, 0.000000
+0.000000, -292.454895, 0.000000
+0.000000, -293.832153, 0.000000
+0.000000, -295.193848, 0.000000
+0.000000, -296.557587, 0.000000
+0.000000, -297.904724, 0.000000
+0.000000, -299.241150, 0.000000
+0.000000, -300.580475, 0.000000
+0.000000, -301.912537, 0.000000
+0.000000, -303.233826, 0.000000
+0.000000, -304.541595, 0.000000
+0.000000, -305.842316, 0.000000
+0.000000, -307.138153, 0.000000
+0.000000, -308.424377, 0.000000
+0.000000, -309.700195, 0.000000
+0.000000, -310.974670, 0.000000
+0.000000, -312.220184, 0.000000
+0.000000, -313.474731, 0.000000
+0.000000, -314.721497, 0.000000
+0.000000, -315.959900, 0.000000
+0.000000, -317.191284, 0.000000
+0.000000, -318.405334, 0.000000
+0.000000, -319.607544, 0.000000
+0.000000, -320.804901, 0.000000
+0.000000, -321.999451, 0.000000
+0.000000, -323.180450, 0.000000
+0.000000, -324.361420, 0.000000
+0.000000, -325.524719, 0.000000
+0.000000, -326.671173, 0.000000
+0.000000, -327.816650, 0.000000
+0.000000, -328.956726, 0.000000
+0.000000, -330.083984, 0.000000
+0.000000, -331.199890, 0.000000
+0.000000, -332.318085, 0.000000
+0.000000, -333.406830, 0.000000
+0.000000, -334.494507, 0.000000
+0.000000, -335.582642, 0.000000
+0.000000, -336.656311, 0.000000
+0.000000, -337.724640, 0.000000
+0.000000, -338.779694, 0.000000
+0.000000, -339.822815, 0.000000
+0.000000, -340.850433, 0.000000
+0.000000, -341.884888, 0.000000
+0.000000, -342.902802, 0.000000
+0.000000, -343.911987, 0.000000
+0.000000, -344.908051, 0.000000
+0.000000, -345.898376, 0.000000
+0.000000, -346.865662, 0.000000
+0.000000, -347.844574, 0.000000
+0.000000, -348.803558, 0.000000
+0.000000, -349.756561, 0.000000
+0.000000, -350.693817, 0.000000
+0.000000, -351.628937, 0.000000
+0.000000, -352.544220, 0.000000
+0.000000, -353.462769, 0.000000
+0.000000, -354.363037, 0.000000
+0.000000, -355.255127, 0.000000
+0.000000, -356.137054, 0.000000
+0.000000, -357.008453, 0.000000
+0.000000, -357.855957, 0.000000
+0.000000, -358.709259, 0.000000
+0.000000, -359.556793, 0.000000
+0.000000, -360.391846, 0.000000
+0.000000, -361.215668, 0.000000
+0.000000, -362.030884, 0.000000
+0.000000, -362.833679, 0.000000
+0.000000, -363.625671, 0.000000
+0.000000, -364.408752, 0.000000
+0.000000, -365.182556, 0.000000
+0.000000, -365.947998, 0.000000
+0.000000, -366.704773, 0.000000
+0.000000, -367.444702, 0.000000
+0.000000, -368.177856, 0.000000
+0.000000, -368.898682, 0.000000
+0.000000, -369.611420, 0.000000
+0.000000, -370.321075, 0.000000
+0.000000, -371.013702, 0.000000
+0.000000, -371.696747, 0.000000
+0.000000, -372.369598, 0.000000
+0.000000, -373.027496, 0.000000
+0.000000, -373.678345, 0.000000
+0.000000, -374.321625, 0.000000
+0.000000, -374.952789, 0.000000
+0.000000, -375.574890, 0.000000
+0.000000, -376.182220, 0.000000
+0.000000, -376.780334, 0.000000
+0.000000, -377.377228, 0.000000
+0.000000, -377.956665, 0.000000
+0.000000, -378.521667, 0.000000
+0.000000, -379.081970, 0.000000
+0.000000, -379.625336, 0.000000
+0.000000, -380.166260, 0.000000
+0.000000, -380.692780, 0.000000
+0.000000, -381.213440, 0.000000
+0.000000, -381.718994, 0.000000
+0.000000, -382.210938, 0.000000
+0.000000, -382.693359, 0.000000
+0.000000, -383.173279, 0.000000
+0.000000, -383.637177, 0.000000
+0.000000, -384.091705, 0.000000
+0.000000, -384.533752, 0.000000
+0.000000, -384.967804, 0.000000
+0.000000, -385.386993, 0.000000
+0.000000, -385.796112, 0.000000
+0.000000, -386.201508, 0.000000
+0.000000, -386.590973, 0.000000
+0.000000, -386.969421, 0.000000
+0.000000, -387.338989, 0.000000
+0.000000, -387.695251, 0.000000
+0.000000, -388.037659, 0.000000
+0.000000, -388.377808, 0.000000
+0.000000, -388.707031, 0.000000
+0.000000, -389.020721, 0.000000
+0.000000, -389.326263, 0.000000
+0.000000, -389.615326, 0.000000
+0.000000, -389.900848, 0.000000
+0.000000, -390.173004, 0.000000
+0.000000, -390.437866, 0.000000
+0.000000, -390.687469, 0.000000
+0.000000, -390.928558, 0.000000
+0.000000, -391.155975, 0.000000
+0.000000, -391.372803, 0.000000
+0.000000, -391.583466, 0.000000
+0.000000, -391.781189, 0.000000
+0.000000, -391.968323, 0.000000
+0.000000, -392.143921, 0.000000
+0.000000, -392.307037, 0.000000
+0.000000, -392.461578, 0.000000
+0.000000, -392.605682, 0.000000
+0.000000, -392.738892, 0.000000
+0.000000, -392.861298, 0.000000
+0.000000, -392.971619, 0.000000
+0.000000, -393.072601, 0.000000
+0.000000, -393.162018, 0.000000
+0.000000, -393.240753, 0.000000
+0.000000, -393.308350, 0.000000
+0.000000, -393.365326, 0.000000
+0.000000, -393.410767, 0.000000
+0.000000, -393.446442, 0.000000
+0.000000, -393.470947, 0.000000
+0.000000, -393.484558, 0.000000
+0.000000, -393.487366, 0.000000
+0.000000, -393.479340, 0.000000
+0.000000, -393.460480, 0.000000
+0.000000, -393.430786, 0.000000
+0.000000, -393.391052, 0.000000
+0.000000, -393.339386, 0.000000
+0.000000, -393.277008, 0.000000
+0.000000, -393.204529, 0.000000
+0.000000, -393.120605, 0.000000
+0.000000, -393.025787, 0.000000
+0.000000, -392.920227, 0.000000
+0.000000, -392.804871, 0.000000
+0.000000, -392.677307, 0.000000
+0.000000, -392.539551, 0.000000
+0.000000, -392.390839, 0.000000
+0.000000, -392.230865, 0.000000
+0.000000, -392.063202, 0.000000
+0.000000, -391.883453, 0.000000
+0.000000, -391.689728, 0.000000
+0.000000, -391.488342, 0.000000
+0.000000, -391.273590, 0.000000
+0.000000, -391.049652, 0.000000
+0.000000, -390.815094, 0.000000
+0.000000, -390.570190, 0.000000
+0.000000, -390.312286, 0.000000
+0.000000, -390.045502, 0.000000
+0.000000, -389.766693, 0.000000
+0.000000, -389.478210, 0.000000
+0.000000, -389.178864, 0.000000
+0.000000, -388.873962, 0.000000
+0.000000, -388.557068, 0.000000
+0.000000, -388.225891, 0.000000
+0.000000, -387.883606, 0.000000
+0.000000, -387.531281, 0.000000
+0.000000, -387.167450, 0.000000
+0.000000, -386.790497, 0.000000
+0.000000, -386.405945, 0.000000
+0.000000, -386.010406, 0.000000
+0.000000, -385.602509, 0.000000
+0.000000, -385.185669, 0.000000
+0.000000, -384.756439, 0.000000
+0.000000, -384.318878, 0.000000
+0.000000, -383.873962, 0.000000
+0.000000, -383.412933, 0.000000
+0.000000, -382.943665, 0.000000
+0.000000, -382.471466, 0.000000
+0.000000, -381.977875, 0.000000
+0.000000, -381.476715, 0.000000
+0.000000, -380.963470, 0.000000
+0.000000, -380.444794, 0.000000
+0.000000, -379.916473, 0.000000
+0.000000, -379.370819, 0.000000
+0.000000, -378.817749, 0.000000
+0.000000, -378.254486, 0.000000
+0.000000, -377.677063, 0.000000
+0.000000, -377.093811, 0.000000
+0.000000, -376.499268, 0.000000
+0.000000, -375.894714, 0.000000
+0.000000, -375.278198, 0.000000
+0.000000, -374.658447, 0.000000
+0.000000, -374.018005, 0.000000
+0.000000, -373.372406, 0.000000
+0.000000, -372.715027, 0.000000
+0.000000, -372.048035, 0.000000
+0.000000, -371.370514, 0.000000
+0.000000, -370.683014, 0.000000
+0.000000, -369.986969, 0.000000
+0.000000, -369.285217, 0.000000
+0.000000, -368.562744, 0.000000
+0.000000, -367.832550, 0.000000
+0.000000, -367.096741, 0.000000
+0.000000, -366.348907, 0.000000
+0.000000, -365.590881, 0.000000
+0.000000, -364.823059, 0.000000
+0.000000, -364.042542, 0.000000
+0.000000, -363.255646, 0.000000
+0.000000, -362.458069, 0.000000
+0.000000, -361.654755, 0.000000
+0.000000, -360.830627, 0.000000
+0.000000, -360.003021, 0.000000
+0.000000, -359.166229, 0.000000
+0.000000, -358.316162, 0.000000
+0.000000, -357.454987, 0.000000
+0.000000, -356.602264, 0.000000
+0.000000, -355.716797, 0.000000
+0.000000, -354.827637, 0.000000
+0.000000, -353.931488, 0.000000
+0.000000, -353.023987, 0.000000
+0.000000, -352.106415, 0.000000
+0.000000, -351.180237, 0.000000
+0.000000, -350.243652, 0.000000
+0.000000, -349.297882, 0.000000
+0.000000, -348.345520, 0.000000
+0.000000, -347.378235, 0.000000
+0.000000, -346.409180, 0.000000
+0.000000, -345.422150, 0.000000
+0.000000, -344.431488, 0.000000
+0.000000, -343.429474, 0.000000
+0.000000, -342.417908, 0.000000
+0.000000, -341.398193, 0.000000
+0.000000, -340.366547, 0.000000
+0.000000, -339.321930, 0.000000
+0.000000, -338.277374, 0.000000
+0.000000, -337.220062, 0.000000
+0.000000, -336.152283, 0.000000
+0.000000, -335.081970, 0.000000
+0.000000, -333.992157, 0.000000
+0.000000, -332.893738, 0.000000
+0.000000, -331.786774, 0.000000
+0.000000, -330.674347, 0.000000
+0.000000, -329.550812, 0.000000
+0.000000, -328.419800, 0.000000
+0.000000, -327.278351, 0.000000
+0.000000, -326.128723, 0.000000
+0.000000, -324.962433, 0.000000
+0.000000, -323.798096, 0.000000
+0.000000, -322.619446, 0.000000
+0.000000, -321.432861, 0.000000
+0.000000, -320.243011, 0.000000
+0.000000, -319.031647, 0.000000
+0.000000, -317.829041, 0.000000
+0.000000, -316.617096, 0.000000
+0.000000, -315.385864, 0.000000
+0.000000, -314.149384, 0.000000
+0.000000, -312.896423, 0.000000
+0.000000, -311.644318, 0.000000
+0.000000, -310.365509, 0.000000
+0.000000, -309.111511, 0.000000
+0.000000, -307.825043, 0.000000
+0.000000, -306.531952, 0.000000
+0.000000, -305.224548, 0.000000
+0.000000, -303.920502, 0.000000
+0.000000, -302.598145, 0.000000
+0.000000, -286.798676, 0.000000
+0.000000, -258.086273, 0.000000
+0.000000, -218.156967, 0.000000
+0.000000, -169.995361, 0.000000
+0.000000, -115.448349, 0.000000
+0.000000, -58.493023, 0.000000
+0.000000, -0.926522, 0.000000
+0.000000, 53.285046, 0.000000
+0.000000, 102.987297, 0.000000
+0.000000, 144.902328, 0.000000
+0.000000, 178.090164, 0.000000
+0.000000, 200.964951, 0.000000
+0.000000, 213.058807, 0.000000
+0.000000, 214.430023, 0.000000
+0.000000, 215.746185, 0.000000
+0.000000, 217.060425, 0.000000
+0.000000, 218.372818, 0.000000
+0.000000, 219.683640, 0.000000
+0.000000, 220.964355, 0.000000
+0.000000, 222.261917, 0.000000
+0.000000, 223.546127, 0.000000
+0.000000, 224.823898, 0.000000
+0.000000, 226.097763, 0.000000
+0.000000, 227.361816, 0.000000
+0.000000, 228.605850, 0.000000
+0.000000, 229.850967, 0.000000
+0.000000, 231.102737, 0.000000
+0.000000, 232.354446, 0.000000
+0.000000, 233.590912, 0.000000
+0.000000, 234.819641, 0.000000
+0.000000, 236.020996, 0.000000
+0.000000, 237.241302, 0.000000
+0.000000, 238.457581, 0.000000
+0.000000, 239.655609, 0.000000
+0.000000, 240.854767, 0.000000
+0.000000, 242.040787, 0.000000
+0.000000, 243.222092, 0.000000
+0.000000, 244.398407, 0.000000
+0.000000, 245.570786, 0.000000
+0.000000, 246.731339, 0.000000
+0.000000, 247.886261, 0.000000
+0.000000, 249.036667, 0.000000
+0.000000, 250.177277, 0.000000
+0.000000, 251.306900, 0.000000
+0.000000, 252.434113, 0.000000
+0.000000, 253.558121, 0.000000
+0.000000, 254.669159, 0.000000
+0.000000, 255.766663, 0.000000
+0.000000, 256.870880, 0.000000
+0.000000, 257.950775, 0.000000
+0.000000, 259.043427, 0.000000
+0.000000, 260.123535, 0.000000
+0.000000, 261.195770, 0.000000
+0.000000, 262.268433, 0.000000
+0.000000, 263.323639, 0.000000
+0.000000, 264.374878, 0.000000
+0.000000, 265.414124, 0.000000
+0.000000, 266.452881, 0.000000
+0.000000, 267.483673, 0.000000
+0.000000, 268.501099, 0.000000
+0.000000, 269.513885, 0.000000
+0.000000, 270.510956, 0.000000
+0.000000, 271.515442, 0.000000
+0.000000, 272.495819, 0.000000
+0.000000, 273.489166, 0.000000
+0.000000, 274.470337, 0.000000
+0.000000, 275.419006, 0.000000
+0.000000, 276.382111, 0.000000
+0.000000, 277.335388, 0.000000
+0.000000, 278.278168, 0.000000
+0.000000, 279.220123, 0.000000
+0.000000, 280.152893, 0.000000
+0.000000, 281.076294, 0.000000
+0.000000, 281.982513, 0.000000
+0.000000, 282.893982, 0.000000
+0.000000, 283.793762, 0.000000
+0.000000, 284.686798, 0.000000
+0.000000, 285.572266, 0.000000
+0.000000, 286.448853, 0.000000
+0.000000, 287.309540, 0.000000
+0.000000, 288.168488, 0.000000
+0.000000, 289.021027, 0.000000
+0.000000, 289.863739, 0.000000
+0.000000, 290.697845, 0.000000
+0.000000, 291.528992, 0.000000
+0.000000, 292.348694, 0.000000
+0.000000, 293.151520, 0.000000
+0.000000, 293.964630, 0.000000
+0.000000, 294.758118, 0.000000
+0.000000, 295.546265, 0.000000
+0.000000, 296.329926, 0.000000
+0.000000, 297.094635, 0.000000
+0.000000, 297.853790, 0.000000
+0.000000, 298.604065, 0.000000
+0.000000, 299.359039, 0.000000
+0.000000, 300.088654, 0.000000
+0.000000, 300.827820, 0.000000
+0.000000, 301.547485, 0.000000
+0.000000, 302.256775, 0.000000
+0.000000, 302.959869, 0.000000
+0.000000, 303.662415, 0.000000
+0.000000, 304.348694, 0.000000
+0.000000, 305.028656, 0.000000
+0.000000, 305.704926, 0.000000
+0.000000, 306.367432, 0.000000
+0.000000, 307.019775, 0.000000
+0.000000, 307.668213, 0.000000
+0.000000, 308.306793, 0.000000
+0.000000, 308.935699, 0.000000
+0.000000, 309.557190, 0.000000
+0.000000, 310.164734, 0.000000
+0.000000, 310.772308, 0.000000
+0.000000, 311.365662, 0.000000
+0.000000, 311.954620, 0.000000
+0.000000, 312.527466, 0.000000
+0.000000, 313.100037, 0.000000
+0.000000, 313.661011, 0.000000
+0.000000, 314.212738, 0.000000
+0.000000, 314.756531, 0.000000
+0.000000, 315.293793, 0.000000
+0.000000, 315.819519, 0.000000
+0.000000, 316.336212, 0.000000
+0.000000, 316.840668, 0.000000
+0.000000, 317.343536, 0.000000
+0.000000, 317.830902, 0.000000
+0.000000, 318.318878, 0.000000
+0.000000, 318.791931, 0.000000
+0.000000, 319.256409, 0.000000
+0.000000, 319.715912, 0.000000
+0.000000, 320.159576, 0.000000
+0.000000, 320.600861, 0.000000
+0.000000, 321.033600, 0.000000
+0.000000, 321.453430, 0.000000
+0.000000, 321.865723, 0.000000
+0.000000, 322.268555, 0.000000
+0.000000, 322.661804, 0.000000
+0.000000, 323.045715, 0.000000
+0.000000, 323.425873, 0.000000
+0.000000, 323.793060, 0.000000
+0.000000, 324.151978, 0.000000
+0.000000, 324.500000, 0.000000
+0.000000, 324.840210, 0.000000
+0.000000, 325.174896, 0.000000
+0.000000, 325.499573, 0.000000
+0.000000, 325.815186, 0.000000
+0.000000, 326.119812, 0.000000
+0.000000, 326.416992, 0.000000
+0.000000, 326.704559, 0.000000
+0.000000, 326.981232, 0.000000
+0.000000, 327.252808, 0.000000
+0.000000, 327.512207, 0.000000
+0.000000, 327.764587, 0.000000
+0.000000, 328.002655, 0.000000
+0.000000, 328.234131, 0.000000
+0.000000, 328.459351, 0.000000
+0.000000, 328.674957, 0.000000
+0.000000, 328.881805, 0.000000
+0.000000, 329.079102, 0.000000
+0.000000, 329.269531, 0.000000
+0.000000, 329.448456, 0.000000
+0.000000, 329.618408, 0.000000
+0.000000, 329.779724, 0.000000
+0.000000, 329.933105, 0.000000
+0.000000, 330.075928, 0.000000
+0.000000, 330.209900, 0.000000
+0.000000, 330.334473, 0.000000
+0.000000, 330.450317, 0.000000
+0.000000, 330.557739, 0.000000
+0.000000, 330.655151, 0.000000
+0.000000, 330.743469, 0.000000
+0.000000, 330.823364, 0.000000
+0.000000, 330.893250, 0.000000
+0.000000, 330.954041, 0.000000
+0.000000, 331.006226, 0.000000
+0.000000, 331.049194, 0.000000
+0.000000, 331.083252, 0.000000
+0.000000, 331.108002, 0.000000
+0.000000, 331.123535, 0.000000
+0.000000, 331.130066, 0.000000
+0.000000, 331.127502, 0.000000
+0.000000, 331.115753, 0.000000
+0.000000, 331.095001, 0.000000
+0.000000, 331.065002, 0.000000
+0.000000, 331.025940, 0.000000
+0.000000, 330.977875, 0.000000
+0.000000, 330.920746, 0.000000
+0.000000, 330.854614, 0.000000
+0.000000, 330.778748, 0.000000
+0.000000, 330.694336, 0.000000
+0.000000, 330.600800, 0.000000
+0.000000, 330.497833, 0.000000
+0.000000, 330.387207, 0.000000
+0.000000, 330.265991, 0.000000
+0.000000, 330.136108, 0.000000
+0.000000, 329.996765, 0.000000
+0.000000, 329.847900, 0.000000
+0.000000, 329.691040, 0.000000
+0.000000, 329.525177, 0.000000
+0.000000, 329.349426, 0.000000
+0.000000, 329.165100, 0.000000
+0.000000, 328.972229, 0.000000
+0.000000, 328.768768, 0.000000
+0.000000, 328.557220, 0.000000
+0.000000, 328.336517, 0.000000
+0.000000, 328.109497, 0.000000
+0.000000, 327.870087, 0.000000
+0.000000, 327.622589, 0.000000
+0.000000, 327.365631, 0.000000
+0.000000, 327.100616, 0.000000
+0.000000, 326.825317, 0.000000
+0.000000, 326.541687, 0.000000
+0.000000, 326.248596, 0.000000
+0.000000, 325.951935, 0.000000
+0.000000, 325.642395, 0.000000
+0.000000, 325.319824, 0.000000
+0.000000, 324.991577, 0.000000
+0.000000, 324.653046, 0.000000
+0.000000, 324.309509, 0.000000
+0.000000, 323.951141, 0.000000
+0.000000, 323.585114, 0.000000
+0.000000, 323.217590, 0.000000
+0.000000, 322.831879, 0.000000
+0.000000, 322.442749, 0.000000
+0.000000, 322.044159, 0.000000
+0.000000, 321.632111, 0.000000
+0.000000, 321.215637, 0.000000
+0.000000, 320.787567, 0.000000
+0.000000, 320.354523, 0.000000
+0.000000, 319.910187, 0.000000
+0.000000, 319.458038, 0.000000
+0.000000, 318.993988, 0.000000
+0.000000, 318.524719, 0.000000
+0.000000, 318.053162, 0.000000
+0.000000, 317.558716, 0.000000
+0.000000, 317.065918, 0.000000
+0.000000, 316.559235, 0.000000
+0.000000, 316.045471, 0.000000
+0.000000, 315.524323, 0.000000
+0.000000, 314.993134, 0.000000
+0.000000, 314.449524, 0.000000
+0.000000, 313.901886, 0.000000
+0.000000, 313.344757, 0.000000
+0.000000, 312.778870, 0.000000
+0.000000, 312.209930, 0.000000
+0.000000, 311.621552, 0.000000
+0.000000, 311.028839, 0.000000
+0.000000, 310.429901, 0.000000
+0.000000, 309.821594, 0.000000
+0.000000, 309.204498, 0.000000
+0.000000, 308.578796, 0.000000
+0.000000, 307.944550, 0.000000
+0.000000, 307.301147, 0.000000
+0.000000, 306.651001, 0.000000
+0.000000, 305.990417, 0.000000
+0.000000, 305.322998, 0.000000
+0.000000, 304.647644, 0.000000
+0.000000, 303.970245, 0.000000
+0.000000, 303.275513, 0.000000
+0.000000, 302.570343, 0.000000
+0.000000, 301.860016, 0.000000
+0.000000, 301.140717, 0.000000
+0.000000, 300.414429, 0.000000
+0.000000, 299.679932, 0.000000
+0.000000, 298.934875, 0.000000
+0.000000, 298.183838, 0.000000
+0.000000, 297.430176, 0.000000
+0.000000, 296.659485, 0.000000
+0.000000, 295.883881, 0.000000
+0.000000, 295.100372, 0.000000
+0.000000, 294.321472, 0.000000
+0.000000, 293.512512, 0.000000
+0.000000, 292.708679, 0.000000
+0.000000, 291.890533, 0.000000
+0.000000, 291.067047, 0.000000
+0.000000, 290.230713, 0.000000
+0.000000, 289.393829, 0.000000
+0.000000, 288.543854, 0.000000
+0.000000, 287.687653, 0.000000
+0.000000, 286.822144, 0.000000
+0.000000, 285.949890, 0.000000
+0.000000, 285.072937, 0.000000
+0.000000, 284.190369, 0.000000
+0.000000, 283.290497, 0.000000
+0.000000, 282.385254, 0.000000
+0.000000, 281.471375, 0.000000
+0.000000, 280.553467, 0.000000
+0.000000, 279.627625, 0.000000
+0.000000, 278.701904, 0.000000
+0.000000, 277.759888, 0.000000
+0.000000, 276.814514, 0.000000
+0.000000, 275.847839, 0.000000
+0.000000, 274.886414, 0.000000
+0.000000, 273.906616, 0.000000
+0.000000, 272.945984, 0.000000
+0.000000, 271.947632, 0.000000
+0.000000, 270.951447, 0.000000
+0.000000, 269.957092, 0.000000
+0.000000, 268.948700, 0.000000
+0.000000, 267.924957, 0.000000
+0.000000, 266.906708, 0.000000
+0.000000, 265.876343, 0.000000
+0.000000, 264.831879, 0.000000
+0.000000, 263.784912, 0.000000
+0.000000, 262.736084, 0.000000
+0.000000, 261.675690, 0.000000
+0.000000, 260.602295, 0.000000
+0.000000, 259.542633, 0.000000
+0.000000, 258.460876, 0.000000
+0.000000, 257.365753, 0.000000
+0.000000, 256.267975, 0.000000
+0.000000, 255.157135, 0.000000
+0.000000, 254.055389, 0.000000
+0.000000, 252.927963, 0.000000
+0.000000, 251.804337, 0.000000
+0.000000, 250.669800, 0.000000
+0.000000, 249.527390, 0.000000
+0.000000, 248.387299, 0.000000
+0.000000, 247.230896, 0.000000
+0.000000, 246.070969, 0.000000
+0.000000, 244.916565, 0.000000
+0.000000, 243.737503, 0.000000
+0.000000, 242.559830, 0.000000
+0.000000, 241.369461, 0.000000
+0.000000, 240.178299, 0.000000
+0.000000, 238.988235, 0.000000
+0.000000, 237.795868, 0.000000
+0.000000, 236.569672, 0.000000
+0.000000, 235.351212, 0.000000
+0.000000, 234.121368, 0.000000
+0.000000, 232.887054, 0.000000
+0.000000, 231.656769, 0.000000
+0.000000, 230.409607, 0.000000
+0.000000, 229.171967, 0.000000
+0.000000, 227.914505, 0.000000
+0.000000, 226.643173, 0.000000
+0.000000, 225.375626, 0.000000
+0.000000, 224.113266, 0.000000
+0.000000, 222.830734, 0.000000
+0.000000, 221.530060, 0.000000
+0.000000, 220.235886, 0.000000
+0.000000, 218.938293, 0.000000
+0.000000, 217.633133, 0.000000
+0.000000, 216.339905, 0.000000
+0.000000, 215.011047, 0.000000
+0.000000, 213.691772, 0.000000
+0.000000, 212.360687, 0.000000
+0.000000, 211.009094, 0.000000
+0.000000, 209.671402, 0.000000
+0.000000, 208.323837, 0.000000
+0.000000, 206.971695, 0.000000
+0.000000, 205.613235, 0.000000
+0.000000, 204.248932, 0.000000
+0.000000, 202.878174, 0.000000
+0.000000, 201.505051, 0.000000
+0.000000, 200.120743, 0.000000
+0.000000, 198.753525, 0.000000
+0.000000, 197.361969, 0.000000
+0.000000, 195.959732, 0.000000
+0.000000, 194.554703, 0.000000
+0.000000, 193.138565, 0.000000
+0.000000, 191.725143, 0.000000
+0.000000, 190.305191, 0.000000
+0.000000, 188.882645, 0.000000
+0.000000, 187.453873, 0.000000
+0.000000, 186.017639, 0.000000
+0.000000, 184.582611, 0.000000
+0.000000, 183.135941, 0.000000
+0.000000, 181.688019, 0.000000
+0.000000, 180.232437, 0.000000
+0.000000, 178.774048, 0.000000
+0.000000, 177.310364, 0.000000
+0.000000, 175.845810, 0.000000
+0.000000, 174.382339, 0.000000
+0.000000, 172.904602, 0.000000
+0.000000, 171.412201, 0.000000
+0.000000, 169.916733, 0.000000
+0.000000, 168.423767, 0.000000
+0.000000, 166.920013, 0.000000
+0.000000, 165.426605, 0.000000
+0.000000, 163.918823, 0.000000
+0.000000, 162.407471, 0.000000
+0.000000, 160.887894, 0.000000
+0.000000, 159.367935, 0.000000
+0.000000, 157.845337, 0.000000
+0.000000, 156.315552, 0.000000
+0.000000, 154.801117, 0.000000
+0.000000, 153.253815, 0.000000
+0.000000, 151.715286, 0.000000
+0.000000, 150.164001, 0.000000
+0.000000, 148.612946, 0.000000
+0.000000, 147.050049, 0.000000
+0.000000, 145.518799, 0.000000
+0.000000, 143.950668, 0.000000
+0.000000, 142.387344, 0.000000
+0.000000, 140.812515, 0.000000
+0.000000, 139.233368, 0.000000
+0.000000, 137.657242, 0.000000
+0.000000, 136.080612, 0.000000
+0.000000, 134.505997, 0.000000
+0.000000, 132.908813, 0.000000
+0.000000, 131.323135, 0.000000
+0.000000, 129.717529, 0.000000
+0.000000, 128.117218, 0.000000
+0.000000, 126.505882, 0.000000
+0.000000, 124.899529, 0.000000
+0.000000, 123.290649, 0.000000
+0.000000, 121.676811, 0.000000
+0.000000, 120.060532, 0.000000
+0.000000, 118.439789, 0.000000
+0.000000, 116.814713, 0.000000
+0.000000, 115.191071, 0.000000
+0.000000, 113.559998, 0.000000
+0.000000, 111.933899, 0.000000
+0.000000, 110.290642, 0.000000
+0.000000, 108.650558, 0.000000
+0.000000, 107.037987, 0.000000
+0.000000, 105.394302, 0.000000
+0.000000, 103.739906, 0.000000
+0.000000, 102.079376, 0.000000
+0.000000, 100.423668, 0.000000
+0.000000, 98.773262, 0.000000
+0.000000, 97.098663, 0.000000
+0.000000, 95.457497, 0.000000
+0.000000, 93.770996, 0.000000
+0.000000, 92.107964, 0.000000
+0.000000, 90.436096, 0.000000
+0.000000, 88.764267, 0.000000
+0.000000, 87.092468, 0.000000
+0.000000, 85.447563, 0.000000
+0.000000, 83.760956, 0.000000
+0.000000, 82.066399, 0.000000
+0.000000, 80.374847, 0.000000
+0.000000, 78.693321, 0.000000
+0.000000, 76.992500, 0.000000
+0.000000, 75.309692, 0.000000
+0.000000, 73.615982, 0.000000
+0.000000, 71.956734, 0.000000
+0.000000, 70.241508, 0.000000
+0.000000, 68.551460, 0.000000
+0.000000, 66.842094, 0.000000
+0.000000, 65.149414, 0.000000
+0.000000, 63.452641, 0.000000
+0.000000, 61.754932, 0.000000
+0.000000, 60.041843, 0.000000
+0.000000, 58.335087, 0.000000
+0.000000, 56.631317, 0.000000
+0.000000, 54.942616, 0.000000
+0.000000, 53.241474, 0.000000
+0.000000, 51.533470, 0.000000
+0.000000, 49.837513, 0.000000
+0.000000, 48.124302, 0.000000
+0.000000, 46.434158, 0.000000
+0.000000, 44.746849, 0.000000
+0.000000, 43.034061, 0.000000
+0.000000, 41.343147, 0.000000
+0.000000, 39.635891, 0.000000
+0.000000, 37.937180, 0.000000
+0.000000, 36.223400, 0.000000
+0.000000, 34.541897, 0.000000
+0.000000, 32.824791, 0.000000
+0.000000, 31.133278, 0.000000
+0.000000, 29.424994, 0.000000
+0.000000, 27.716351, 0.000000
+0.000000, 26.026583, 0.000000
+0.000000, 24.319818, 0.000000
+0.000000, 22.637608, 0.000000
+0.000000, 20.926302, 0.000000
+0.000000, 19.222250, 0.000000
+0.000000, 17.523729, 0.000000
+0.000000, 15.827487, 0.000000
+0.000000, 14.121662, 0.000000
+0.000000, 12.424916, 0.000000
+0.000000, 10.728642, 0.000000
+0.000000, 9.022953, 0.000000
+0.000000, 7.340708, 0.000000
+0.000000, 5.624807, 0.000000
+0.000000, 3.931182, 0.000000
+0.000000, 2.223202, 0.000000
+0.000000, 0.528851, 0.000000
+0.000000, -1.175573, 0.000000
+0.000000, -2.882401, 0.000000
+0.000000, -4.556327, 0.000000
+0.000000, -6.276817, 0.000000
+0.000000, -7.960432, 0.000000
+0.000000, -9.668843, 0.000000
+0.000000, -11.381129, 0.000000
+0.000000, -13.088254, 0.000000
+0.000000, -14.773170, 0.000000
+0.000000, -16.462381, 0.000000
+0.000000, -18.176208, 0.000000
+0.000000, -19.874781, 0.000000
+0.000000, -21.578838, 0.000000
+0.000000, -23.277353, 0.000000
+0.000000, -24.971861, 0.000000
+0.000000, -26.680399, 0.000000
+0.000000, -28.375307, 0.000000
+0.000000, -30.062752, 0.000000
+0.000000, -31.778677, 0.000000
+0.000000, -33.470898, 0.000000
+0.000000, -35.176311, 0.000000
+0.000000, -36.859177, 0.000000
+0.000000, -38.564526, 0.000000
+0.000000, -40.265656, 0.000000
+0.000000, -41.978905, 0.000000
+0.000000, -43.676804, 0.000000
+0.000000, -45.371391, 0.000000
+0.000000, -47.075027, 0.000000
+0.000000, -48.761589, 0.000000
+0.000000, -50.450233, 0.000000
+0.000000, -52.169445, 0.000000
+0.000000, -53.859257, 0.000000
+0.000000, -55.563103, 0.000000
+0.000000, -57.256435, 0.000000
+0.000000, -58.955246, 0.000000
+0.000000, -60.659706, 0.000000
+0.000000, -62.369373, 0.000000
+0.000000, -64.054054, 0.000000
+0.000000, -65.770500, 0.000000
+0.000000, -67.471794, 0.000000
+0.000000, -69.176514, 0.000000
+0.000000, -70.848282, 0.000000
+0.000000, -72.563217, 0.000000
+0.000000, -74.257324, 0.000000
+0.000000, -75.969810, 0.000000
+0.000000, -77.672775, 0.000000
+0.000000, -79.374695, 0.000000
+0.000000, -81.060410, 0.000000
+0.000000, -82.764969, 0.000000
+0.000000, -84.474152, 0.000000
+0.000000, -86.160591, 0.000000
+0.000000, -87.872955, 0.000000
+0.000000, -89.573990, 0.000000
+0.000000, -91.248024, 0.000000
+0.000000, -92.957138, 0.000000
+0.000000, -94.651718, 0.000000
+0.000000, -96.360970, 0.000000
+0.000000, -96.536263, 0.000000
+0.000000, -98.192039, 0.000000
+0.000000, -99.845711, 0.000000
+0.000000, -101.501579, 0.000000
+0.000000, -103.134323, 0.000000
+0.000000, -104.784767, 0.000000
+0.000000, -106.423264, 0.000000
+0.000000, -108.073753, 0.000000
+0.000000, -109.686089, 0.000000
+0.000000, -111.329254, 0.000000
+0.000000, -112.968155, 0.000000
+0.000000, -114.596573, 0.000000
+0.000000, -116.202538, 0.000000
+0.000000, -117.828865, 0.000000
+0.000000, -119.434937, 0.000000
+0.000000, -121.055481, 0.000000
+0.000000, -122.667252, 0.000000
+0.000000, -124.280174, 0.000000
+0.000000, -125.875626, 0.000000
+0.000000, -127.484428, 0.000000
+0.000000, -129.064865, 0.000000
+0.000000, -130.664948, 0.000000
+0.000000, -132.251801, 0.000000
+0.000000, -133.851532, 0.000000
+0.000000, -135.432999, 0.000000
+0.000000, -137.016830, 0.000000
+0.000000, -138.583527, 0.000000
+0.000000, -140.150528, 0.000000
+0.000000, -141.709961, 0.000000
+0.000000, -143.274841, 0.000000
+0.000000, -144.839813, 0.000000
+0.000000, -146.398880, 0.000000
+0.000000, -147.966614, 0.000000
+0.000000, -149.479050, 0.000000
+0.000000, -151.035278, 0.000000
+0.000000, -152.577011, 0.000000
+0.000000, -154.103271, 0.000000
+0.000000, -155.646606, 0.000000
+0.000000, -157.156036, 0.000000
+0.000000, -158.678528, 0.000000
+0.000000, -160.195450, 0.000000
+0.000000, -161.712677, 0.000000
+0.000000, -163.227386, 0.000000
+0.000000, -164.730453, 0.000000
+0.000000, -166.233475, 0.000000
+0.000000, -167.726105, 0.000000
+0.000000, -169.221542, 0.000000
+0.000000, -170.706390, 0.000000
+0.000000, -172.187866, 0.000000
+0.000000, -173.663376, 0.000000
+0.000000, -175.122589, 0.000000
+0.000000, -176.590485, 0.000000
+0.000000, -178.042877, 0.000000
+0.000000, -179.501663, 0.000000
+0.000000, -180.968796, 0.000000
+0.000000, -182.414642, 0.000000
+0.000000, -183.862946, 0.000000
+0.000000, -185.275620, 0.000000
+0.000000, -186.711639, 0.000000
+0.000000, -188.140564, 0.000000
+0.000000, -189.561417, 0.000000
+0.000000, -190.984116, 0.000000
+0.000000, -192.398941, 0.000000
+0.000000, -193.779999, 0.000000
+0.000000, -195.179932, 0.000000
+0.000000, -196.573746, 0.000000
+0.000000, -197.954620, 0.000000
+0.000000, -199.353943, 0.000000
+0.000000, -200.725464, 0.000000
+0.000000, -202.098282, 0.000000
+0.000000, -203.469589, 0.000000
+0.000000, -204.830902, 0.000000
+0.000000, -206.189743, 0.000000
+0.000000, -207.539230, 0.000000
+0.000000, -208.884842, 0.000000
+0.000000, -210.223068, 0.000000
+0.000000, -211.561417, 0.000000
+0.000000, -212.891251, 0.000000
+0.000000, -214.212128, 0.000000
+0.000000, -215.533020, 0.000000
+0.000000, -216.847977, 0.000000
+0.000000, -218.158356, 0.000000
+0.000000, -219.456512, 0.000000
+0.000000, -220.751297, 0.000000
+0.000000, -222.037354, 0.000000
+0.000000, -223.315506, 0.000000
+0.000000, -224.579239, 0.000000
+0.000000, -225.839523, 0.000000
+0.000000, -227.103790, 0.000000
+0.000000, -228.364624, 0.000000
+0.000000, -229.610886, 0.000000
+0.000000, -230.851593, 0.000000
+0.000000, -232.099274, 0.000000
+0.000000, -233.335571, 0.000000
+0.000000, -234.553909, 0.000000
+0.000000, -235.764130, 0.000000
+0.000000, -236.963791, 0.000000
+0.000000, -238.173477, 0.000000
+0.000000, -239.366257, 0.000000
+0.000000, -240.571701, 0.000000
+0.000000, -241.738831, 0.000000
+0.000000, -242.922150, 0.000000
+0.000000, -244.095871, 0.000000
+0.000000, -245.266998, 0.000000
+0.000000, -246.424240, 0.000000
+0.000000, -247.574127, 0.000000
+0.000000, -248.700714, 0.000000
+0.000000, -249.841522, 0.000000
+0.000000, -250.972183, 0.000000
+0.000000, -252.095139, 0.000000
+0.000000, -253.206268, 0.000000
+0.000000, -254.331467, 0.000000
+0.000000, -255.433853, 0.000000
+0.000000, -256.524384, 0.000000
+0.000000, -257.611328, 0.000000
+0.000000, -258.694214, 0.000000
+0.000000, -259.773468, 0.000000
+0.000000, -260.840179, 0.000000
+0.000000, -261.886749, 0.000000
+0.000000, -262.939880, 0.000000
+0.000000, -263.982117, 0.000000
+0.000000, -265.020538, 0.000000
+0.000000, -266.050659, 0.000000
+0.000000, -267.077484, 0.000000
+0.000000, -268.097900, 0.000000
+0.000000, -269.103455, 0.000000
+0.000000, -270.111237, 0.000000
+0.000000, -271.109253, 0.000000
+0.000000, -272.094421, 0.000000
+0.000000, -273.071503, 0.000000
+0.000000, -274.039185, 0.000000
+0.000000, -275.010498, 0.000000
+0.000000, -275.962982, 0.000000
+0.000000, -276.902985, 0.000000
+0.000000, -277.851471, 0.000000
+0.000000, -278.783813, 0.000000
+0.000000, -279.705322, 0.000000
+0.000000, -280.623199, 0.000000
+0.000000, -281.536224, 0.000000
+0.000000, -282.437775, 0.000000
+0.000000, -283.337433, 0.000000
+0.000000, -284.225555, 0.000000
+0.000000, -285.092468, 0.000000
+0.000000, -285.955811, 0.000000
+0.000000, -286.828522, 0.000000
+0.000000, -287.682312, 0.000000
+0.000000, -288.531860, 0.000000
+0.000000, -289.376862, 0.000000
+0.000000, -290.212524, 0.000000
+0.000000, -291.032043, 0.000000
+0.000000, -291.844971, 0.000000
+0.000000, -292.660278, 0.000000
+0.000000, -293.457153, 0.000000
+0.000000, -294.244476, 0.000000
+0.000000, -295.032288, 0.000000
+0.000000, -295.801666, 0.000000
+0.000000, -296.560852, 0.000000
+0.000000, -297.321716, 0.000000
+0.000000, -298.072601, 0.000000
+0.000000, -298.818634, 0.000000
+0.000000, -299.552185, 0.000000
+0.000000, -300.278778, 0.000000
+0.000000, -300.996613, 0.000000
+0.000000, -301.706940, 0.000000
+0.000000, -302.410309, 0.000000
+0.000000, -303.102509, 0.000000
+0.000000, -303.789124, 0.000000
+0.000000, -304.466980, 0.000000
+0.000000, -305.132355, 0.000000
+0.000000, -305.792725, 0.000000
+0.000000, -306.444092, 0.000000
+0.000000, -307.089233, 0.000000
+0.000000, -307.723419, 0.000000
+0.000000, -308.349609, 0.000000
+0.000000, -308.966858, 0.000000
+0.000000, -309.580048, 0.000000
+0.000000, -310.183472, 0.000000
+0.000000, -310.773315, 0.000000
+0.000000, -311.352448, 0.000000
+0.000000, -311.924561, 0.000000
+0.000000, -312.491791, 0.000000
+0.000000, -313.053711, 0.000000
+0.000000, -313.598969, 0.000000
+0.000000, -314.142303, 0.000000
+0.000000, -314.673615, 0.000000
+0.000000, -315.187897, 0.000000
+0.000000, -315.701080, 0.000000
+0.000000, -316.209290, 0.000000
+0.000000, -316.709442, 0.000000
+0.000000, -317.197418, 0.000000
+0.000000, -317.682526, 0.000000
+0.000000, -318.146942, 0.000000
+0.000000, -318.613007, 0.000000
+0.000000, -319.064606, 0.000000
+0.000000, -319.506989, 0.000000
+0.000000, -319.942810, 0.000000
+0.000000, -320.372101, 0.000000
+0.000000, -320.790222, 0.000000
+0.000000, -321.201263, 0.000000
+0.000000, -321.602051, 0.000000
+0.000000, -321.991669, 0.000000
+0.000000, -322.374268, 0.000000
+0.000000, -322.749756, 0.000000
+0.000000, -323.114471, 0.000000
+0.000000, -323.470886, 0.000000
+0.000000, -323.820526, 0.000000
+0.000000, -324.162018, 0.000000
+0.000000, -324.489624, 0.000000
+0.000000, -324.808746, 0.000000
+0.000000, -325.120117, 0.000000
+0.000000, -325.418488, 0.000000
+0.000000, -325.714478, 0.000000
+0.000000, -325.999756, 0.000000
+0.000000, -326.276947, 0.000000
+0.000000, -326.543610, 0.000000
+0.000000, -326.800476, 0.000000
+0.000000, -327.046021, 0.000000
+0.000000, -327.287079, 0.000000
+0.000000, -327.517609, 0.000000
+0.000000, -327.741638, 0.000000
+0.000000, -327.954803, 0.000000
+0.000000, -328.159271, 0.000000
+0.000000, -328.351685, 0.000000
+0.000000, -328.539642, 0.000000
+0.000000, -328.716736, 0.000000
+0.000000, -328.883911, 0.000000
+0.000000, -329.043030, 0.000000
+0.000000, -329.192047, 0.000000
+0.000000, -329.332397, 0.000000
+0.000000, -329.463776, 0.000000
+0.000000, -329.592377, 0.000000
+0.000000, -329.702301, 0.000000
+0.000000, -329.806610, 0.000000
+0.000000, -329.901520, 0.000000
+0.000000, -329.987610, 0.000000
+0.000000, -330.064362, 0.000000
+0.000000, -330.132019, 0.000000
+0.000000, -330.190552, 0.000000
+0.000000, -330.240265, 0.000000
+0.000000, -330.280884, 0.000000
+0.000000, -330.312134, 0.000000
+0.000000, -330.334534, 0.000000
+0.000000, -330.347778, 0.000000
+0.000000, -330.351898, 0.000000
+0.000000, -330.346893, 0.000000
+0.000000, -330.332855, 0.000000
+0.000000, -330.310364, 0.000000
+0.000000, -330.277527, 0.000000
+0.000000, -330.236176, 0.000000
+0.000000, -330.185638, 0.000000
+0.000000, -330.126099, 0.000000
+0.000000, -330.057495, 0.000000
+0.000000, -329.979919, 0.000000
+0.000000, -329.893494, 0.000000
+0.000000, -329.797058, 0.000000
+0.000000, -329.692230, 0.000000
+0.000000, -329.578400, 0.000000
+0.000000, -329.455658, 0.000000
+0.000000, -329.324524, 0.000000
+0.000000, -329.183044, 0.000000

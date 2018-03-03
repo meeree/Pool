@@ -2,6 +2,12 @@
 #include "phys.h"
 #include "../../SGV3D/src/logger.h"
 
+ConstraintSolver::ConstraintSolver (unsigned const& solverIterations)
+    : m_solverIterations{solverIterations}
+{
+    std::copy(ms_defBoundLookup, ms_defBoundLookup + ConstraintType::eCount, m_boundLookup);
+}
+
 ConstraintSolver::LambdaBounds const ConstraintSolver::ms_defBoundLookup[ConstraintType::eCount]
 {
     {0.0f, FLT_MAX}
@@ -29,7 +35,7 @@ arma::fvec::fixed<12> ContactConstraint::ComputeJacobian (std::vector<Entity*> c
             cross2[0], cross2[1], cross2[2]};
 }
 
-void ConstraintSolver::SolveConstraints (std::vector<Entity*> const& ents, arma::fvec& V, arma::fvec& Fext, float const& dt, unsigned const& itMax) 
+void ConstraintSolver::SolveConstraints (std::vector<Entity*> const& ents, arma::fvec& V, arma::fvec& Fext, float const& dt) 
 {
     unsigned s{(unsigned)m_constraints.size()};
 
@@ -105,11 +111,7 @@ void ConstraintSolver::SolveConstraints (std::vector<Entity*> const& ents, arma:
 
 	arma::sp_fmat A{J * Minv * J.t()};
 	arma::fvec b{1.0f/dt * m_bias - J * (1.0f/dt * V + Minv * Fext)};
-	arma::fvec diag(s);
-	for(unsigned i = 0; i < s; ++i) 
-	{
-		diag(i) = A(i,i);
-	}
+	arma::fvec diag{arma::diagvec(A)};
 
 	arma::fvec lambdaMin(s);
 	arma::fvec lambdaMax(s);
@@ -120,7 +122,7 @@ void ConstraintSolver::SolveConstraints (std::vector<Entity*> const& ents, arma:
 	}
 
 	//Gauss-Seidel solution:
-    for(unsigned iter = 0; iter < itMax; ++iter)
+    for(unsigned iter = 0; iter < m_solverIterations; ++iter)
     {
 		arma::fvec dLambda = (b - A*lambda)/diag;
 		lambda0 = lambda;

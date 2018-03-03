@@ -14,11 +14,16 @@ bool Renderer::Initailize (GLfloat const& width, GLfloat const& height,
             {4, 5},                              //OpenGL version
             width, height,                       //Window dimension 
             initGlew,                            //Initialize GLEW? 
-            "Physics Fun",                       //Window title
+            "Pool Engine",                       //Window title
             keyCallback, mouseButtonCallback     //Callbacks 
     )};
 
-    DisableCursor();
+    if(good)
+    {
+        DisableCursor();
+        glfwSetInputMode(m_window, GLFW_STICKY_KEYS, 1);
+    }
+    
     return good;
 }
 
@@ -49,18 +54,11 @@ bool Renderer::Render (StrippedGLProgram const& program, GLfloat const (&color)[
     double xpos, ypos;
     glfwGetCursorPos(m_window, &xpos, &ypos);
 
-    uint8_t keyMask{0};
-    keyMask |= 1  * WAS_PRESSED(GLFW_KEY_Q);
-    keyMask |= 2  * WAS_PRESSED(GLFW_KEY_W);
-    keyMask |= 4  * WAS_PRESSED(GLFW_KEY_E);
-    keyMask |= 8  * WAS_PRESSED(GLFW_KEY_A);
-    keyMask |= 16 * WAS_PRESSED(GLFW_KEY_S);
-    keyMask |= 32 * WAS_PRESSED(GLFW_KEY_D);
-
     bool slow{WAS_PRESSED(GLFW_KEY_LEFT_SHIFT)};
 
-    m_camera.Update({xpos, ypos}, keyMask, glfwGetTime(), glfwGetTime() - t, slow);
+    m_camera.Update({xpos, ypos}, glfwGetTime(), glfwGetTime() - t, slow);
     m_camera.UpdateUniforms(6, -1, 3, 4);
+    m_camera.ResetKeys();
 
     for(unsigned i = 0; i < m_meshes.size(); ++i)
     {
