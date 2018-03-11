@@ -73,8 +73,6 @@ bool Renderer::Render (StrippedGLProgram const& program, GLfloat const (&color)[
             glDrawArrays(gMesh.GetPrimType(), indexer.First(), indexer.Count());
     }
 
-    glfwSwapBuffers(m_window);
-
     return true;
 }
 

@@ -9,6 +9,8 @@
 #include <iostream>
 
 #include <vector>
+#include <glm/gtx/transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 //IMP NOTE: ADD DESTRUCTORS AND MORE SAFETY CHECKS!!
 
 #define VERT(v) mesh->positions.push_back(std::move(v)) 
@@ -299,40 +301,62 @@ void MouseCallback(GLFWwindow* window, int button, int action, int mods)
     }
 }
 
-//glm::vec4 RainbowColoring (float const& t)
-//{
-//    if(t <= 0.2)
-//        return glm::mix(glm::vec4(1.0f, 0.0f, 1.0f, 1.0f), glm::vec4(0.0f, 0.0f, 1.0f, 1.0f), t * 1.0 / 0.2);
-//    else if(t <= 0.4) 
-//        return glm::mix(glm::vec4(0.0f, 0.0f, 1.0f, 1.0f), glm::vec4(0.0f, 1.0f, 1.0f, 1.0f), t * 1.0 / 0.4);
-//    else if(t <= 0.6) 
-//        return glm::mix(glm::vec4(0.0f, 1.0f, 1.0f, 1.0f), glm::vec4(0.0f, 1.0f, 0.0f, 1.0f), t * 1.0 / 0.4);
-//    else if(t <= 0.8) 
-//        return glm::mix(glm::vec4(0.0f, 1.0f, 0.0f, 1.0f), glm::vec4(1.0f, 1.0f, 0.0f, 1.0f), t * 1.0 / 0.4);
-//    
-//    return glm::mix(glm::vec4(1.0f, 1.0f, 0.0f, 1.0f), glm::vec4(1.0f, 0.0f, 0.0f, 1.0f), t * 1.0 / 0.4);
-//}
-//
-//std::vector<Entity*> Stack (int const& n, float const& sep, float const& rad, arma::fvec3 const& initPos={0.0f,0.0f,0.0f}) 
-//{
-//    std::vector<Entity*> spheres;
-//    float sclr{20.0f};
-//    for(int i = 0; i < n; ++i)
-//    {
-//        for(int j = 0; j < i+1; ++j)
-//        {
-//            spheres.push_back(new Entity{MakeSphere(1.0f, rad, 30, 
-//                        RainbowColoring(fmod(sin(sclr *  i   /(GLfloat)n), 1.0f)), 
-//                        RainbowColoring(fmod(sin(sclr * (i+1)/(GLfloat)n), 1.0f)), 
-//                        initPos + arma::fvec3{rad*((sep+2.0f)*j - (1.0f+0.5f*sep)*i), 
-//                                              0.0f, 
-//											  rad*(sep+2.0f)*i*std::cos((float)M_PI/6)},
-//						{0.0f, 0.0f, 0.0f})}); 
-//        }
-//    }
-//
-//    return spheres;
-//}
+glm::vec4 RainbowColoring (float const& t)
+{
+    if(t <= 0.2)
+        return glm::mix(glm::vec4(1.0f, 0.0f, 1.0f, 1.0f), glm::vec4(0.0f, 0.0f, 1.0f, 1.0f), t * 1.0 / 0.2);
+    else if(t <= 0.4) 
+        return glm::mix(glm::vec4(0.0f, 0.0f, 1.0f, 1.0f), glm::vec4(0.0f, 1.0f, 1.0f, 1.0f), t * 1.0 / 0.4);
+    else if(t <= 0.6) 
+        return glm::mix(glm::vec4(0.0f, 1.0f, 1.0f, 1.0f), glm::vec4(0.0f, 1.0f, 0.0f, 1.0f), t * 1.0 / 0.4);
+    else if(t <= 0.8) 
+        return glm::mix(glm::vec4(0.0f, 1.0f, 0.0f, 1.0f), glm::vec4(1.0f, 1.0f, 0.0f, 1.0f), t * 1.0 / 0.4);
+    
+    return glm::mix(glm::vec4(1.0f, 1.0f, 0.0f, 1.0f), glm::vec4(1.0f, 0.0f, 0.0f, 1.0f), t * 1.0 / 0.4);
+}
+
+std::vector<Spring> springs;
+
+std::vector<Entity*> Stack (int const& n, float const& sep, float const& rad, arma::fvec3 const& initPos={0.0f,0.0f,0.0f}) 
+{
+    std::vector<Entity*> spheres;
+    float sclr{20.0f};
+    for(int i = 0; i < n; ++i)
+    {
+        for(int j = 0; j < i+1; ++j)
+        {
+            spheres.push_back(new Entity{MakeSphere(1.0f, rad, 10, 
+                        RainbowColoring(fmod(sin(sclr *  i   /(GLfloat)n), 1.0f)), 
+                        RainbowColoring(fmod(sin(sclr * (i+1)/(GLfloat)n), 1.0f)), 
+                        initPos + arma::fvec3{rad*((sep+2.0f)*j - (1.0f+0.5f*sep)*i), 
+                                              0.0f, 
+											  rad*(sep+2.0f)*i*std::cos((float)M_PI/6)},
+						{0.0f, 0.0f, 0.0f})}); 
+
+			std::cout<<i<<','<<j<<':'<<spheres.size()-1<<std::endl;
+        }
+    }
+
+    for(int i = 0; i < n-1; ++i)
+    {
+        for(int j = 0; j < i+1; ++j)
+        {
+            RigidBody* rb1{spheres[(i)*(i+1)/2+j]->GetRigidBody()};
+            RigidBody* rb2{spheres[(i+1)*(i+2)/2+j]->GetRigidBody()};
+//            RigidBody* rb3{j >= (i+1) / 2 ? 
+ //                 spheres[(i+1)*(i+2)/2+j+1]->GetRigidBody()
+ //               : spheres[(i+1)*(i+2)/2+j+0]->GetRigidBody()};
+            springs.push_back({rb1,rb2});
+ //           if((i+1) % 2 == 1)
+ //           {
+ //               RigidBody* rb3{spheres[(i+1)*(i+2)/2+j+0]->GetRigidBody()};
+ //               springs.push_back({rb1,rb3});
+ //           }
+        }
+    }
+
+    return spheres;
+}
 //std::vector<Entity*> Square (int const& n, float const& sep, float const& rad, glm::vec3 const& initPos=glm::vec3(0.0f)) 
 //{
 //    std::vector<Entity*> spheres;
@@ -374,10 +398,11 @@ int main ()
         ERROR("Failed to Initialize GLFWContext!");
         exit(0);
     }
+	glfwSetWindowPos(renderer.Window(), 500, 500);
 
     FreeRoamCamera camera(10.0f, 1.0f);
-    camera.SetPosition(glm::vec3(0.0f, 0.0f, -10.0f));
-    camera.SetDirection(glm::vec3(0.0f, 0.0f, 1.0f));
+    camera.SetPosition(glm::vec3(-1.0f, -15.0f, 1.0f));
+    camera.SetDirection(glm::vec3(-1.0f, 0.0f, 0.0f));
     camera.SetProjection(45.0f, 1080.0f/1920.0f, 0.1f, 300.0f);
     camera.UpdateView();
     renderer.SetCamera(camera);
@@ -388,13 +413,17 @@ int main ()
     renderer.BindProgram(program);
 
 	std::vector<Entity*> spheres;
+    
+    spheres = Stack(100, 0.03f, 0.02f);  
 
-    spheres.push_back(new Entity{MakeSphere(1.0f, 1.0f, 30, {0.0f, 0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f})});
-	spheres.back()->GetRigidBody()->Fix();
-    spheres.push_back(new Entity{MakeSphere(1.0f, 1.0f, 30, {1.0f, 0.0f, 0.0f, 1.0f}, {0.7f, 0.0f, 0.0f, 1.0f}, {0.0f, 10.0f, 0.0f}, {0.0f, 0.0f, 0.0f})});
+    spheres.push_back(new Entity{MakeSphere(4.0f, 0.1f, 30, {0.0f, 0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 10.0f}, {0.0f, 0.0f, -1.0f})});
 
-    spheres.push_back(new Entity{MakeSphere(100.0f, 1.0f, 30, {0.0f, 1.0f, 0.0f, 1.0f}, {0.0f, 0.7f, 0.0f, 1.0f}, {0.0f, 30.0f, 0.0f}, {0.0f, 0.0f, 0.0f})});
-    spheres.push_back(new Entity{MakeSphere(1.0f, 1.0f, 30, {0.0f, 0.0f, 1.0f, 1.0f}, {0.0f, 0.0f, 0.7f, 1.0f}, {0.0f, 40.0f, 0.0f}, {0.0f, 0.0f, 0.0f})});
+//    spheres.push_back(new Entity{MakeSphere(1.0f, 1.0f, 30, {0.0f, 0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f})});
+//	spheres.back()->GetRigidBody()->Fix();
+//    spheres.push_back(new Entity{MakeSphere(1.0f, 1.0f, 30, {1.0f, 0.0f, 0.0f, 1.0f}, {0.7f, 0.0f, 0.0f, 1.0f}, {0.0f, 10.0f, 0.0f}, {0.0f, 0.0f, 0.0f})});
+//
+//    spheres.push_back(new Entity{MakeSphere(100.0f, 1.0f, 30, {0.0f, 1.0f, 0.0f, 1.0f}, {0.0f, 0.7f, 0.0f, 1.0f}, {0.0f, 30.0f, 0.0f}, {0.0f, 0.0f, 0.0f})});
+//    spheres.push_back(new Entity{MakeSphere(1.0f, 1.0f, 30, {0.0f, 0.0f, 1.0f, 1.0f}, {0.0f, 0.0f, 0.7f, 1.0f}, {0.0f, 40.0f, 0.0f}, {0.0f, 0.0f, 0.0f})});
 
 	unsigned n{(unsigned)spheres.size()};
 
@@ -405,10 +434,10 @@ int main ()
     renderer.SetEnginePtr(engine);
     renderer.SetProgram(&program);
 
-	engine.SetGravity(1.0f);
+	engine.SetGravity(0.0f);
 
 
-	Spring s{spheres[n-3]->GetRigidBody(), spheres[n-2]->GetRigidBody(), 10.0f};
+//	Spring s{spheres[n-3]->GetRigidBody(), spheres[n-2]->GetRigidBody(), 10.0f};
 
     std::chrono::time_point<std::chrono::system_clock> start;
     std::chrono::time_point<std::chrono::system_clock> end; 
@@ -423,6 +452,31 @@ int main ()
     bp.BatchInsert(rbs);
     bp.InitialOverlapCache();
 
+    std::vector<GraphMesh> springMeshes(springs.size());
+    Mesh mesh;
+    mesh.positions = {{0.0f, 0.0f, 0.0f}, {1.0f, 0.0f, 0.0f}};
+    mesh.normals = {{0.0f, 1.0f, 0.0f}, {0.0f, 1.0f, 0.0f}};
+    mesh.colors = {{0.0f, 0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 0.0f, 1.0f}};
+    for(auto& springMesh : springMeshes)
+    {
+        springMesh = program.AddMesh(mesh, GL_LINES);
+    }
+
+	std::vector<GraphMesh> axes(3);
+	Mesh xAxis, yAxis, zAxis;
+	xAxis.positions = {{0.0f, 0.0f, 0.0f}, 10.0f*glm::vec3{1.0f, 0.0f, 0.0f}};
+	yAxis.positions = {{0.0f, 0.0f, 0.0f}, 10.0f*glm::vec3{0.0f, 1.0f, 0.0f}};
+	zAxis.positions = {{0.0f, 0.0f, 0.0f}, 10.0f*glm::vec3{0.0f, 0.0f, 1.0f}};
+	xAxis.colors = {{1.0f, 0.0f, 0.0f, 1.0f}, {1.0f, 0.0f, 0.0f, 1.0f}};
+	yAxis.colors = {{0.0f, 1.0f, 0.0f, 1.0f}, {0.0f, 1.0f, 0.0f, 1.0f}};
+	zAxis.colors = {{0.0f, 0.0f, 1.0f, 1.0f}, {0.0f, 0.0f, 1.0f, 1.0f}};
+	xAxis.normals = {{0.0f,1.0f,0.0f},{0.0f,1.0f,0.0f}};
+	yAxis.normals = {{0.0f,1.0f,0.0f},{0.0f,1.0f,0.0f}};
+	zAxis.normals = {{0.0f,1.0f,0.0f},{0.0f,1.0f,0.0f}};
+	axes[0] = program.AddMesh(xAxis, GL_LINES);
+	axes[1] = program.AddMesh(yAxis, GL_LINES);
+	axes[2] = program.AddMesh(zAxis, GL_LINES);
+
     //Continuously render OpenGL and update physics system 
     bool good{true};
     glfwSetTime(0.0f);
@@ -434,12 +488,54 @@ int main ()
         {
             ent->GetRigidBody()->SetForce({0.0f,0.0f,0.0f});
         }
-		s.Apply();
+        for(auto& spring: springs)
+        {
+            spring.Apply();
+        }
 
         engine.Run(dt, bp);
         
 		renderer.SetModelUniforms(engine.GetEntities());
-        good = renderer.Render(program.Strip(), {0.1f, 0.5f, 0.1f, 1.0f});
+        good = renderer.Render(program.Strip(), {0.9f, 0.9f, 0.9f, 1.0f});
+        for(unsigned i = 0; i < springMeshes.size(); ++i)
+        {
+            auto& springMesh{springMeshes[i]};
+            auto& spring{springs[i]};
+
+            glm::vec3 p1{BookKeeping::atg3(spring.GetBody1()->Position())}, p2{BookKeeping::atg3(spring.GetBody2()->Position())};
+			glm::vec3 q{p2 - p1};
+
+//            float len{glm::length(p2 - p1)};
+//            float theta{std::acos(glm::dot(p1,p2)/(glm::length(p1)*glm::length(p2)))};
+
+            glm::mat4x4 model{
+				q[0],q[1],q[2],0.0f,
+				0.0f,0.0f,0.0f,0.0f,
+				0.0f,0.0f,0.0f,0.0f,
+				p1[0],p1[1],p1[2],1.0f};
+//				q[0],0.0f,0.0f,p1[0],
+//				q[1],0.0f,0.0f,p1[1],
+//				q[2],0.0f,0.0f,p1[2],
+//				1.0f,0.0f,0.0f,1.0f};
+
+//				{
+//                glm::translate(p1) 
+//               *glm::rotate(theta,(p2-p1)/len)
+//               *glm::scale(glm::vec3(len,len,len))};
+
+            glUniformMatrix4fv(5, 1, GL_FALSE, glm::value_ptr(model));
+            Indexer indexer{springMesh.GetSigIndexer()};
+            glDrawArrays(GL_LINES, indexer.First(), indexer.Count());
+        }
+
+		glUniformMatrix4fv(5, 1, GL_FALSE, glm::value_ptr(glm::mat4x4(1.0f)));
+        for(auto& axis: axes)
+        {
+            Indexer indexer{axis.GetSigIndexer()};
+            glDrawArrays(GL_LINES, indexer.First(), indexer.Count());
+        }
+
+    glfwSwapBuffers(renderer.Window());
 
 		arma::fvec3 momentum;
 		momentum.zeros();

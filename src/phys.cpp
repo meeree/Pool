@@ -107,7 +107,17 @@ void Engine::Run (float& dt, BroadPhase& bp)
             rb->ApplyForce({0.0f, -ent->GetRigidBody()->Mass() * m_grav, 0.0f}); 
     }
 
+    std::chrono::time_point<std::chrono::system_clock> start;
+    std::chrono::time_point<std::chrono::system_clock> end; 
+
+    start = std::chrono::system_clock::now();
+
     CollisionDetection(bp);
+
+    end = std::chrono::system_clock::now();
+    float timeElapsed = std::chrono::duration<float>(end-start).count();
+
+//    std::cout<<timeElapsed<<std::endl;
 
     if(m_solver->ConstraintCount() > 0)
     {
@@ -131,17 +141,7 @@ void Engine::Run (float& dt, BroadPhase& bp)
             Fext(6*i + 5) = rb->Torque()(2);
         }
 
-        std::chrono::time_point<std::chrono::system_clock> start;
-        std::chrono::time_point<std::chrono::system_clock> end; 
-
-        start = std::chrono::system_clock::now();
-
         m_solver->SolveConstraints(m_ents, V, Fext, dt);
-
-        end = std::chrono::system_clock::now();
-        float timeElapsed = std::chrono::duration<float>(end-start).count();
-
-//        std::cout<<timeElapsed<<std::endl;
 
         //Update the rigid bodies from V and using semi-implicit Euler's method
         //I should use std::move here : IMPROVE THIS

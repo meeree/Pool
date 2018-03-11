@@ -11,11 +11,11 @@ void OverlapCache::SortCache ()
 void OverlapCache::SetPairForDelete (OverlappingPair const& delPair)
 {
     ASSERT(m_deleteCount <= m_cache.size());
-    ++m_deleteCount;
 
-    auto lookup{std::find(m_cache.begin(), m_cache.end(), delPair)};
-    if(lookup != m_cache.end())
+    auto lookup{std::find(m_cache.begin(), m_cache.end()-m_deleteCount, delPair)};
+    if(lookup != m_cache.end()-m_deleteCount)
     {
+        ++m_deleteCount;
         std::iter_swap(lookup, m_cache.end() - m_deleteCount);
     }
 }
@@ -200,36 +200,31 @@ std::vector<OverlapCache::OverlappingPair> const& BroadPhase::FindOverlappingBox
     }
 
     //Insertion sort
-    Endpoint* tmp;
     for(uint8_t axisIdx = 0; axisIdx < 3; ++axisIdx)
     {
         auto& axis{m_axes[axisIdx]};
         for(unsigned i = 1; i < axis.size(); ++i)
         {
-            tmp = axis[i];
-            int j{(int)i-1};
-            for(; j >= 0; --j)
+            for(unsigned j = i; j > 0; --j)
             {
-                if(axis[j]->Value() <= tmp->Value() + FLT_EPSILON)
+                if(axis[j-1]->Value() <= axis[j]->Value() + FLT_EPSILON)
                     break;
                 
-                OverlapCache::OverlappingPair pollPair{axis[j]->GetBoxIndex(), axis[j+1]->GetBoxIndex()};
+                OverlapCache::OverlappingPair pollPair{axis[j-1]->GetBoxIndex(), axis[j]->GetBoxIndex()};
                 if(pollPair.rbIdx1 == pollPair.rbIdx2)
                 {
-                    axis[j+1] = axis[j];
+                    std::swap(axis[j-1],axis[j]);
                     continue;
                 }
 
-                if(axis[j]->IsMin() && axis[j+1]->IsMax())
+                if(axis[j-1]->IsMin() && axis[j]->IsMax())
                     m_overlappingPairs.SetPairForDelete(pollPair);
 
-                if(axis[j]->IsMax() && axis[j+1]->IsMin() && OverlapCheck2D(pollPair, axisIdx))
+                else if(axis[j-1]->IsMax() && axis[j]->IsMin() && OverlapCheck2D(pollPair, axisIdx))
                     m_overlappingPairs.AddPair(pollPair);
 
-                axis[j+1] = axis[j];
+                std::swap(axis[j-1],axis[j]);
             } 
-
-            axis[j+1] = tmp;
         }
     }
 
