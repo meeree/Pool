@@ -1,38 +1,20 @@
 #include "collision_detection.h"
 #include "phys.h"
-#include "../../SGV3D/src/logger.h"
+#include "../SGV3D/src/logger.h"
 #include <iterator>
-
-void OverlapCache::SortCache () 
-{
-    std::sort(m_cache.begin(),m_cache.end());
-}
   
-void OverlapCache::SetPairForDelete (OverlappingPair const& delPair)
+void OverlapCache::DeletePair (OverlappingPair const& delPair)
 {
-    ASSERT(m_deleteCount <= m_cache.size());
-
-    auto lookup{std::find(m_cache.begin(), m_cache.end()-m_deleteCount, delPair)};
-    if(lookup != m_cache.end()-m_deleteCount)
-    {
-        ++m_deleteCount;
-        std::iter_swap(lookup, m_cache.end() - m_deleteCount);
-    }
-}
-
-void OverlapCache::CleanUp ()
-{
-    ASSERT(m_deleteCount <= m_cache.size());
-
-    m_cache.resize(m_cache.size() - m_deleteCount);
-    m_deleteCount = 0;
+    auto lookup{m_cache.find(delPair)};
+    if(lookup != m_cache.end())
+        m_cache.erase(lookup);
 }
 
 void OverlapCache::AddPair (OverlappingPair const& addPair)
 {
-    auto lookup{std::find(m_cache.begin(), m_cache.end(), addPair)};
+    auto lookup{m_cache.find(addPair)};
     if(lookup == m_cache.end())
-        m_cache.insert(m_cache.begin(), addPair);
+        m_cache.insert(addPair);
 }
 
 BroadPhase::~BroadPhase ()
@@ -66,10 +48,6 @@ unsigned BroadPhase::InsertInternal (Endpoint* endpoint, unsigned const& offset,
     }
     axis.insert(axis.begin()+pos, endpoint);
     return pos+1;
-//    auto it{std::upper_bound(axis.begin() + offset, axis.end(), endpoint,
-//            [](Endpoint* lhs, Endpoint* rhs){return *lhs < *rhs;})};
-    
-//    axis.insert(it, endpoint);
 }
 
 void BroadPhase::Insert (RigidBody* rb)
@@ -190,7 +168,7 @@ bool BroadPhase::OverlapCheck2D (OverlapCache::OverlappingPair const& pollPair, 
               ||  bx2.max[axisIdx2]->Value() < bx1.min[axisIdx2]->Value());
 }
 
-std::vector<OverlapCache::OverlappingPair> const& BroadPhase::FindOverlappingBoxes ()
+OverlapCache::PairCache const& BroadPhase::FindOverlappingBoxes ()
 {
     //Update 
     for(Box& box: m_boxes)
@@ -207,9 +185,9 @@ std::vector<OverlapCache::OverlappingPair> const& BroadPhase::FindOverlappingBox
         {
             for(unsigned j = i; j > 0; --j)
             {
-                if(axis[j-1]->Value() <= axis[j]->Value() + FLT_EPSILON)
+                if(axis[j-1]->Value() <= axis[j]->Value() + DBL_EPSILON)
                     break;
-                
+
                 OverlapCache::OverlappingPair pollPair{axis[j-1]->GetBoxIndex(), axis[j]->GetBoxIndex()};
                 if(pollPair.rbIdx1 == pollPair.rbIdx2)
                 {
@@ -218,7 +196,7 @@ std::vector<OverlapCache::OverlappingPair> const& BroadPhase::FindOverlappingBox
                 }
 
                 if(axis[j-1]->IsMin() && axis[j]->IsMax())
-                    m_overlappingPairs.SetPairForDelete(pollPair);
+                    m_overlappingPairs.DeletePair(pollPair);
 
                 else if(axis[j-1]->IsMax() && axis[j]->IsMin() && OverlapCheck2D(pollPair, axisIdx))
                     m_overlappingPairs.AddPair(pollPair);
@@ -228,6 +206,5 @@ std::vector<OverlapCache::OverlappingPair> const& BroadPhase::FindOverlappingBox
         }
     }
 
-    m_overlappingPairs.CleanUp();
     return m_overlappingPairs.GetCache();
 }

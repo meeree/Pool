@@ -1,16 +1,9 @@
 #ifndef  __CORE_H__
 #define  __CORE_H__
 
+#define ARMA_USE_SUPERLU 1
 #include <armadillo>
 #include <cmath>
-
-#if defined(_MSC_VER)
-#define FORCE_INLINE __forceinline 
-#elif defined(__GNUC__)
-#define FORCE_INLINE __attribute__((always_inline))
-#else 
-#define FORCE_INLINE inline
-#endif 
 
 inline float clamp (float const& f, float const& min, float const& max) 
 {

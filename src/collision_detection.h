@@ -2,6 +2,7 @@
 #define  __COLLISION_DETECTION_H__
 
 #include "core.h"
+#include <unordered_set>
 //Code based on (but quite different to) overview in this paper: http://www.codercorner.com/SAP.pdf
 
 class RigidBody;
@@ -10,20 +11,20 @@ struct Box;
 struct Endpoint
 {
 private:
-    float m_value;
+    double m_value;
     unsigned m_data; //concatenated "isMin" bit and box index. See link above.
 
 public:
 
     Endpoint () : m_data{0} {}
-    Endpoint (float const& value, bool const& isMin) : m_value{value}, m_data{0} {SetIsMin(isMin);}
+    Endpoint (double const& value, bool const& isMin) : m_value{value}, m_data{0} {SetIsMin(isMin);}
 
     inline bool IsMin () const {return (m_data >> 31) & 1U;}
     inline bool IsMax () const {return !IsMin();}
     inline void SetIsMin (bool isMin) {m_data |= (isMin ? 2147483648 : 0);}
 
-    inline float const& Value () const {return m_value;}
-    inline void SetValue (float const& value) {m_value = value;}
+    inline double const& Value () const {return m_value;}
+    inline void SetValue (double const& value) {m_value = value;}
 
     inline unsigned GetBoxIndex () const {return m_data & 2147483647;}
     inline void SetBoxIndex (unsigned const& idx) {m_data |= (idx & 2147483647);}
@@ -59,20 +60,23 @@ public:
         {
             return rbIdx1 == rhs.rbIdx1 && rbIdx2 == rhs.rbIdx2;
         }
+
+        //TODO: Use a smarter hash function here
+        struct Hash
+        {
+            size_t operator()(OverlappingPair const& pair) const {return pair.rbIdx1 ^ pair.rbIdx2;}
+        };
     };
-    unsigned m_deleteCount;
+    using PairCache = std::unordered_set<OverlappingPair, OverlappingPair::Hash>;
 private:
-    std::vector<OverlappingPair> m_cache;
+    PairCache m_cache;
 public:
-    OverlapCache () : m_deleteCount{0} {}
+    OverlapCache () = default;
 
-    void SetPairForDelete (OverlappingPair const& delPair);
-    void CleanUp ();
-
+    void DeletePair (OverlappingPair const& delPair);
     inline void AddPair (OverlappingPair const& addPair);
-    inline void FullClear () {m_cache.clear();}
-    void SortCache ();
-    inline std::vector<OverlappingPair> const& GetCache () const {return m_cache;}
+    inline void Clear () {m_cache.clear();}
+    inline PairCache const& GetCache () const {return m_cache;}
 };
 
 class BroadPhase 
@@ -99,7 +103,7 @@ public:
     void BatchInsert (std::vector<RigidBody*> const& rbs);
     Box const& RetrieveBox (unsigned const& idx) const;
 
-    std::vector<OverlapCache::OverlappingPair> const& FindOverlappingBoxes ();
+    OverlapCache::PairCache const& FindOverlappingBoxes ();
 };
 
 #endif //__COLLISION_DETECTION_H__

@@ -1,7 +1,6 @@
 #include "phys.h"
 #include "renderer.h"
 #include "bookKeeping.h"
-#include "../../SGV3D/src/logger.h"
 #include "collision_detection.h"
 
 #include <ostream>
@@ -15,22 +14,22 @@
 
 #define VERT(v) mesh->positions.push_back(std::move(v)) 
 
-Entity MakeSphere (float const& mass, 
-                   float const& rad=1.0f, 
+Entity MakeSphere (double const& mass, 
+                   double const& rad=1.0, 
                    unsigned const& nInc=16, 
-                   glm::vec4 const& color1={1.0f,1.0f,1.0f,1.0f}, 
-                   glm::vec4 const& color2={1.0f,1.0f,1.0f,1.0f},
-                   arma::fvec3 const& pos={0.0f,0.0f,0.0f,0.0f}, 
-                   arma::fvec3 const& vel={0.0f,0.0f,0.0f,0.0f}) 
+                   glm::vec4 const& color1={1.0,1.0,1.0,1.0}, 
+                   glm::vec4 const& color2={1.0,1.0,1.0,1.0},
+                   arma::vec3 const& pos={0.0,0.0,0.0,0.0}, 
+                   arma::vec3 const& vel={0.0,0.0,0.0,0.0}) 
 {
     Collidable* col{new SphereCollidable(rad)};
 
 
-    arma::fmat33 inertia;
+    arma::mat33 inertia;
     inertia.eye();
-    inertia *= 2.0f/5.0f * mass * rad * rad;
+    inertia *= 2.0/5.0 * mass * rad * rad;
 
-    RigidBody* rb{new RigidBody{mass, inertia, pos, col, vel, 1.0f, 1.0f}}; 
+    RigidBody* rb{new RigidBody{mass, inertia, pos, col, vel, 1.0, 1.0}}; 
     Mesh* mesh{new Mesh};
 
     for(unsigned t = 0; t < (nInc+1)/2; ++t) //Note: we use (n+1)/2 to round UP
@@ -70,122 +69,122 @@ Entity MakeSphere (float const& mass,
     return Entity(std::move(rb), std::move(mesh));
 }
 
-Entity MakeBox (float const& mass, 
-                glm::vec3 const& dim=glm::vec3(1.0f), 
-                glm::vec4 const& color={1.0f,1.0f,1.0f,1.0f},
-                arma::fvec3 const& pos={0.0f,0.0f,0.0f,0.0f}, 
-                arma::fvec3 const& vel={0.0f,0.0f,0.0f,0.0f}) 
+Entity MakeBox (double const& mass, 
+                glm::vec3 const& dim=glm::vec3(1.0), 
+                glm::vec4 const& color={1.0,1.0,1.0,1.0},
+                arma::vec3 const& pos={0.0,0.0,0.0,0.0}, 
+                arma::vec3 const& vel={0.0,0.0,0.0,0.0}) 
 {
-    Collidable* col{new SphereCollidable(std::max(std::max(dim.x, dim.y), dim.z)*0.5f)};
+    Collidable* col{new SphereCollidable(std::max(std::max(dim.x, dim.y), dim.z)*0.5)};
 
-    arma::fmat33 inertia;
+    arma::mat33 inertia;
     inertia.zeros();
-    inertia(0, 0) = 1.0f/12.0f * mass * (dim.y * dim.y + dim.z * dim.z);
-    inertia(1, 1) = 1.0f/12.0f * mass * (dim.x * dim.x + dim.z * dim.z);
-    inertia(2, 2) = 1.0f/12.0f * mass * (dim.y * dim.y + dim.z * dim.z);
+    inertia(0, 0) = 1.0/12.0 * mass * (dim.y * dim.y + dim.z * dim.z);
+    inertia(1, 1) = 1.0/12.0 * mass * (dim.x * dim.x + dim.z * dim.z);
+    inertia(2, 2) = 1.0/12.0 * mass * (dim.y * dim.y + dim.z * dim.z);
 
-    RigidBody* rb{new RigidBody{mass, inertia, pos, col, vel, 1.0f, 1.0f}}; 
+    RigidBody* rb{new RigidBody{mass, inertia, pos, col, vel, 1.0, 1.0}}; 
     Mesh* mesh{new Mesh};
     mesh->positions = 
     {
-        {-dim.x*0.5f,-dim.y*0.5f,-dim.z*0.5f},
-        {-dim.x*0.5f,-dim.y*0.5f, dim.z*0.5f},
-        {-dim.x*0.5f, dim.y*0.5f, dim.z*0.5f},
+        {-dim.x*0.5,-dim.y*0.5,-dim.z*0.5},
+        {-dim.x*0.5,-dim.y*0.5, dim.z*0.5},
+        {-dim.x*0.5, dim.y*0.5, dim.z*0.5},
 
-        { dim.x*0.5f, dim.y*0.5f,-dim.z*0.5f},
-        {-dim.x*0.5f,-dim.y*0.5f,-dim.z*0.5f},
-        {-dim.x*0.5f, dim.y*0.5f,-dim.z*0.5f},
+        { dim.x*0.5, dim.y*0.5,-dim.z*0.5},
+        {-dim.x*0.5,-dim.y*0.5,-dim.z*0.5},
+        {-dim.x*0.5, dim.y*0.5,-dim.z*0.5},
 
-        { dim.x*0.5f,-dim.y*0.5f, dim.z*0.5f},
-        {-dim.x*0.5f,-dim.y*0.5f,-dim.z*0.5f},
-        { dim.x*0.5f,-dim.y*0.5f,-dim.z*0.5f},
+        { dim.x*0.5,-dim.y*0.5, dim.z*0.5},
+        {-dim.x*0.5,-dim.y*0.5,-dim.z*0.5},
+        { dim.x*0.5,-dim.y*0.5,-dim.z*0.5},
 
-        { dim.x*0.5f, dim.y*0.5f,-dim.z*0.5f},
-        { dim.x*0.5f,-dim.y*0.5f,-dim.z*0.5f},
-        {-dim.x*0.5f,-dim.y*0.5f,-dim.z*0.5f},
+        { dim.x*0.5, dim.y*0.5,-dim.z*0.5},
+        { dim.x*0.5,-dim.y*0.5,-dim.z*0.5},
+        {-dim.x*0.5,-dim.y*0.5,-dim.z*0.5},
 
-        {-dim.x*0.5f,-dim.y*0.5f,-dim.z*0.5f},
-        {-dim.x*0.5f, dim.y*0.5f, dim.z*0.5f},
-        {-dim.x*0.5f, dim.y*0.5f,-dim.z*0.5f},
+        {-dim.x*0.5,-dim.y*0.5,-dim.z*0.5},
+        {-dim.x*0.5, dim.y*0.5, dim.z*0.5},
+        {-dim.x*0.5, dim.y*0.5,-dim.z*0.5},
 
-        { dim.x*0.5f,-dim.y*0.5f, dim.z*0.5f},
-        {-dim.x*0.5f,-dim.y*0.5f, dim.z*0.5f},
-        {-dim.x*0.5f,-dim.y*0.5f,-dim.z*0.5f},
+        { dim.x*0.5,-dim.y*0.5, dim.z*0.5},
+        {-dim.x*0.5,-dim.y*0.5, dim.z*0.5},
+        {-dim.x*0.5,-dim.y*0.5,-dim.z*0.5},
 
-        {-dim.x*0.5f, dim.y*0.5f, dim.z*0.5f},
-        {-dim.x*0.5f,-dim.y*0.5f, dim.z*0.5f},
-        { dim.x*0.5f,-dim.y*0.5f, dim.z*0.5f},
+        {-dim.x*0.5, dim.y*0.5, dim.z*0.5},
+        {-dim.x*0.5,-dim.y*0.5, dim.z*0.5},
+        { dim.x*0.5,-dim.y*0.5, dim.z*0.5},
 
-        { dim.x*0.5f, dim.y*0.5f, dim.z*0.5f},
-        { dim.x*0.5f,-dim.y*0.5f,-dim.z*0.5f},
-        { dim.x*0.5f, dim.y*0.5f,-dim.z*0.5f},
+        { dim.x*0.5, dim.y*0.5, dim.z*0.5},
+        { dim.x*0.5,-dim.y*0.5,-dim.z*0.5},
+        { dim.x*0.5, dim.y*0.5,-dim.z*0.5},
 
-        { dim.x*0.5f,-dim.y*0.5f,-dim.z*0.5f},
-        { dim.x*0.5f, dim.y*0.5f, dim.z*0.5f},
-        { dim.x*0.5f,-dim.y*0.5f, dim.z*0.5f},
+        { dim.x*0.5,-dim.y*0.5,-dim.z*0.5},
+        { dim.x*0.5, dim.y*0.5, dim.z*0.5},
+        { dim.x*0.5,-dim.y*0.5, dim.z*0.5},
 
-        { dim.x*0.5f, dim.y*0.5f, dim.z*0.5f},
-        { dim.x*0.5f, dim.y*0.5f,-dim.z*0.5f},
-        {-dim.x*0.5f, dim.y*0.5f,-dim.z*0.5f},
+        { dim.x*0.5, dim.y*0.5, dim.z*0.5},
+        { dim.x*0.5, dim.y*0.5,-dim.z*0.5},
+        {-dim.x*0.5, dim.y*0.5,-dim.z*0.5},
 
-        { dim.x*0.5f, dim.y*0.5f, dim.z*0.5f},
-        {-dim.x*0.5f, dim.y*0.5f,-dim.z*0.5f},
-        {-dim.x*0.5f, dim.y*0.5f, dim.z*0.5f},
+        { dim.x*0.5, dim.y*0.5, dim.z*0.5},
+        {-dim.x*0.5, dim.y*0.5,-dim.z*0.5},
+        {-dim.x*0.5, dim.y*0.5, dim.z*0.5},
 
-        { dim.x*0.5f, dim.y*0.5f, dim.z*0.5f},
-        {-dim.x*0.5f, dim.y*0.5f, dim.z*0.5f},
-        { dim.x*0.5f,-dim.y*0.5f, dim.z*0.5f}
+        { dim.x*0.5, dim.y*0.5, dim.z*0.5},
+        {-dim.x*0.5, dim.y*0.5, dim.z*0.5},
+        { dim.x*0.5,-dim.y*0.5, dim.z*0.5}
     };
 
     mesh->normals = 
     {
-        {-1.0f, 0.0f, 0.0f},
-        {-1.0f, 0.0f, 0.0f},
-        {-1.0f, 0.0f, 0.0f},
+        {-1.0, 0.0, 0.0},
+        {-1.0, 0.0, 0.0},
+        {-1.0, 0.0, 0.0},
 
-        { 0.0f, 0.0f,-1.0f},
-        { 0.0f, 0.0f,-1.0f},
-        { 0.0f, 0.0f,-1.0f},
+        { 0.0, 0.0,-1.0},
+        { 0.0, 0.0,-1.0},
+        { 0.0, 0.0,-1.0},
 
-        { 0.0f,-1.0f, 0.0f},
-        { 0.0f,-1.0f, 0.0f},
-        { 0.0f,-1.0f, 0.0f},
+        { 0.0,-1.0, 0.0},
+        { 0.0,-1.0, 0.0},
+        { 0.0,-1.0, 0.0},
 
-        { 0.0f, 0.0f,-1.0f},
-        { 0.0f, 0.0f,-1.0f},
-        { 0.0f, 0.0f,-1.0f},
+        { 0.0, 0.0,-1.0},
+        { 0.0, 0.0,-1.0},
+        { 0.0, 0.0,-1.0},
 
-        {-1.0f, 0.0f, 0.0f},
-        {-1.0f, 0.0f, 0.0f},
-        {-1.0f, 0.0f, 0.0f},
+        {-1.0, 0.0, 0.0},
+        {-1.0, 0.0, 0.0},
+        {-1.0, 0.0, 0.0},
 
-        { 0.0f,-1.0f, 0.0f},
-        { 0.0f,-1.0f, 0.0f},
-        { 0.0f,-1.0f, 0.0f},
+        { 0.0,-1.0, 0.0},
+        { 0.0,-1.0, 0.0},
+        { 0.0,-1.0, 0.0},
 
-        { 0.0f, 0.0f, 1.0f},
-        { 0.0f, 0.0f, 1.0f},
-        { 0.0f, 0.0f, 1.0f},
+        { 0.0, 0.0, 1.0},
+        { 0.0, 0.0, 1.0},
+        { 0.0, 0.0, 1.0},
 
-        { 1.0f, 0.0f, 0.0f},
-        { 1.0f, 0.0f, 0.0f},
-        { 1.0f, 0.0f, 0.0f},
+        { 1.0, 0.0, 0.0},
+        { 1.0, 0.0, 0.0},
+        { 1.0, 0.0, 0.0},
 
-        { 1.0f, 0.0f, 0.0f},
-        { 1.0f, 0.0f, 0.0f},
-        { 1.0f, 0.0f, 0.0f},
+        { 1.0, 0.0, 0.0},
+        { 1.0, 0.0, 0.0},
+        { 1.0, 0.0, 0.0},
 
-        { 0.0f, 1.0f, 0.0f},
-        { 0.0f, 1.0f, 0.0f},
-        { 0.0f, 1.0f, 0.0f},
+        { 0.0, 1.0, 0.0},
+        { 0.0, 1.0, 0.0},
+        { 0.0, 1.0, 0.0},
 
-        { 0.0f, 1.0f, 0.0f},
-        { 0.0f, 1.0f, 0.0f},
-        { 0.0f, 1.0f, 0.0f},
+        { 0.0, 1.0, 0.0},
+        { 0.0, 1.0, 0.0},
+        { 0.0, 1.0, 0.0},
 
-        { 0.0f, 0.0f, 1.0f},
-        { 0.0f, 0.0f, 1.0f},
-        { 0.0f, 0.0f, 1.0f}
+        { 0.0, 0.0, 1.0},
+        { 0.0, 0.0, 1.0},
+        { 0.0, 0.0, 1.0}
     };
 
     mesh->colors = std::vector<glm::vec4>(36, color);
@@ -204,6 +203,9 @@ void KeyCallback(GLFWwindow* window, int key, int, int action, int)
     if(key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
         windowPtr->Done();
 
+    else if(key == GLFW_KEY_P && action == GLFW_PRESS)
+        windowPtr->TogglePause();
+
     else if(key == GLFW_KEY_UP && action == GLFW_PRESS)
     {
         Engine* engine{windowPtr->GetEnginePtr()};
@@ -212,41 +214,41 @@ void KeyCallback(GLFWwindow* window, int key, int, int action, int)
         if(engine && curProgram)
         {
             FreeRoamCamera const& cam{windowPtr->GetCamera()};
-            arma::fvec3 pos{BookKeeping::gta3(cam.GetPosition())};
-            arma::fvec3 dir{BookKeeping::gta3(cam.GetDirection())};
+            arma::vec3 pos{BookKeeping::gta3(cam.GetPosition())};
+            arma::vec3 dir{BookKeeping::gta3(cam.GetDirection())};
 
-            arma::fvec3 shootDir{arma::normalise(dir)};
-            shootDir *= 40.0f;
+            arma::vec3 shootDir{arma::normalise(dir)};
+            shootDir *= 40.0;
 
-            Entity* ent{new Entity{MakeSphere(30.0f, 1.0f, 30, {1.0f, 1.0f, 1.0f, 1.0f}, {1.0f, 0.0f, 0.0f, 1.0f}, pos, shootDir)}};
+            Entity* ent{new Entity{MakeSphere(30.0, 1.0, 30, {1.0, 1.0, 1.0, 1.0}, {1.0, 0.0, 0.0, 1.0}, pos, shootDir)}};
 
             windowPtr->AddEntity(*curProgram, ent);
             engine->AddEntity(ent);
             windowPtr->SetModelUniforms(engine->GetEntities());
 
-            IForce* force{new GravForce(0.5f, ent->GetRigidBody())};
+            IForce* force{new GravForce(0.5, ent->GetRigidBody())};
             engine->AddForceToSystem(force);
 
-    	    ent->GetRigidBody()->ApplyTorque({10000.0f, 60.0f, 0.0f});
+    	    ent->GetRigidBody()->ApplyTorque({10000.0, 60.0, 0.0});
         }
     }
 
     else if(key == GLFW_KEY_LEFT_BRACKET && action == GLFW_PRESS)
     {
         Engine* engine{windowPtr->GetEnginePtr()};
-        engine->SetGravity(engine->GetGravity() - 5.0f);
+        engine->SetGravity(engine->GetGravity() - 5.0);
 	}
 
     else if(key == GLFW_KEY_RIGHT_BRACKET && action == GLFW_PRESS)
     {
         Engine* engine{windowPtr->GetEnginePtr()};
-        engine->SetGravity(engine->GetGravity() + 5000.0f);
+        engine->SetGravity(engine->GetGravity() + 5000.0);
 	}
 
     else if(key == GLFW_KEY_BACKSLASH && action == GLFW_PRESS)
     {
         Engine* engine{windowPtr->GetEnginePtr()};
-        engine->SetGravity(0.0f);
+        engine->SetGravity(0.0);
     }
 	
 	else 
@@ -281,22 +283,22 @@ void MouseCallback(GLFWwindow* window, int button, int action, int mods)
         if(engine && curProgram)
         {
             FreeRoamCamera const& cam{windowPtr->GetCamera()};
-            arma::fvec3 pos{BookKeeping::gta3(cam.GetPosition())};
-            arma::fvec3 dir{BookKeeping::gta3(cam.GetDirection())};
+            arma::vec3 pos{BookKeeping::gta3(cam.GetPosition())};
+            arma::vec3 dir{BookKeeping::gta3(cam.GetDirection())};
 
-            arma::fvec3 shootDir{arma::normalise(dir)};
-            shootDir *= 40.0f;
+            arma::vec3 shootDir{arma::normalise(dir)};
+            shootDir *= 40.0;
 
-            Entity* ent{new Entity{MakeSphere(30.0f, 1.0f, 30, {1.0f, 1.0f, 1.0f, 1.0f}, {1.0f, 0.0f, 0.0f, 1.0f}, pos, shootDir)}};
+            Entity* ent{new Entity{MakeSphere(30.0, 1.0, 30, {1.0, 1.0, 1.0, 1.0}, {1.0, 0.0, 0.0, 1.0}, pos, shootDir)}};
 
             windowPtr->AddEntity(*curProgram, ent);
             engine->AddEntity(ent);
             windowPtr->SetModelUniforms(engine->GetEntities());
 
-            IForce* force{new GravForce(0.5f, ent->GetRigidBody())};
+            IForce* force{new GravForce(0.5, ent->GetRigidBody())};
             engine->AddForceToSystem(force);
 
-    	    ent->GetRigidBody()->ApplyTorque({10000.0f, 60.0f, 0.0f});
+    	    ent->GetRigidBody()->ApplyTorque({10000.0, 60.0, 0.0});
         }
     }
 }
@@ -304,72 +306,62 @@ void MouseCallback(GLFWwindow* window, int button, int action, int mods)
 glm::vec4 RainbowColoring (float const& t)
 {
     if(t <= 0.2)
-        return glm::mix(glm::vec4(1.0f, 0.0f, 1.0f, 1.0f), glm::vec4(0.0f, 0.0f, 1.0f, 1.0f), t * 1.0 / 0.2);
+        return glm::mix(glm::vec4(1.0, 0.0, 1.0, 1.0), glm::vec4(0.0, 0.0, 1.0, 1.0), t * 1.0 / 0.2);
     else if(t <= 0.4) 
-        return glm::mix(glm::vec4(0.0f, 0.0f, 1.0f, 1.0f), glm::vec4(0.0f, 1.0f, 1.0f, 1.0f), t * 1.0 / 0.4);
+        return glm::mix(glm::vec4(0.0, 0.0, 1.0, 1.0), glm::vec4(0.0, 1.0, 1.0, 1.0), t * 1.0 / 0.4);
     else if(t <= 0.6) 
-        return glm::mix(glm::vec4(0.0f, 1.0f, 1.0f, 1.0f), glm::vec4(0.0f, 1.0f, 0.0f, 1.0f), t * 1.0 / 0.4);
+        return glm::mix(glm::vec4(0.0, 1.0, 1.0, 1.0), glm::vec4(0.0, 1.0, 0.0, 1.0), t * 1.0 / 0.4);
     else if(t <= 0.8) 
-        return glm::mix(glm::vec4(0.0f, 1.0f, 0.0f, 1.0f), glm::vec4(1.0f, 1.0f, 0.0f, 1.0f), t * 1.0 / 0.4);
+        return glm::mix(glm::vec4(0.0, 1.0, 0.0, 1.0), glm::vec4(1.0, 1.0, 0.0, 1.0), t * 1.0 / 0.4);
     
-    return glm::mix(glm::vec4(1.0f, 1.0f, 0.0f, 1.0f), glm::vec4(1.0f, 0.0f, 0.0f, 1.0f), t * 1.0 / 0.4);
+    return glm::mix(glm::vec4(1.0, 1.0, 0.0, 1.0), glm::vec4(1.0, 0.0, 0.0, 1.0), t * 1.0 / 0.4);
 }
 
 std::vector<Spring> springs;
 
-std::vector<Entity*> Stack (int const& n, float const& sep, float const& rad, arma::fvec3 const& initPos={0.0f,0.0f,0.0f}) 
+std::vector<Entity*> Stack (int const& n, double const& sep, double const& rad, arma::vec3 const& initPos={0.0,0.0,0.0}) 
 {
     std::vector<Entity*> spheres;
-    float sclr{20.0f};
+    double sclr{20.0};
     for(int i = 0; i < n; ++i)
     {
         for(int j = 0; j < i+1; ++j)
         {
-            spheres.push_back(new Entity{MakeSphere(1.0f, rad, 10, 
-                        RainbowColoring(fmod(sin(sclr *  i   /(GLfloat)n), 1.0f)), 
-                        RainbowColoring(fmod(sin(sclr * (i+1)/(GLfloat)n), 1.0f)), 
-                        initPos + arma::fvec3{rad*((sep+2.0f)*j - (1.0f+0.5f*sep)*i), 
-                                              0.0f, 
-											  rad*(sep+2.0f)*i*std::cos((float)M_PI/6)},
-						{0.0f, 0.0f, 0.0f})}); 
-
-			std::cout<<i<<','<<j<<':'<<spheres.size()-1<<std::endl;
+            spheres.push_back(new Entity{MakeSphere(1.0, rad, 30, 
+                        RainbowColoring(fmod(sin(sclr *  i   /(GLfloat)n), 1.0)), 
+                        RainbowColoring(fmod(sin(sclr * (i+1)/(GLfloat)n), 1.0)), 
+                        initPos + arma::vec3{rad*((sep+2.0)*j - (1.0+0.5*sep)*i), 
+                                              0.0, 
+											  rad*(sep+2.0)*i*std::cos(M_PI/6)},
+						{0.0, 0.0, 0.0})}); 
         }
     }
 
-    for(int i = 0; i < n-1; ++i)
+    for(int i = 0; i < n; ++i)
     {
-        for(int j = 0; j < i+1; ++j)
+        for(int j = 0; j < i; ++j)
         {
-            RigidBody* rb1{spheres[(i)*(i+1)/2+j]->GetRigidBody()};
-            RigidBody* rb2{spheres[(i+1)*(i+2)/2+j]->GetRigidBody()};
-//            RigidBody* rb3{j >= (i+1) / 2 ? 
- //                 spheres[(i+1)*(i+2)/2+j+1]->GetRigidBody()
- //               : spheres[(i+1)*(i+2)/2+j+0]->GetRigidBody()};
+            RigidBody* rb1{spheres[i*(i+1)/2+j]->GetRigidBody()};
+            RigidBody* rb2{spheres[i*(i+1)/2+j+1]->GetRigidBody()};
             springs.push_back({rb1,rb2});
- //           if((i+1) % 2 == 1)
- //           {
- //               RigidBody* rb3{spheres[(i+1)*(i+2)/2+j+0]->GetRigidBody()};
- //               springs.push_back({rb1,rb3});
- //           }
         }
     }
 
     return spheres;
 }
-//std::vector<Entity*> Square (int const& n, float const& sep, float const& rad, glm::vec3 const& initPos=glm::vec3(0.0f)) 
+//std::vector<Entity*> Square (int const& n, float const& sep, float const& rad, glm::vec3 const& initPos=glm::vec3(0.0)) 
 //{
 //    std::vector<Entity*> spheres;
-//    float sclr{20.0f};
+//    float sclr{20.0};
 //    for(int i = 0; i < n; ++i)
 //    {
 //        for(int j = 0; j < n; ++j)
 //        {
-//            spheres.push_back(new Entity{MakeSphere(3.0f, 0.99f, rad, 4, 
-//                        RainbowColoring(fmod(sin(sclr *  i   /(GLfloat)n), 1.0f)),
-//                        RainbowColoring(fmod(sin(sclr * (i+1)/(GLfloat)n), 1.0f)), 
-//                        initPos + glm::vec3(rad*((sep+2.0f)*j - (1.0f*0.5f*sep)*n), 
-//                                            0.0f, rad*(sep+2.0f)*i) )}); 
+//            spheres.push_back(new Entity{MakeSphere(3.0, 0.99, rad, 4, 
+//                        RainbowColoring(fmod(sin(sclr *  i   /(GLfloat)n), 1.0)),
+//                        RainbowColoring(fmod(sin(sclr * (i+1)/(GLfloat)n), 1.0)), 
+//                        initPos + glm::vec3(rad*((sep+2.0)*j - (1.0*0.5*sep)*n), 
+//                                            0.0, rad*(sep+2.0)*i) )}); 
 //        }
 //    }
 //
@@ -392,7 +384,7 @@ int main ()
 
     //Initalize our SGVGraphics with window width and height and true to initialize GLEW
     Renderer renderer;
-    if(!renderer.Initailize(1080.0, 1920.0, true, KeyCallback, MouseCallback))
+    if(!renderer.Initailize(1920.0, 1080.0, true, KeyCallback, MouseCallback))
     {
         std::cerr<<"Failed to Initialize GLFWContext!"<<std::endl;
         ERROR("Failed to Initialize GLFWContext!");
@@ -400,10 +392,10 @@ int main ()
     }
 	glfwSetWindowPos(renderer.Window(), 500, 500);
 
-    FreeRoamCamera camera(10.0f, 1.0f);
-    camera.SetPosition(glm::vec3(-1.0f, -15.0f, 1.0f));
-    camera.SetDirection(glm::vec3(-1.0f, 0.0f, 0.0f));
-    camera.SetProjection(45.0f, 1080.0f/1920.0f, 0.1f, 300.0f);
+    FreeRoamCamera camera(10.0, 1.0);
+    camera.SetPosition(glm::vec3(-1.0, -15.0, 1.0));
+    camera.SetDirection(glm::vec3(-1.0, 0.0, 0.0));
+    camera.SetProjection(45.0, 1920.0/1080.0, 0.1, 300.0);
     camera.UpdateView();
     renderer.SetCamera(camera);
 
@@ -414,34 +406,37 @@ int main ()
 
 	std::vector<Entity*> spheres;
     
-    spheres = Stack(100, 0.03f, 0.02f);  
+    spheres = Stack(25, 0.0, 0.02);  
 
-    spheres.push_back(new Entity{MakeSphere(4.0f, 0.1f, 30, {0.0f, 0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 10.0f}, {0.0f, 0.0f, -1.0f})});
+    spheres.push_back(new Entity{MakeSphere(4.0, 0.2, 30, {1.0, 0.0, 0.0, 1.0}, {0.0, 1.0, 0.0, 1.0}, {0.0, 0.0, -10.0}, {0.0, 0.0, 1.0})});
+    
+//    spheres.push_back(new Entity{MakeSphere(4.0, 0.1, 30, {1.0, 0.0, 0.0, 1.0}, {1.0, 0.0, 0.0, 1.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0})});
+//   spheres.push_back(new Entity{MakeSphere(4.0, 0.1, 30, {0.0, 1.0, 0.0, 1.0}, {0.0, 1.0, 0.0, 1.0}, {0.0, 0.0, -0.2}, {0.0, 0.0, 0.0})});
 
-//    spheres.push_back(new Entity{MakeSphere(1.0f, 1.0f, 30, {0.0f, 0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f})});
+//    spheres.push_back(new Entity{MakeSphere(1.0, 1.0, 30, {0.0, 0.0, 0.0, 1.0}, {0.0, 0.0, 0.0, 1.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0})});
 //	spheres.back()->GetRigidBody()->Fix();
-//    spheres.push_back(new Entity{MakeSphere(1.0f, 1.0f, 30, {1.0f, 0.0f, 0.0f, 1.0f}, {0.7f, 0.0f, 0.0f, 1.0f}, {0.0f, 10.0f, 0.0f}, {0.0f, 0.0f, 0.0f})});
+//    spheres.push_back(new Entity{MakeSphere(1.0, 1.0, 30, {1.0, 0.0, 0.0, 1.0}, {0.7, 0.0, 0.0, 1.0}, {0.0, 10.0, 0.0}, {0.0, 0.0, 0.0})});
 //
-//    spheres.push_back(new Entity{MakeSphere(100.0f, 1.0f, 30, {0.0f, 1.0f, 0.0f, 1.0f}, {0.0f, 0.7f, 0.0f, 1.0f}, {0.0f, 30.0f, 0.0f}, {0.0f, 0.0f, 0.0f})});
-//    spheres.push_back(new Entity{MakeSphere(1.0f, 1.0f, 30, {0.0f, 0.0f, 1.0f, 1.0f}, {0.0f, 0.0f, 0.7f, 1.0f}, {0.0f, 40.0f, 0.0f}, {0.0f, 0.0f, 0.0f})});
+//    spheres.push_back(new Entity{MakeSphere(100.0, 1.0, 30, {0.0, 1.0, 0.0, 1.0}, {0.0, 0.7, 0.0, 1.0}, {0.0, 30.0, 0.0}, {0.0, 0.0, 0.0})});
+//    spheres.push_back(new Entity{MakeSphere(1.0, 1.0, 30, {0.0, 0.0, 1.0, 1.0}, {0.0, 0.0, 0.7, 1.0}, {0.0, 40.0, 0.0}, {0.0, 0.0, 0.0})});
 
 	unsigned n{(unsigned)spheres.size()};
 
     renderer.AddEntities(program, spheres);
 
     //Create physics engine
-    Engine engine{spheres, 10};
+    Engine engine{spheres, 20};
     renderer.SetEnginePtr(engine);
     renderer.SetProgram(&program);
 
-	engine.SetGravity(0.0f);
+	engine.SetGravity(0.0);
 
 
-//	Spring s{spheres[n-3]->GetRigidBody(), spheres[n-2]->GetRigidBody(), 10.0f};
+//	Spring s{spheres[n-3]->GetRigidBody(), spheres[n-2]->GetRigidBody(), 10.0};
 
     std::chrono::time_point<std::chrono::system_clock> start;
     std::chrono::time_point<std::chrono::system_clock> end; 
-    float dt;
+    double dt;
 
     BroadPhase bp;
     std::vector<RigidBody*> rbs(n);
@@ -454,9 +449,9 @@ int main ()
 
     std::vector<GraphMesh> springMeshes(springs.size());
     Mesh mesh;
-    mesh.positions = {{0.0f, 0.0f, 0.0f}, {1.0f, 0.0f, 0.0f}};
-    mesh.normals = {{0.0f, 1.0f, 0.0f}, {0.0f, 1.0f, 0.0f}};
-    mesh.colors = {{0.0f, 0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 0.0f, 1.0f}};
+    mesh.positions = {{0.0, 0.0, 0.0}, {1.0, 0.0, 0.0}};
+    mesh.normals = {{0.0, 1.0, 0.0}, {0.0, 1.0, 0.0}};
+    mesh.colors = {{0.0, 0.0, 0.0, 1.0}, {0.0, 0.0, 0.0, 1.0}};
     for(auto& springMesh : springMeshes)
     {
         springMesh = program.AddMesh(mesh, GL_LINES);
@@ -464,39 +459,41 @@ int main ()
 
 	std::vector<GraphMesh> axes(3);
 	Mesh xAxis, yAxis, zAxis;
-	xAxis.positions = {{0.0f, 0.0f, 0.0f}, 10.0f*glm::vec3{1.0f, 0.0f, 0.0f}};
-	yAxis.positions = {{0.0f, 0.0f, 0.0f}, 10.0f*glm::vec3{0.0f, 1.0f, 0.0f}};
-	zAxis.positions = {{0.0f, 0.0f, 0.0f}, 10.0f*glm::vec3{0.0f, 0.0f, 1.0f}};
-	xAxis.colors = {{1.0f, 0.0f, 0.0f, 1.0f}, {1.0f, 0.0f, 0.0f, 1.0f}};
-	yAxis.colors = {{0.0f, 1.0f, 0.0f, 1.0f}, {0.0f, 1.0f, 0.0f, 1.0f}};
-	zAxis.colors = {{0.0f, 0.0f, 1.0f, 1.0f}, {0.0f, 0.0f, 1.0f, 1.0f}};
-	xAxis.normals = {{0.0f,1.0f,0.0f},{0.0f,1.0f,0.0f}};
-	yAxis.normals = {{0.0f,1.0f,0.0f},{0.0f,1.0f,0.0f}};
-	zAxis.normals = {{0.0f,1.0f,0.0f},{0.0f,1.0f,0.0f}};
+	xAxis.positions = {glm::vec3{0.0, 0.0, 0.0}, 10.0f*glm::vec3{1.0, 0.0, 0.0}};
+	yAxis.positions = {glm::vec3{0.0, 0.0, 0.0}, 10.0f*glm::vec3{0.0, 1.0, 0.0}};
+	zAxis.positions = {glm::vec3{0.0, 0.0, 0.0}, 10.0f*glm::vec3{0.0, 0.0, 1.0}};
+	xAxis.colors = {{1.0, 0.0, 0.0, 1.0}, {1.0, 0.0, 0.0, 1.0}};
+	yAxis.colors = {{0.0, 1.0, 0.0, 1.0}, {0.0, 1.0, 0.0, 1.0}};
+	zAxis.colors = {{0.0, 0.0, 1.0, 1.0}, {0.0, 0.0, 1.0, 1.0}};
+	xAxis.normals = {{0.0,1.0,0.0},{0.0,1.0,0.0}};
+	yAxis.normals = {{0.0,1.0,0.0},{0.0,1.0,0.0}};
+	zAxis.normals = {{0.0,1.0,0.0},{0.0,1.0,0.0}};
 	axes[0] = program.AddMesh(xAxis, GL_LINES);
 	axes[1] = program.AddMesh(yAxis, GL_LINES);
 	axes[2] = program.AddMesh(zAxis, GL_LINES);
 
     //Continuously render OpenGL and update physics system 
-    bool good{true};
-    glfwSetTime(0.0f);
-    while(good)
+    glfwSetTime(0.0);
+    while(true)
     {
         start = std::chrono::system_clock::now();
 
         for(auto& ent: spheres)
         {
-            ent->GetRigidBody()->SetForce({0.0f,0.0f,0.0f});
+            ent->GetRigidBody()->SetForce({0.0,0.0,0.0});
         }
         for(auto& spring: springs)
         {
             spring.Apply();
         }
 
-        engine.Run(dt, bp);
+        if(!renderer.Paused())
+            engine.Run(dt, bp);
         
 		renderer.SetModelUniforms(engine.GetEntities());
-        good = renderer.Render(program.Strip(), {0.9f, 0.9f, 0.9f, 1.0f});
+        if(!renderer.Render(program.Strip(), {0.9, 0.9, 0.9, 1.0}))
+            break;
+
         for(unsigned i = 0; i < springMeshes.size(); ++i)
         {
             auto& springMesh{springMeshes[i]};
@@ -505,39 +502,27 @@ int main ()
             glm::vec3 p1{BookKeeping::atg3(spring.GetBody1()->Position())}, p2{BookKeeping::atg3(spring.GetBody2()->Position())};
 			glm::vec3 q{p2 - p1};
 
-//            float len{glm::length(p2 - p1)};
-//            float theta{std::acos(glm::dot(p1,p2)/(glm::length(p1)*glm::length(p2)))};
-
             glm::mat4x4 model{
-				q[0],q[1],q[2],0.0f,
-				0.0f,0.0f,0.0f,0.0f,
-				0.0f,0.0f,0.0f,0.0f,
-				p1[0],p1[1],p1[2],1.0f};
-//				q[0],0.0f,0.0f,p1[0],
-//				q[1],0.0f,0.0f,p1[1],
-//				q[2],0.0f,0.0f,p1[2],
-//				1.0f,0.0f,0.0f,1.0f};
-
-//				{
-//                glm::translate(p1) 
-//               *glm::rotate(theta,(p2-p1)/len)
-//               *glm::scale(glm::vec3(len,len,len))};
+				q[0],q[1],q[2],0.0,
+				0.0,0.0,0.0,0.0,
+				0.0,0.0,0.0,0.0,
+				p1[0],p1[1],p1[2],1.0};
 
             glUniformMatrix4fv(5, 1, GL_FALSE, glm::value_ptr(model));
             Indexer indexer{springMesh.GetSigIndexer()};
             glDrawArrays(GL_LINES, indexer.First(), indexer.Count());
         }
 
-		glUniformMatrix4fv(5, 1, GL_FALSE, glm::value_ptr(glm::mat4x4(1.0f)));
+		glUniformMatrix4fv(5, 1, GL_FALSE, glm::value_ptr(glm::mat4x4(1.0)));
         for(auto& axis: axes)
         {
             Indexer indexer{axis.GetSigIndexer()};
             glDrawArrays(GL_LINES, indexer.First(), indexer.Count());
         }
 
-    glfwSwapBuffers(renderer.Window());
+        glfwSwapBuffers(renderer.Window());
 
-		arma::fvec3 momentum;
+		arma::vec3 momentum;
 		momentum.zeros();
 		for(auto const& ent: engine.GetEntities())
 		{

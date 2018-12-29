@@ -22,58 +22,58 @@ protected:
         : m_rbIdx1{rbIdx1}, m_rbIdx2{rbIdx2}, m_type{type} {}
 
 public:
-    virtual arma::fvec::fixed<12> ComputeJacobian (std::vector<Entity*> const& ents) const = 0;
+    virtual arma::vec::fixed<12> ComputeJacobian (std::vector<Entity*> const& ents) const = 0;
     virtual ~PairWiseConstraint() {}
 
-    FORCE_INLINE ConstraintType const& Type () const {return m_type;}
-    FORCE_INLINE unsigned const& BodyIndex1 () const {return m_rbIdx1;}
-    FORCE_INLINE unsigned const& BodyIndex2 () const {return m_rbIdx2;}
+    inline ConstraintType const& Type () const {return m_type;}
+    inline unsigned const& BodyIndex1 () const {return m_rbIdx1;}
+    inline unsigned const& BodyIndex2 () const {return m_rbIdx2;}
 };
 
-///NOTE : NORMAL MIGHT BE INCORRECT SIGN
 //NOTE: No jacobian map is needed because inidices are available directly through constraints
 class ContactConstraint : public PairWiseConstraint 
 {
 private:
-    arma::fvec3 m_contactPt;
-    arma::fvec3 m_normalOn1;
+    arma::vec3 m_contactPt;
+    arma::vec3 m_normalOn1;
 
 public:
-    inline ContactConstraint (unsigned const& rbIdx1, unsigned const& rbIdx2, arma::fvec3 const& contactPt, arma::fvec3 const& normalOn1)
+    inline ContactConstraint (unsigned const& rbIdx1, unsigned const& rbIdx2, arma::vec3 const& contactPt, arma::vec3 const& normalOn1)
        : m_contactPt{contactPt}, m_normalOn1{normalOn1}, PairWiseConstraint{rbIdx1, rbIdx2, eContact} {}
 
-    virtual arma::fvec::fixed<12> ComputeJacobian (std::vector<Entity*> const& ents) const;
+    virtual arma::vec::fixed<12> ComputeJacobian (std::vector<Entity*> const& ents) const;
 
-    FORCE_INLINE arma::fvec3 const& ContactPoint () const {return m_contactPt;}
-    FORCE_INLINE arma::fvec3 const& NormalOnBody1 () const {return m_normalOn1;}
+    inline arma::vec3 const& ContactPoint () const {return m_contactPt;}
+    inline arma::vec3 const& NormalOnBody1 () const {return m_normalOn1;}
 };
 
 class ConstraintSolver 
 {
 private:
-    arma::fvec m_bias;
+    arma::vec m_bias;
     std::vector<PairWiseConstraint*> m_constraints;
 
     unsigned m_solverIterations;
     
     struct LambdaBounds 
     {
-        float boundMin, boundMax;
+        double boundMin, boundMax;
     }; 
     LambdaBounds m_boundLookup[ConstraintType::eCount];
     static LambdaBounds const ms_defBoundLookup[ConstraintType::eCount];
 
-    std::map<std::pair<unsigned,unsigned>, float> m_lambdaCache;
+    std::map<std::pair<unsigned,unsigned>, double> m_lambdaCache;
 
-    FORCE_INLINE float const& LookupMin (PairWiseConstraint* constraint) const {return m_boundLookup[constraint->Type()].boundMin;}
-    FORCE_INLINE float const& LookupMax (PairWiseConstraint* constraint) const {return m_boundLookup[constraint->Type()].boundMax;}
+    inline double const& LookupMin (PairWiseConstraint* constraint) const {return m_boundLookup[constraint->Type()].boundMin;}
+    inline double const& LookupMax (PairWiseConstraint* constraint) const {return m_boundLookup[constraint->Type()].boundMax;}
 
 public:
     ConstraintSolver (unsigned const& solverIterations);
 
-    void SolveConstraints (std::vector<Entity*> const& ents, arma::fvec& V, arma::fvec& Fext, float const& dt);
+    void SolveConstraints (std::vector<Entity*> const& ents, arma::vec& V, arma::vec& Fext, double const& dt);
+    void GeneralizedReflections (std::vector<Entity*> const& ents, arma::vec& V, arma::vec& Fext, double const& dt);
     
-    void AddConstraint (PairWiseConstraint* constraint, float const& bias);
+    void AddConstraint (PairWiseConstraint* constraint, double const& bias);
 
     void ClearConstraints ();
 

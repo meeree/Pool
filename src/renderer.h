@@ -4,8 +4,8 @@
 #include <vector>
 
 #include "core.h"
-#include "../../SGV3D/src/camera.h"
-#include "../../SGV3D/src/graphics_internal.h"
+#include "../SGV3D/src/camera.h"
+#include "../SGV3D/src/graphics_internal.h"
 
 class Entity;
 class Engine;
@@ -20,12 +20,14 @@ private:
     Engine* m_engPtr;
     GLProgram* m_curProgPtr;
 
+    bool pause;
+
     virtual void SaveImportantUniforms () override;
 
     GLint m_modelLoc;
 
 public:
-    Renderer () = default;
+    Renderer () : pause{false} {}
     bool Initailize (GLfloat const& width=640, GLfloat const& height=480,
                      bool const& initGlew=true, 
                      GLFWkeyfun const& keyCallback=nullptr, GLFWmousebuttonfun const& mouseButtonCallback=nullptr);
@@ -44,6 +46,9 @@ public:
 
     void SetEnginePtr (Engine& engine) {m_engPtr = &engine;}
     Engine* GetEnginePtr () const {return m_engPtr;}
+
+    void TogglePause () {pause = !pause;}
+    bool Paused () const {return pause;}
 };
 
 #endif //__RENDERER_H__

@@ -7,7 +7,7 @@
 
 #define BIAS 0.0f
 
-RigidBody::RigidBody (float const& mass, arma::fmat33 const& inertia, arma::fvec3 const& pos, Collidable* col, arma::fvec3 const& vel, float const& damping, float const& restitution) 
+RigidBody::RigidBody (double const& mass, arma::mat33 const& inertia, arma::vec3 const& pos, Collidable* col, arma::vec3 const& vel, double const& damping, double const& restitution) 
     : m_invMass{1.0f/mass}, 
       m_invIntertiaBody{inertia.i()}, m_invIntertia{m_invIntertiaBody}, 
       m_orientation{1.0f}, m_pos{pos}, m_quatOrientation{1.0f, 0.0f, 0.0f, 0.0f},
@@ -27,7 +27,7 @@ Engine::Engine (std::vector<Entity*>&& ents, unsigned const& solverIterations)
 
 void SphereCollidable::CalculateBoundingBox(Endpoint* (&min)[3], Endpoint* (&max)[3], RigidBody* rb) 
 {
-    arma::fvec3 pos{rb->Position()};
+    arma::vec3 pos{rb->Position()};
 
     for(uint8_t axisIdx = 0; axisIdx < 3; ++axisIdx)
     {
@@ -41,27 +41,27 @@ void SphereCollidable::CalculateBoundingBox(Endpoint* (&min)[3], Endpoint* (&max
 
 bool Engine::CollisionDetection (BroadPhase& bp)
 {
-    std::vector<OverlapCache::OverlappingPair> const& overlappingPairs{bp.FindOverlappingBoxes()};
+    OverlapCache::PairCache const& overlappingPairs{bp.FindOverlappingBoxes()};
     for(auto const& overlappingPair: overlappingPairs)
     {
         RigidBody* rb1{bp.RetrieveBox(overlappingPair.rbIdx1).rb};
         RigidBody* rb2{bp.RetrieveBox(overlappingPair.rbIdx2).rb};
 
-        float rad1{static_cast<SphereCollidable*>(rb1->GetCollidable())->Radius()};
-        float rad2{static_cast<SphereCollidable*>(rb2->GetCollidable())->Radius()};
+        double rad1{static_cast<SphereCollidable*>(rb1->GetCollidable())->Radius()};
+        double rad2{static_cast<SphereCollidable*>(rb2->GetCollidable())->Radius()};
 
-        arma::fvec3 diff{rb1->Position() - rb2->Position()};
-        float totalDist{arma::norm(diff)};
-        float dist{totalDist - (rad1 + rad2)}; //Gap between the two objects 
+        arma::vec3 diff{rb1->Position() - rb2->Position()};
+        double totalDist{arma::norm(diff)};
+        double dist{totalDist - (rad1 + rad2)}; //Gap between the two objects 
 
         if(dist > FLT_EPSILON) //Are the objects not in contact?
             continue;
 
-        arma::fvec3 normOnSphere1{-1.0f, 0.0f, 0.0f};
+        arma::vec3 normOnSphere1{-1.0f, 0.0f, 0.0f};
         if(totalDist > 0.0f)
             normOnSphere1 = -diff / totalDist;
 
-        arma::fvec3 contactPt{(rb1->Position() + rb2->Position() + (rad2 - rad1) * normOnSphere1)/2.0f};
+        arma::vec3 contactPt{(rb1->Position() + rb2->Position() + (rad2 - rad1) * normOnSphere1)/2.0f};
 
         PairWiseConstraint* constraint{new ContactConstraint{overlappingPair.rbIdx1, overlappingPair.rbIdx2, contactPt, normOnSphere1}};
         m_solver->AddConstraint(constraint, 0.0f);
@@ -70,25 +70,25 @@ bool Engine::CollisionDetection (BroadPhase& bp)
 //    for(unsigned i = 0; i < m_ents.size(); ++i)
 //    {
 //        RigidBody* rb1{m_ents[i]->GetRigidBody()};
-//        float rad1{static_cast<SphereCollidable*>(rb1->GetCollidable())->Radius()};
+//        double rad1{static_cast<SphereCollidable*>(rb1->GetCollidable())->Radius()};
 //
 //        for(unsigned j = i+1; j < m_ents.size(); ++j)
 //        {
 //            RigidBody* rb2{m_ents[j]->GetRigidBody()};
-//            float rad2{static_cast<SphereCollidable*>(rb2->GetCollidable())->Radius()};
+//            double rad2{static_cast<SphereCollidable*>(rb2->GetCollidable())->Radius()};
 //
-//            arma::fvec3 diff{rb1->Position() - rb2->Position()};
-//            float totalDist{arma::norm(diff)};
-//            float dist{totalDist - (rad1 + rad2)}; //Gap between the two objects 
+//            arma::vec3 diff{rb1->Position() - rb2->Position()};
+//            double totalDist{arma::norm(diff)};
+//            double dist{totalDist - (rad1 + rad2)}; //Gap between the two objects 
 //
 //            if(dist > FLT_EPSILON) //Are the objects not in contact?
 //                continue;
 //
-//            arma::fvec3 normOnSphere1{-1.0f, 0.0f, 0.0f};
+//            arma::vec3 normOnSphere1{-1.0f, 0.0f, 0.0f};
 //            if(totalDist > 0.0f)
 //                normOnSphere1 = -diff / totalDist;
 //
-//            arma::fvec3 contactPt{(rb1->Position() + rb2->Position() + (rad2 - rad1) * normOnSphere1)/2.0f};
+//            arma::vec3 contactPt{(rb1->Position() + rb2->Position() + (rad2 - rad1) * normOnSphere1)/2.0f};
 //
 //            PairWiseConstraint* constraint{new ContactConstraint{i, j, contactPt, normOnSphere1}};
 //            m_solver->AddConstraint(constraint, 0.0f);
@@ -98,7 +98,7 @@ bool Engine::CollisionDetection (BroadPhase& bp)
     return true;
 }
 
-void Engine::Run (float& dt, BroadPhase& bp)
+void Engine::Run (double& dt, BroadPhase& bp)
 {
     for(Entity* ent: m_ents)
     {
@@ -115,14 +115,14 @@ void Engine::Run (float& dt, BroadPhase& bp)
     CollisionDetection(bp);
 
     end = std::chrono::system_clock::now();
-    float timeElapsed = std::chrono::duration<float>(end-start).count();
+    double timeElapsed = std::chrono::duration<double>(end-start).count();
 
 //    std::cout<<timeElapsed<<std::endl;
 
     if(m_solver->ConstraintCount() > 0)
     {
         unsigned n{(unsigned)m_ents.size()};
-        arma::fvec V(6*n), Fext(6*n);
+        arma::vec V(6*n), Fext(6*n);
         for(unsigned i = 0; i < n; ++i)
         {
             RigidBody* rb{m_ents[i]->GetRigidBody()};
@@ -141,7 +141,7 @@ void Engine::Run (float& dt, BroadPhase& bp)
             Fext(6*i + 5) = rb->Torque()(2);
         }
 
-        m_solver->SolveConstraints(m_ents, V, Fext, dt);
+        m_solver->GeneralizedReflections(m_ents, V, Fext, dt);
 
         //Update the rigid bodies from V and using semi-implicit Euler's method
         //I should use std::move here : IMPROVE THIS
@@ -170,7 +170,7 @@ void Engine::Run (float& dt, BroadPhase& bp)
     m_solver->ClearConstraints();
 }
 
-void RigidBody::Update (float const& dt)
+void RigidBody::Update (double const& dt)
 {
 //    m_vel = m_vel * m_damping + dt * m_force * m_invMass;
     m_pos += dt * m_vel;
@@ -186,12 +186,12 @@ void RigidBody::Update (float const& dt)
     m_torque.zeros();
 }
 
-Spring::Spring (float const& k) 
+Spring::Spring (double const& k) 
     : m_rb1{nullptr}, m_rb2{nullptr}, m_k{k}, m_length{0.0f}
 {
 }
 
-Spring::Spring (RigidBody* rb1, RigidBody* rb2, float const& k)
+Spring::Spring (RigidBody* rb1, RigidBody* rb2, double const& k)
     : m_rb1{rb1}, m_rb2{rb2}, m_k{k}, m_length{arma::norm(m_rb1->Position() - m_rb2->Position())}
 {
 }
@@ -202,8 +202,8 @@ void Spring::Apply () const
     if(!m_rb1 || !m_rb2)
         return;
 
-    arma::fvec3 f{m_rb1->Position() - m_rb2->Position()};
-    float dist{arma::norm(f)};
+    arma::vec3 f{m_rb1->Position() - m_rb2->Position()};
+    double dist{arma::norm(f)};
 
     f = arma::normalise(f);
     f *= m_k * (m_length - dist); //Hooke's law
@@ -225,7 +225,7 @@ inline void Spring::ResetDisplacement ()
 
 //OLD IMPULSE METHOD
 //
-//void Engine::UpdatePrimary (float const& dt, std::vector<std::pair<arma::vec3, arma::vec3>>& primary) 
+//void Engine::UpdatePrimary (double const& dt, std::vector<std::pair<arma::vec3, arma::vec3>>& primary) 
 //{
 ////    for(Entity* ent: m_ents)
 ////    {
@@ -254,13 +254,13 @@ inline void Spring::ResetDisplacement ()
 ////    {
 ////        RigidBody* rb{m_ents[i]->GetRigidBody()};
 ////
-////        float rad{static_cast<SphereCollidable*>(rb->GetCollidable())->Radius()};
+////        double rad{static_cast<SphereCollidable*>(rb->GetCollidable())->Radius()};
 ////        for(unsigned j = i+1; j < m_ents.size(); ++j)
 ////        {
 ////            RigidBody* rb2{m_ents[j]->GetRigidBody()};
-////            float rad2{static_cast<SphereCollidable*>(rb2->GetCollidable())->Radius()};
+////            double rad2{static_cast<SphereCollidable*>(rb2->GetCollidable())->Radius()};
 ////            arma::vec3 diff{rb->Position() - rb2->Position()};
-////            float totalDist{arma::length(diff)};
+////            double totalDist{arma::length(diff)};
 ////
 ////            if(totalDist > (rad+rad2)) //Are the objects not in contact?
 ////                continue;
@@ -269,25 +269,25 @@ inline void Spring::ResetDisplacement ()
 ////                if(!finalTry)
 ////                    return false;
 ////
-////            float dist{totalDist - (rad+rad2)};
+////            double dist{totalDist - (rad+rad2)};
 ////            glm::vec3 normOnSphere2{1.0f, 0.0f, 0.0f};
 ////            if(totalDist > 0.0f)
 ////                normOnSphere2 = diff / totalDist;
 ////
 ////            glm::vec3 contactPt{(rb->Position() + rb2->Position() + (rad2 - rad) * normOnSphere2)/2.0f};
-////            float sepVel{glm::dot(normOnSphere2, rb->Velocity() - rb2->Velocity())};
+////            double sepVel{glm::dot(normOnSphere2, rb->Velocity() - rb2->Velocity())};
 ////
 ////            if(sepVel > 0.0f) //Are objects moving apart from eachother?
 ////                continue;
 ////
-////            float newSepVel{-sepVel * rb->Restitution() * rb2->Restitution()};
-////            float deltaVel{newSepVel - sepVel};
-////            float totalInvMass{rb->InvMass() + rb2->InvMass()};
+////            double newSepVel{-sepVel * rb->Restitution() * rb2->Restitution()};
+////            double deltaVel{newSepVel - sepVel};
+////            double totalInvMass{rb->InvMass() + rb2->InvMass()};
 ////
 ////            if(totalInvMass <= FLT_EPSILON) //Are both objects fixed?
 ////                continue;
 ////
-////			float impulse{deltaVel / totalInvMass};
+////			double impulse{deltaVel / totalInvMass};
 ////            glm::vec3 impulsePerIMass{impulse * normOnSphere2};
 ////            impulses[rb].push_back({impulsePerIMass, contactPt - rb->Position()});
 ////            impulses[rb2].push_back({-impulsePerIMass, contactPt - rb2->Position()});
@@ -313,13 +313,13 @@ inline void Spring::ResetDisplacement ()
 //
 //OTHER OLD SOLVER
 //
-//void Engine::SolveConstraints (float& dt)
+//void Engine::SolveConstraints (double& dt)
 //{
 //    if(m_ents.empty())
 //        return;
 //
 //    std::vector<Contact> contacts;
-//    static float const k_maxPenetration{-1e-3};
+//    static double const k_maxPenetration{-1e-3};
 //
 //    std::vector<std::pair<glm::vec3,glm::vec3>> primary(m_ents.size());
 //
@@ -352,7 +352,7 @@ inline void Spring::ResetDisplacement ()
 //    for(Contact& contact: contacts)
 //    {
 //        RigidBody* rb1{contact.rb1}, * rb2{contact.rb2};
-//        float sepVel{glm::dot(contact.normalOn2, rb1->Velocity() - rb2->Velocity())};
+//        double sepVel{glm::dot(contact.normalOn2, rb1->Velocity() - rb2->Velocity())};
 //
 //        std::cout<<"SEP VEL:"<<sepVel<<std::endl;
 //
@@ -367,14 +367,14 @@ inline void Spring::ResetDisplacement ()
 //        }
 //
 //        //Actual collision
-//        float newSepVel{-sepVel * rb1->Restitution() * rb2->Restitution()};
-//        float deltaVel{newSepVel - sepVel};
-//        float totalInvMass{rb1->InvMass() + rb2->InvMass()};
+//        double newSepVel{-sepVel * rb1->Restitution() * rb2->Restitution()};
+//        double deltaVel{newSepVel - sepVel};
+//        double totalInvMass{rb1->InvMass() + rb2->InvMass()};
 //
 //        if(totalInvMass <= FLT_EPSILON) //Are both objects fixed?
 //            continue;
 //
-//        float impulse{deltaVel / totalInvMass};
+//        double impulse{deltaVel / totalInvMass};
 //        glm::vec3 impulsePerIMass{impulse * contact.normalOn2};
 //
 //        if(rb1->InvMass() > FLT_EPSILON)
