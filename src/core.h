@@ -5,6 +5,8 @@
 #include <armadillo>
 #include <cmath>
 
+#define GLM_ENABLE_EXPERIMENTAL
+
 inline float clamp (float const& f, float const& min, float const& max) 
 {
     return f < min ? min : (f > max ? max : f);
