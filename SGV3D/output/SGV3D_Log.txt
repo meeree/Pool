@@ -1,0 +1,24 @@
+[1  ](DEBUG    ) main()         ../src2/main.cpp         160  Beginning main loop                                                                                                             
+[1  ](DEBUG    ) GLFWContext()  ../src2/graphics.cpp     215  Constructed GLFWContext                                                                                                         
+[1  ](DEBUG    ) Initailize()   ../src2/graphics.cpp     225  Initializing GLFWGraphicsManager with title "Audio Animation with SGV3D!"; window width 1920.0, height 1080.0; for OpenGL v.4.5 
+[1  ](DEBUG    ) Initailize()   ../src2/graphics.cpp     275  Successfully initialized GLFWContext                                                                                            
+[1  ](WARNING  ) StrippedGLProgram()../src2/base.h           65   Constructed invalid StrippedGLProgram                                                                                           
+[1  ](WARNING  ) GLProgram()    ../src2/base.h           86   Constructed invalid GLProgram                                                                                                   
+[1  ](DEBUG    ) CacheUniforms()../src2/graphics.cpp     12   Beginning to cache uniforms for current shader program                                                                          
+[1  ](DEBUG    ) CacheUniforms()../src2/graphics.cpp     33   Cached uniform "channel" to location 12                                                                                         
+[2  ](DEBUG    ) CacheUniforms()../src2/graphics.cpp     33   Cached uniform "channelIdx" to location 13                                                                                      
+[3  ](DEBUG    ) CacheUniforms()../src2/graphics.cpp     33   Cached uniform "mMat" to location 5                                                                                             
+[4  ](DEBUG    ) CacheUniforms()../src2/graphics.cpp     33   Cached uniform "pMat" to location 3                                                                                             
+[5  ](DEBUG    ) CacheUniforms()../src2/graphics.cpp     33   Cached uniform "scalar" to location 6                                                                                           
+[6  ](DEBUG    ) CacheUniforms()../src2/graphics.cpp     33   Cached uniform "vMat" to location 4                                                                                             
+[1  ](INFO     ) ParseConfig()  ../src2/runtimeOptions.cpp24   Beginnning to parse config file                                                                                                 
+[1  ](INFO     ) ParseConfig()  ../src2/runtimeOptions.cpp67   Parsed option: color_scheme to value colorScheme                                                                                
+[2  ](INFO     ) ParseConfig()  ../src2/runtimeOptions.cpp67   Parsed option: camera_position to value camPos                                                                                  
+[3  ](INFO     ) ParseConfig()  ../src2/runtimeOptions.cpp67   Parsed option: camera_direction to value camDir                                                                                 
+[4  ](INFO     ) ParseConfig()  ../src2/runtimeOptions.cpp67   Parsed option: maximum to value maxi                                                                                            
+[5  ](INFO     ) ParseConfig()  ../src2/runtimeOptions.cpp67   Parsed option: minimum to value mini                                                                                            
+[6  ](INFO     ) ParseConfig()  ../src2/runtimeOptions.cpp67   Parsed option: model_matrix to value mMat                                                                                       
+[7  ](INFO     ) ParseConfig()  ../src2/runtimeOptions.cpp67   Parsed option: view_matrix to value vMat                                                                                        
+[8  ](INFO     ) ParseConfig()  ../src2/runtimeOptions.cpp67   Parsed option: projection_matrix to value pMat                                                                                  
+[1  ](INFO     ) ParseConfig()  ../src2/runtimeOptions.cpp38   Hit end of config file                                                                                                          
+[1  ](INFO     ) ParseConfig()  ../src2/runtimeOptions.cpp70   Done parsing config file                                                                                                        

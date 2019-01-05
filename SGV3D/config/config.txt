@@ -1,0 +1,8 @@
+color_scheme:"colorScheme"
+camera_position:"camPos"
+camera_direction:"camDir"
+maximum:"maxi"
+minimum:"mini"
+model_matrix:"mMat"
+view_matrix:"vMat"
+projection_matrix:"pMat"

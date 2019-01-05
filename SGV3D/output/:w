@@ -1,0 +1,105 @@
+#include "base.h"
+
+#include <unordered_map>
+#include <string>
+
+//Perhaps have camera running on seperate thread??
+
+class GLUniformCache 
+{
+private:
+    std::unordered_map<std::string, GLint> m_layout;
+
+public:
+    ///\brief Initialize cache using LightGLContext
+    GLUniformCache (LightGLcontext const& context) {CacheUniforms(context);}
+
+    ///\brief Initialize cache using current context
+    GLUniformCache () {CacheUniforms();}
+
+    ///\brief Cache all uniforms in provided context 
+    void CacheUniforms (LightGLcontext const& context);
+    
+    ///\brief Cache all uniforms in current context
+    void CacheUniforms ();
+
+    ///\brief Lookup uniform index 
+    inline GLint lookup (std::string const& uniform) {return m_layout[uniform];}
+};
+
+void GLUniformCache::CacheUniforms ()
+{
+    GLint count, program;
+    GLchar* name;
+
+    glGetIntegerv(GL_CURRENT_PROGRAM, &program);
+    glGetProgramiv(program, GL_ACTIVE_UNIFORMS, &count);
+    
+    for(int i = 0; i < count; ++i)
+    {
+        glGetActiveUniform(program, (GLuint)i, 64, nullptr, nullptr, nullptr, name);
+        m_layout[name] = i;
+    }
+}
+
+void GLUniformCache::CacheUniforms (LightGLcontext const& context)
+{
+    GLint curVao;
+    glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &curVao);
+    glBindVertexArray(context.vao);
+    CacheUniforms();
+    glBindVertexArray(curVao);
+}
+
+class Camera
+{
+protected:
+    glm::vec3 m_pos, m_dir;
+    glm::mat4x4 m_projection, m_view;
+
+    ///\brief Update view matrix using upVec 
+    ///\param [in] upVec Vector pointing upwards from camera
+    void updateView (glm::vec3 const& upVec={0.0f,1.0f,0.0f});
+
+public:
+    Camera () : m_pos(0.0f), m_dir(0.0f), m_projection(1.0f), m_view(1.0f) {}
+
+    inline void setPosition  (glm::vec3 const& pos) {m_pos = pos;} 
+    inline void setDirection (glm::vec3 const& dir) {m_dir = dir;}
+    inline void move (glm::vec3 const& moveVec) {m_pos += moveVec;}
+    inline void look (glm::vec3 const& lookVec) {m_dir += lookVec;} 
+    glm::vec3 getPosition  () const {return m_pos;} 
+    glm::vec3 getDirection () const {return m_dir;}
+};
+
+#include <glm/gtc/matrix_transform.hpp>
+
+void Camera::updateView (glm::vec3 const& upVec)
+{
+    m_view = glm::lookAt(m_pos, m_pos+m_dir, upVec);
+}
+
+class FreeRoamCamera : public Camera 
+{
+private:
+    double m_horiAngle, m_vertAngle;
+    double m_lookSpeed, m_moveSpeed;
+
+public:
+    FreeRoamCamera (double const& lookSpeed, double const& moveSpeed) : m_horiAngle{0.0f}, m_vertAngle{0.0f}, m_lookSpeed{lookSpeed}, m_moveSpeed{moveSpeed}, Camera() {}
+    
+    void update (double const& xScaledMouse, double const& yScaledMouse, double const& dt);
+};
+
+void FreeRoamCamera::update (double const& xScaledMouse, double const& yScaledMouse, double const& dt) 
+{
+    m_horiAngle += m_lookSpeed * dt * xScaledMouse;
+    m_vertAngle += m_lookSpeed * dt * yScaledMouse;
+    
+       
+}
+
+class GLContextWrapper  
+{
+};
+
