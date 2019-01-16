@@ -90,44 +90,6 @@ public:
 
 class Endpoint;
 
-class Collidable 
-{
-public:
-    virtual void CalculateBoundingBox(Endpoint* (&min)[3], Endpoint* (&max)[3], RigidBody* rb) = 0;
-};
-
-class SphereCollidable : public Collidable
-{
-private:
-    double m_rad;
-
-public:
-    SphereCollidable (double const& rad) : m_rad{rad} {ASSERT(m_rad >= -FLT_EPSILON);}
-
-    virtual void CalculateBoundingBox(Endpoint* (&min)[3], Endpoint* (&max)[3], RigidBody* rb) final;
-
-    double const& Radius () const {return m_rad;}
-    void SetRadius (double const& rad) {m_rad = rad;}
-};
-
-class PlaneCollidable : public Collidable
-{
-private:
-    arma::vec3 m_normal;
-    arma::vec3 m_origin;
-
-public:
-    PlaneCollidable (arma::vec3 const& normal, arma::vec3 const& origin) : m_normal{normal}, m_origin{origin} {}
-
-    virtual void CalculateBoundingBox(Endpoint* (&min)[3], Endpoint* (&max)[3], RigidBody* rb) final;
-
-    arma::vec3 const& Normal () const {return m_normal;}
-    void SetNormal (arma::vec3 const& normal) {m_normal = normal;}
-
-    arma::vec3 const& Origin () const {return m_origin;}
-    void SetOrigin (arma::vec3 const& origin) {m_origin = origin;}
-};
-
 class Mesh;
 
 class Entity

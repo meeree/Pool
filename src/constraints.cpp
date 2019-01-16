@@ -293,24 +293,11 @@ void ConstraintSolver::GeneralizedReflections (std::vector<Entity*> const& ents,
 
         arma::sp_mat A{J * Minv * J.t()};
         arma::vec b{1.0/dt * bias - J * V * 1.0/dt};
+        b *= 2.0f;
 
-//		GaussSeidelClampedSolve(A, lambda, b, lambdaMin, lambdaMax, m_solverIterations);
-        //TODO: USE SUPERLU HERE!
-        arma::spsolve(lambda, A, b);
+   //     lambda = arma::spsolve(A, b);
+		GaussSeidelClampedSolve(A, lambda, b, lambdaMin, lambdaMax, m_solverIterations);
         lambda = arma::max(lambdaMin, arma::min(lambdaMax, lambda));
-		
-	
-#if 0  //TODO: Determine if I want this 
-
-		arma::vec lambda_err(sz);
-		lambda_err.zeros();
-
-		//Solve for error 
-		GaussSeidelSolve(A, lambda_err, b - A * lambda, 2);
-        lambda -= lambda_err;
-#endif 
-
-        lambda *= 2.0;
 
         //Cache lambdas for next time
         for(unsigned i = 0; i < sz; ++i)

@@ -1,5 +1,6 @@
 #include "collision_detection.h"
 #include "phys.h"
+#include "collidable.h"
 #include "../SGV3D/src/logger.h"
 #include <iterator>
   

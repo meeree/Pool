@@ -2,6 +2,7 @@
 #include "renderer.h"
 #include "bookKeeping.h"
 #include "collision_detection.h"
+#include "collidable.h"
 
 #include <ostream>
 #include <chrono>
@@ -72,10 +73,34 @@ Entity MakeSphere (double const& mass,
 Entity MakeBox (double const& mass, 
                 glm::vec3 const& dim=glm::vec3(1.0), 
                 glm::vec4 const& color={1.0,1.0,1.0,1.0},
-                arma::vec3 const& pos={0.0,0.0,0.0,0.0}, 
-                arma::vec3 const& vel={0.0,0.0,0.0,0.0}) 
+                arma::vec3 const& pos={0.0,0.0,0.0}, 
+                arma::vec3 const& vel={0.0,0.0,0.0}) 
 {
-    Collidable* col{new SphereCollidable(std::max(std::max(dim.x, dim.y), dim.z)*0.5)};
+    std::vector<arma::vec3> positions 
+    {
+        {-dim.x*0.5, -dim.y*0.5, -dim.z*0.5}, //0: v000
+        { dim.x*0.5, -dim.y*0.5, -dim.z*0.5}, //1: v100
+        {-dim.x*0.5,  dim.y*0.5, -dim.z*0.5}, //2: v010
+        { dim.x*0.5,  dim.y*0.5, -dim.z*0.5}, //3: v110
+        {-dim.x*0.5, -dim.y*0.5,  dim.z*0.5}, //4: v001
+        { dim.x*0.5, -dim.y*0.5,  dim.z*0.5}, //5: v101
+        {-dim.x*0.5,  dim.y*0.5,  dim.z*0.5}, //6: v011
+        { dim.x*0.5,  dim.y*0.5,  dim.z*0.5}, //7: v111
+    };
+
+    static const std::vector<std::vector<unsigned>> faces 
+    {
+        {0, 4, 6, 2}, //0: Left face
+        {5, 1, 3, 7}, //1: Right face
+        {0, 1, 5, 4}, //2: Bottom face
+        {7, 3, 2, 6}, //3: Top face
+        {0, 2, 3, 1}, //4: Back face
+        {4, 5, 7, 6}  //5: Front face
+    };
+
+    HalfEdgeMesh* const half_edge_mesh{new HalfEdgeMesh(positions, faces)};
+    std::unique_ptr<MeshInstance> mesh_instance{new MeshInstance(half_edge_mesh)};
+    Collidable* col{new MeshCollidable(std::move(mesh_instance))};
 
     arma::mat33 inertia;
     inertia.zeros();
@@ -206,31 +231,47 @@ void KeyCallback(GLFWwindow* window, int key, int, int action, int)
     else if(key == GLFW_KEY_P && action == GLFW_PRESS)
         windowPtr->TogglePause();
 
+    else if(key == GLFW_KEY_LEFT && action == GLFW_PRESS)
+    {
+        Engine* engine{windowPtr->GetEnginePtr()};
+
+        if(engine)
+			engine->GetEntities().back()->GetRigidBody()->IncVelocity({1.0, 0.0, 0.0});
+    }
+    else if(key == GLFW_KEY_RIGHT && action == GLFW_PRESS)
+    {
+        Engine* engine{windowPtr->GetEnginePtr()};
+
+        if(engine)
+			engine->GetEntities().back()->GetRigidBody()->IncVelocity({-1.0, 0.0, 0.0});
+    }
     else if(key == GLFW_KEY_UP && action == GLFW_PRESS)
     {
         Engine* engine{windowPtr->GetEnginePtr()};
-        GLProgram* curProgram{windowPtr->GetCurrentProgram()};
 
-        if(engine && curProgram)
-        {
-            FreeRoamCamera const& cam{windowPtr->GetCamera()};
-            arma::vec3 pos{BookKeeping::gta3(cam.GetPosition())};
-            arma::vec3 dir{BookKeeping::gta3(cam.GetDirection())};
+        if(engine)
+			engine->GetEntities().back()->GetRigidBody()->IncVelocity({0.0, 0.0, 1.0});
+    }
+    else if(key == GLFW_KEY_DOWN && action == GLFW_PRESS)
+    {
+        Engine* engine{windowPtr->GetEnginePtr()};
 
-            arma::vec3 shootDir{arma::normalise(dir)};
-            shootDir *= 40.0;
+        if(engine)
+			engine->GetEntities().back()->GetRigidBody()->IncVelocity({0.0, 0.0, -1.0});
+    }
+    else if(key == GLFW_KEY_PAGE_UP && action == GLFW_PRESS)
+    {
+        Engine* engine{windowPtr->GetEnginePtr()};
 
-            Entity* ent{new Entity{MakeSphere(30.0, 1.0, 30, {1.0, 1.0, 1.0, 1.0}, {1.0, 0.0, 0.0, 1.0}, pos, shootDir)}};
+        if(engine)
+			engine->GetEntities().back()->GetRigidBody()->IncVelocity({0.0, 1.0, 0.0});
+    }
+    else if(key == GLFW_KEY_PAGE_DOWN && action == GLFW_PRESS)
+    {
+        Engine* engine{windowPtr->GetEnginePtr()};
 
-            windowPtr->AddEntity(*curProgram, ent);
-            engine->AddEntity(ent);
-            windowPtr->SetModelUniforms(engine->GetEntities());
-
-            IForce* force{new GravForce(0.5, ent->GetRigidBody())};
-            engine->AddForceToSystem(force);
-
-    	    ent->GetRigidBody()->ApplyTorque({10000.0, 60.0, 0.0});
-        }
+        if(engine)
+			engine->GetEntities().back()->GetRigidBody()->IncVelocity({0.0, -1.0, 0.0});
     }
 
     else if(key == GLFW_KEY_LEFT_BRACKET && action == GLFW_PRESS)
@@ -327,9 +368,8 @@ std::vector<Entity*> Stack (int const& n, double const& sep, double const& rad, 
     {
         for(int j = 0; j < i+1; ++j)
         {
-            spheres.push_back(new Entity{MakeSphere(1.0, rad, 30, 
+            spheres.push_back(new Entity{MakeBox(1.0, {rad * 0.5, rad * 0.5, rad * 0.5}, 
                         RainbowColoring(fmod(sin(sclr *  i   /(GLfloat)n), 1.0)), 
-                        RainbowColoring(fmod(sin(sclr * (i+1)/(GLfloat)n), 1.0)), 
                         initPos + arma::vec3{rad*((sep+2.0)*j - (1.0+0.5*sep)*i), 
                                               0.0, 
 											  rad*(sep+2.0)*i*std::cos(M_PI/6)},
@@ -349,6 +389,61 @@ std::vector<Entity*> Stack (int const& n, double const& sep, double const& rad, 
 
     return spheres;
 }
+
+std::vector<Entity*> RopeBride ()
+{
+    std::vector<Entity*> boxes;
+    
+    static const glm::vec4 brown{0.82,0.41,0.12,1.0};
+
+    Entity* prev_left_beam, *prev_right_beam;
+    static const size_t n = 40;
+    for(size_t i = 0; i < n; ++i)
+    {
+        double zpos = -10.0 + (i / (float)(n-1)) * 20.0;
+
+        Entity* left_beam{new Entity{MakeBox(0.05, {0.05, 0.05, 0.5}, brown, {-1.1, 1.0, zpos})}};
+        Entity* right_beam{new Entity{MakeBox(0.05, {0.05, 0.05, 0.5}, brown, {1.1, 1.0, zpos})}};
+
+        // Fix end beams
+        if(i == 0 || i == n-1)
+        {
+            left_beam->GetRigidBody()->Fix();
+            right_beam->GetRigidBody()->Fix();
+        }
+
+        //Join consecutive beams
+        if(i > 0)
+        {
+            springs.push_back({left_beam->GetRigidBody(), prev_left_beam->GetRigidBody()});
+            springs.push_back({right_beam->GetRigidBody(), prev_right_beam->GetRigidBody()});
+        }
+
+        boxes.push_back(left_beam);
+        boxes.push_back(right_beam);
+
+        Entity* left_join{new Entity{MakeBox(0.05, {0.05, 0.05, 0.05}, brown, {-1.1, 0.0, zpos})}};
+        Entity* right_join{new Entity{MakeBox(0.05, {0.05, 0.05, 0.05}, brown, {1.1, 0.0, zpos})}};
+
+        Entity* step{new Entity{MakeBox(0.01, {0.95, 0.05, 0.05}, brown, {0.0, 0.0, zpos})}};
+
+        boxes.push_back(step);
+        boxes.push_back(left_join);
+        boxes.push_back(right_join);
+
+        springs.push_back({left_beam->GetRigidBody(), left_join->GetRigidBody()});
+        springs.push_back({right_beam->GetRigidBody(), right_join->GetRigidBody()});
+
+        springs.push_back({left_join->GetRigidBody(), step->GetRigidBody(), 10.0});
+        springs.push_back({step->GetRigidBody(), right_join->GetRigidBody(), 10.0});
+
+        prev_left_beam = left_beam;
+        prev_right_beam = right_beam;
+    }
+
+    return boxes;
+}
+
 //std::vector<Entity*> Square (int const& n, float const& sep, float const& rad, glm::vec3 const& initPos=glm::vec3(0.0)) 
 //{
 //    std::vector<Entity*> spheres;
@@ -395,7 +490,7 @@ int main ()
     FreeRoamCamera camera(10.0, 1.0);
     camera.SetPosition(glm::vec3(-1.0, -15.0, 1.0));
     camera.SetDirection(glm::vec3(-1.0, 0.0, 0.0));
-    camera.SetProjection(45.0, 1920.0/1080.0, 0.1, 300.0);
+    camera.SetProjection(45.0, 1920.0/1080.0, 0.1, 400.0);
     camera.UpdateView();
     renderer.SetCamera(camera);
 
@@ -406,19 +501,18 @@ int main ()
 
 	std::vector<Entity*> spheres;
     
-    spheres = Stack(25, 0.0, 0.02);  
+    spheres = Stack(50, 0.0, 1.3, {0.0, 0.0, 0.0});  
+//    spheres = RopeBride();  
 
-    spheres.push_back(new Entity{MakeSphere(4.0, 0.2, 30, {1.0, 0.0, 0.0, 1.0}, {0.0, 1.0, 0.0, 1.0}, {0.0, 0.0, -10.0}, {0.0, 0.0, 1.0})});
-    
-//    spheres.push_back(new Entity{MakeSphere(4.0, 0.1, 30, {1.0, 0.0, 0.0, 1.0}, {1.0, 0.0, 0.0, 1.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0})});
-//   spheres.push_back(new Entity{MakeSphere(4.0, 0.1, 30, {0.0, 1.0, 0.0, 1.0}, {0.0, 1.0, 0.0, 1.0}, {0.0, 0.0, -0.2}, {0.0, 0.0, 0.0})});
+    spheres.push_back(new Entity{MakeBox(30.0, glm::vec3{6.0, 30.0, 30.0}, {1.0, 1.0, 1.0, 1.0}, {-17.0, 0.0, 0.0}, {2.0, 0.0, 0.0})});
+    spheres.back()->GetRigidBody()->SetAngularVelocity(0.01 * arma::vec3{1.0, 5.0, 1.0});
+    spheres.push_back(new Entity{MakeBox(30.0, glm::vec3{6.0, 30.0, 30.0}, {1.0, 1.0, 1.0, 1.0}, {17.0, 0.0, 0.0}, {-2.0, 0.0, 2.0})});
+    spheres.back()->GetRigidBody()->SetAngularVelocity(0.01 * arma::vec3{1.0, 5.0, 1.0});
 
-//    spheres.push_back(new Entity{MakeSphere(1.0, 1.0, 30, {0.0, 0.0, 0.0, 1.0}, {0.0, 0.0, 0.0, 1.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0})});
-//	spheres.back()->GetRigidBody()->Fix();
-//    spheres.push_back(new Entity{MakeSphere(1.0, 1.0, 30, {1.0, 0.0, 0.0, 1.0}, {0.7, 0.0, 0.0, 1.0}, {0.0, 10.0, 0.0}, {0.0, 0.0, 0.0})});
+//    spheres.push_back(new Entity{MakeBox(8.0, {1.0, 9.0, 1.0}, {1.0, 1.0, 1.0, 1.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0})});
 //
-//    spheres.push_back(new Entity{MakeSphere(100.0, 1.0, 30, {0.0, 1.0, 0.0, 1.0}, {0.0, 0.7, 0.0, 1.0}, {0.0, 30.0, 0.0}, {0.0, 0.0, 0.0})});
-//    spheres.push_back(new Entity{MakeSphere(1.0, 1.0, 30, {0.0, 0.0, 1.0, 1.0}, {0.0, 0.0, 0.7, 1.0}, {0.0, 40.0, 0.0}, {0.0, 0.0, 0.0})});
+//    spheres.push_back(new Entity{MakeBox(8.0, {1.0, 8.0, 1.0}, {1.0, 0.0, 0.0, 1.0}, {17.0, 0.0, 0.0}, {-1.0, 0.0, 0.0})});
+//    spheres.back()->GetRigidBody()->SetAngularVelocity({1.0, 5.0, 1.0});
 
 	unsigned n{(unsigned)spheres.size()};
 
@@ -431,12 +525,11 @@ int main ()
 
 	engine.SetGravity(0.0);
 
-
 //	Spring s{spheres[n-3]->GetRigidBody(), spheres[n-2]->GetRigidBody(), 10.0};
 
     std::chrono::time_point<std::chrono::system_clock> start;
     std::chrono::time_point<std::chrono::system_clock> end; 
-    double dt;
+    double dt{1.0 / 60.0};
 
     BroadPhase bp;
     std::vector<RigidBody*> rbs(n);
