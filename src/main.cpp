@@ -501,18 +501,18 @@ int main ()
 
 	std::vector<Entity*> spheres;
     
-    spheres = Stack(50, 0.0, 1.3, {0.0, 0.0, 0.0});  
+//    spheres = Stack(30, 0.0, 1.3, {0.0, 0.0, 0.0});  
 //    spheres = RopeBride();  
 
-    spheres.push_back(new Entity{MakeBox(30.0, glm::vec3{6.0, 30.0, 30.0}, {1.0, 1.0, 1.0, 1.0}, {-17.0, 0.0, 0.0}, {2.0, 0.0, 0.0})});
-    spheres.back()->GetRigidBody()->SetAngularVelocity(0.01 * arma::vec3{1.0, 5.0, 1.0});
-    spheres.push_back(new Entity{MakeBox(30.0, glm::vec3{6.0, 30.0, 30.0}, {1.0, 1.0, 1.0, 1.0}, {17.0, 0.0, 0.0}, {-2.0, 0.0, 2.0})});
-    spheres.back()->GetRigidBody()->SetAngularVelocity(0.01 * arma::vec3{1.0, 5.0, 1.0});
+//    spheres.push_back(new Entity{MakeBox(30.0, glm::vec3{6.0, 30.0, 30.0}, {1.0, 1.0, 1.0, 1.0}, {-17.0, 0.0, 0.0}, {2.0, 0.0, 0.0})});
+//    spheres.back()->GetRigidBody()->SetAngularVelocity(0.01 * arma::vec3{1.0, 5.0, 1.0});
+//    spheres.push_back(new Entity{MakeBox(30.0, glm::vec3{6.0, 30.0, 30.0}, {1.0, 1.0, 1.0, 1.0}, {17.0, 0.0, 0.0}, {-2.0, 0.0, 2.0})});
+//    spheres.back()->GetRigidBody()->SetAngularVelocity(0.01 * arma::vec3{1.0, 5.0, 1.0});
 
-//    spheres.push_back(new Entity{MakeBox(8.0, {1.0, 9.0, 1.0}, {1.0, 1.0, 1.0, 1.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0})});
-//
-//    spheres.push_back(new Entity{MakeBox(8.0, {1.0, 8.0, 1.0}, {1.0, 0.0, 0.0, 1.0}, {17.0, 0.0, 0.0}, {-1.0, 0.0, 0.0})});
-//    spheres.back()->GetRigidBody()->SetAngularVelocity({1.0, 5.0, 1.0});
+    spheres.push_back(new Entity{MakeBox(8.0, {1.0, 9.0, 1.0}, {1.0, 1.0, 1.0, 1.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0})});
+
+    spheres.push_back(new Entity{MakeBox(8.0, {1.0, 8.0, 1.0}, {1.0, 0.0, 0.0, 1.0}, {17.0, 0.0, 0.0}, {-1.0, 0.0, 0.0})});
+    spheres.back()->GetRigidBody()->SetAngularVelocity({1.0, 5.0, 1.0});
 
 	unsigned n{(unsigned)spheres.size()};
 
