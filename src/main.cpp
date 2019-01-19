@@ -15,13 +15,14 @@
 
 #define VERT(v) mesh->positions.push_back(std::move(v)) 
 
-Entity MakeSphere (double const& mass, 
-                   double const& rad=1.0, 
-                   unsigned const& nInc=16, 
-                   glm::vec4 const& color1={1.0,1.0,1.0,1.0}, 
-                   glm::vec4 const& color2={1.0,1.0,1.0,1.0},
-                   arma::vec3 const& pos={0.0,0.0,0.0,0.0}, 
-                   arma::vec3 const& vel={0.0,0.0,0.0,0.0}) 
+Entity MakeSphere (
+    double const& mass, 
+    double const& rad=1.0, 
+    unsigned const& nInc=16, 
+    glm::vec4 const& color1={1.0,1.0,1.0,1.0}, 
+    glm::vec4 const& color2={1.0,1.0,1.0,1.0},
+    arma::vec3 const& pos={0.0,0.0,0.0,0.0}, 
+    arma::vec3 const& vel={0.0,0.0,0.0,0.0}) 
 {
     Collidable* col{new SphereCollidable(rad)};
 
@@ -70,11 +71,12 @@ Entity MakeSphere (double const& mass,
     return Entity(std::move(rb), std::move(mesh));
 }
 
-Entity MakeBox (double const& mass, 
-                glm::vec3 const& dim=glm::vec3(1.0), 
-                glm::vec4 const& color={1.0,1.0,1.0,1.0},
-                arma::vec3 const& pos={0.0,0.0,0.0}, 
-                arma::vec3 const& vel={0.0,0.0,0.0}) 
+Entity MakeBox (
+    double const& mass, 
+    glm::vec3 const& dim=glm::vec3(1.0), 
+    glm::vec4 const& color={1.0,1.0,1.0,1.0},
+    arma::vec3 const& pos={0.0,0.0,0.0}, 
+    arma::vec3 const& vel={0.0,0.0,0.0}) 
 {
     std::vector<arma::vec3> positions 
     {
@@ -213,6 +215,85 @@ Entity MakeBox (double const& mass,
     };
 
     mesh->colors = std::vector<glm::vec4>(36, color);
+    return Entity(std::move(rb), std::move(mesh));
+}
+
+Entity MakeCone (
+    double const& mass, 
+    double const& height=1.0, 
+    double const& rad=1.0, 
+    unsigned const& nInc=16,
+    glm::vec4 const& color={1.0,1.0,1.0,1.0},
+    arma::vec3 const& pos={0.0,0.0,0.0},
+    arma::vec3 const& vel={0.0,0.0,0.0})
+{
+    std::vector<arma::vec3> positions(nInc + 2);
+    positions[0] = arma::vec3{0.0, height, 0.0};
+    positions[1] = arma::vec3{0.0, 0.0, 0.0};
+
+    std::vector<std::vector<unsigned>> faces(2 * nInc, std::vector<unsigned>(3));
+
+    auto pos_it{positions.begin() + 2};
+    auto face_it{faces.begin()};
+    arma::vec3 pos_prev{arma::vec3{rad, 0.0, 0.0}};
+    arma::vec3 pos_cur;
+    unsigned idx_prev{(unsigned)(positions.size() - 1)};
+
+    for(unsigned i = 1; i <= nInc; ++i)
+    {
+        double t{i / (double)nInc};
+        t *= 2.0 * M_PI;
+
+        pos_cur = arma::vec3{rad * cos(t), 0.0, rad * sin(t)};
+        *pos_it++ = pos_cur;
+    
+        (*face_it)[0] = i + 1;
+        (*face_it)[1] = idx_prev;
+        (*face_it)[2] = 0;
+        ++face_it;
+
+        (*face_it)[0] = 1;
+        (*face_it)[1] = idx_prev;
+        (*face_it)[2] = i + 1;
+        ++face_it;
+
+        pos_prev = pos_cur;
+        idx_prev = i + 1; //idx is offset by 2 (we start at 1 above) since the first two positions are already set. 
+    }
+
+    HalfEdgeMesh* const half_edge_mesh{new HalfEdgeMesh(positions, faces)};
+    std::unique_ptr<MeshInstance> mesh_instance{new MeshInstance(half_edge_mesh)};
+    Collidable* col{new MeshCollidable(std::move(mesh_instance))};
+
+    arma::mat33 inertia;
+    inertia.zeros();
+    inertia(0, 0) = 3. / 5. * mass * height * height + 3. / 20. * mass * rad * rad;
+    inertia(1, 1) = 3. / 10. * mass * rad * rad;
+    inertia(2, 2) = 3. / 5. * mass * height * height + 3. / 20. * mass * rad * rad;
+
+    RigidBody* rb{new RigidBody{mass, inertia, pos, col, vel, 1.0, 1.0}}; 
+    Mesh* mesh{new Mesh};
+    mesh->positions.resize(3 * faces.size()); 
+    mesh->normals.resize(3 * faces.size());
+
+    auto mesh_pos_it = mesh->positions.begin();
+    auto norm_it = mesh->normals.begin();
+    auto half_edge_face_it = half_edge_mesh->Faces().begin();
+    face_it = faces.begin();
+    for(unsigned i = 0; i < faces.size(); ++i)
+    {
+        *mesh_pos_it++ = BookKeeping::atg3(positions[(*face_it)[0]]); 
+        *mesh_pos_it++ = BookKeeping::atg3(positions[(*face_it)[1]]); 
+        *mesh_pos_it++ = BookKeeping::atg3(positions[(*face_it)[2]]); 
+        ++face_it;
+
+        *norm_it++ = BookKeeping::atg3(half_edge_face_it->normal);
+        *norm_it++ = BookKeeping::atg3(half_edge_face_it->normal);
+        *norm_it++ = BookKeeping::atg3(half_edge_face_it->normal);
+        ++half_edge_face_it;
+    }
+
+    mesh->colors = std::vector<glm::vec4>(mesh->positions.size(), color);
     return Entity(std::move(rb), std::move(mesh));
 }
 
@@ -368,12 +449,19 @@ std::vector<Entity*> Stack (int const& n, double const& sep, double const& rad, 
     {
         for(int j = 0; j < i+1; ++j)
         {
-            spheres.push_back(new Entity{MakeBox(1.0, {rad * 0.5, rad * 0.5, rad * 0.5}, 
+            spheres.push_back(new Entity{MakeCone(1.0, rad, rad * 0.5, 16,
                         RainbowColoring(fmod(sin(sclr *  i   /(GLfloat)n), 1.0)), 
                         initPos + arma::vec3{rad*((sep+2.0)*j - (1.0+0.5*sep)*i), 
                                               0.0, 
 											  rad*(sep+2.0)*i*std::cos(M_PI/6)},
 						{0.0, 0.0, 0.0})}); 
+
+//            spheres.push_back(new Entity{MakeBox(1.0, {rad * 0.5, rad * 0.5, rad * 0.5}, 
+//                        RainbowColoring(fmod(sin(sclr *  i   /(GLfloat)n), 1.0)), 
+//                        initPos + arma::vec3{rad*((sep+2.0)*j - (1.0+0.5*sep)*i), 
+//                                              0.0, 
+//											  rad*(sep+2.0)*i*std::cos(M_PI/6)},
+//						{0.0, 0.0, 0.0})}); 
         }
     }
 
@@ -501,18 +589,36 @@ int main ()
 
 	std::vector<Entity*> spheres;
     
-//    spheres = Stack(30, 0.0, 1.3, {0.0, 0.0, 5.0});  
+#if 1 // Stack of shapes
+    spheres = Stack(10, 0.0, 1.3, {0.0, 0.0, 5.0});  
+#endif 
+
+#if 0 // Rope bridge made of boxes
     spheres = RopeBride();  
+#endif 
 
-//    spheres.push_back(new Entity{MakeBox(30.0, glm::vec3{6.0, 30.0, 30.0}, {1.0, 1.0, 1.0, 1.0}, {-17.0, 0.0, 0.0}, {2.0, 0.0, 0.0})});
-//    spheres.back()->GetRigidBody()->SetAngularVelocity(0.01 * arma::vec3{1.0, 5.0, 1.0});
-//    spheres.push_back(new Entity{MakeBox(30.0, glm::vec3{6.0, 30.0, 30.0}, {1.0, 1.0, 1.0, 1.0}, {17.0, 0.0, 0.0}, {-2.0, 0.0, 2.0})});
-//    spheres.back()->GetRigidBody()->SetAngularVelocity(0.01 * arma::vec3{1.0, 5.0, 1.0});
+#if 1 // Two really big boxes
+    spheres.push_back(new Entity{MakeBox(30.0, glm::vec3{6.0, 30.0, 30.0}, {1.0, 1.0, 1.0, 1.0}, {-17.0, 0.0, 0.0}, {0.0, 0.0, 0.0})});
+    spheres.back()->GetRigidBody()->SetAngularVelocity(0.01 * arma::vec3{1.0, 5.0, 1.0});
+    spheres.push_back(new Entity{MakeBox(30.0, glm::vec3{6.0, 30.0, 30.0}, {1.0, 1.0, 1.0, 1.0}, {17.0, 0.0, 0.0}, {0.0, 0.0, 2.0})});
+    spheres.back()->GetRigidBody()->SetAngularVelocity(0.01 * arma::vec3{1.0, 5.0, 1.0});
+#endif 
 
-//    spheres.push_back(new Entity{MakeBox(8.0, {1.0, 9.0, 1.0}, {1.0, 1.0, 1.0, 1.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0})});
-//
-//    spheres.push_back(new Entity{MakeBox(8.0, {1.0, 8.0, 1.0}, {1.0, 0.0, 0.0, 1.0}, {17.0, 0.0, 0.0}, {-1.0, 0.0, 0.0})});
-//    spheres.back()->GetRigidBody()->SetAngularVelocity({1.0, 5.0, 1.0});
+#if 0 // Two long boxes colliding
+
+    spheres.push_back(new Entity{MakeBox(8.0, {1.0, 9.0, 1.0}, {1.0, 1.0, 1.0, 1.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0})});
+
+    spheres.push_back(new Entity{MakeBox(8.0, {1.0, 8.0, 1.0}, {1.0, 0.0, 0.0, 1.0}, {17.0, 0.0, 0.0}, {-1.0, 0.0, 0.0})});
+    spheres.back()->GetRigidBody()->SetAngularVelocity({1.0, 5.0, 1.0});
+
+#endif
+
+#if 0 // Two cones colliding
+    spheres.push_back(new Entity{MakeCone(8.0, 2.0, 1.0, 16, {1.0, 1.0, 1.0, 1.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0})});
+
+    spheres.push_back(new Entity{MakeCone(8.0, 2.0, 1.0, 16, {1.0, 0.0, 0.0, 1.0}, {10.0, 0.0, 0.0}, {-1.0, 0.0, 0.0})});
+    spheres.back()->GetRigidBody()->SetAngularVelocity({1.0, 5.0, 1.0});
+#endif 
 
 	unsigned n{(unsigned)spheres.size()};
 
@@ -565,7 +671,7 @@ int main ()
 	axes[1] = program.AddMesh(yAxis, GL_LINES);
 	axes[2] = program.AddMesh(zAxis, GL_LINES);
 
-    std::vector<GraphMesh> normals(6);
+    std::vector<GraphMesh> normals(32);
 
     //Continuously render OpenGL and update physics system 
     glfwSetTime(0.0);
@@ -622,24 +728,24 @@ int main ()
 
         if(info.num_constraints > 0)
         {
-            for(int i = 0; i < 6; ++i)
-            {
-                arma::vec3 norm = static_cast<MeshCollidable*>(spheres[0]->GetRigidBody()->GetCollidable())->TransformedNormals()[i];
-                norm *= 10.0;
-                Mesh norm_mesh;
-                norm_mesh.positions = {{0.0, 0.0, 0.0}, {norm[0], norm[1], norm[2]}};
-                norm_mesh.colors = {{1.0, 1.0, 1.0, 1.0}, {1.0, 1.0, 1.0, 1.0}};
-                norm_mesh.normals = {{0.0, 1.0, 0.0}, {0.0, 1.0, 0.0}};
-                normals[i] = program.AddMesh(norm_mesh, GL_LINES);
-            }
+//            for(int i = 0; i < 32; ++i)
+//            {
+//                arma::vec3 norm = static_cast<MeshCollidable*>(spheres[0]->GetRigidBody()->GetCollidable())->TransformedNormals()[i];
+//                norm *= 10.0;
+//                Mesh norm_mesh;
+//                norm_mesh.positions = {{0.0, 0.0, 0.0}, {norm[0], norm[1], norm[2]}};
+//                norm_mesh.colors = {{1.0, 1.0, 1.0, 1.0}, {1.0, 1.0, 1.0, 1.0}};
+//                norm_mesh.normals = {{0.0, 1.0, 0.0}, {0.0, 1.0, 0.0}};
+//                normals[i] = program.AddMesh(norm_mesh, GL_LINES);
+//            }
         }
 
 		glUniformMatrix4fv(5, 1, GL_FALSE, glm::value_ptr(glm::mat4x4(1.0)));
-        for(auto& nm: normals)
-        {
-            Indexer indexer{nm.GetSigIndexer()};
-            glDrawArrays(GL_LINES, indexer.First(), indexer.Count());
-        }
+//        for(auto& nm: normals)
+//        {
+//            Indexer indexer{nm.GetSigIndexer()};
+//            glDrawArrays(GL_LINES, indexer.First(), indexer.Count());
+//        }
 
         glfwSwapBuffers(renderer.Window());
 
