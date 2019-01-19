@@ -77,6 +77,8 @@ arma::vec3 const* GetSupport (MeshCollidable const& mesh, arma::vec3 const& dir,
         ++idx;
     }
 
+    std::cout<<max_proj<<','<<*rex<<','<<dir<<std::endl;
+
     return rex;
 }
 
@@ -104,6 +106,7 @@ double QueryFaceDirections (MeshCollidable const& mesh1, MeshCollidable const& m
         
         //Distance from face plane to vertex.
         double dist{arma::dot(normal, *vert - face_vert_pos)};
+        std::cout<<i<<','<<face_vert_pos<<std::endl;
 
         if(dist > max_dist)
         {
@@ -114,6 +117,7 @@ double QueryFaceDirections (MeshCollidable const& mesh1, MeshCollidable const& m
 
         }
     } 
+    std::cout<<"END"<<std::endl;
 
     return max_dist;
 }
@@ -162,27 +166,16 @@ double QueryEdgeDirections (MeshCollidable const& mesh1, MeshCollidable const& m
             arma::vec3 const& a2{mesh2.TransformedVertexPositions()[half_edge2.opposite_edge->end_vert->idx]};
             arma::vec3 const& b2{mesh2.TransformedVertexPositions()[half_edge2.end_vert->idx]};
 
-            arma::vec3 normal{arma::cross(b1 - a1, b2 - a2)}; 
+            arma::vec3 const& normal{arma::cross(b1 - a1, b2 - a2)}; 
 
-            const static double eps = 1000.0 * std::numeric_limits<double>::epsilon();
-
-            double const normal_norm_sqrd{arma::dot(normal, normal)};
-            double const e1_norm_sqrd{arma::dot(b1 - a1, b1 - a1)};
-            double const e2_norm_sqrd{arma::dot(b2 - a2, b2 - a2)};
-
-            //Skip near parallel edges
-            if(normal_norm_sqrd < eps * e1_norm_sqrd * e2_norm_sqrd)
-                continue;
-
-            //Project polyhedra onto normal
-            std::pair<double, double> const intrvl1{Project(mesh1, normal)};
-            std::pair<double, double> const intrvl2{Project(mesh2, normal)};
-
-            double dist;
-            if(intrvl2.second < intrvl1.second)
-                dist = intrvl1.first - intrvl2.second; 
-            else 
-                dist = intrvl2.first - intrvl1.second;
+            //Project polyhedra onto
+            std::pair<double, double> intrvl1{Project(mesh1, normal)};
+                
+            unsigned vert_idx;
+            arma::vec3 const* vert{GetSupport(mesh2, -normal, vert_idx)};
+            
+            //Distance from face plane to vertex.
+            double dist{arma::dot(normal, *vert - a1)};
 
             if(dist > max_dist)
             {
@@ -190,6 +183,7 @@ double QueryEdgeDirections (MeshCollidable const& mesh1, MeshCollidable const& m
                 ref_edge1 = &half_edge1;
                 ref_edge2 = &half_edge2;
                 ref_normal = normal;
+
             }
         }
     } 
@@ -197,7 +191,7 @@ double QueryEdgeDirections (MeshCollidable const& mesh1, MeshCollidable const& m
     return max_dist;
 }
 
-std::vector<PairWiseConstraint*> GenerateMeshFaceCollisionInfo (HalfEdgeMesh::Face const* ref_face, arma::vec3 const& ref_normal, unsigned const& ref_vert_idx, MeshCollidable* mesh1, MeshCollidable* mesh2, unsigned const& rb_idx1, unsigned const& rb_idx2) 
+std::vector<PairWiseConstraint*> GenerateMeshMeshInfo (HalfEdgeMesh::Face const* ref_face, arma::vec3 const& ref_normal, unsigned const& ref_vert_idx, MeshCollidable* mesh1, MeshCollidable* mesh2, unsigned const& rb_idx1, unsigned const& rb_idx2) 
 {
     std::vector<PairWiseConstraint*> rex;
 
@@ -248,34 +242,6 @@ std::vector<PairWiseConstraint*> GenerateMeshFaceCollisionInfo (HalfEdgeMesh::Fa
     return rex;
 }
 
-//To perform line-line intersection and for notation, see http://paulbourke.net/geometry/pointlineplane/
-//Note that in GenerateMeshEdgeCollisionInfo we assume the intersection exists!
-
-double d_mnop(arma::vec3 const& v_m, arma::vec3 const& v_n, arma::vec3 const& v_o, arma::vec3 const& v_p)
-{
-    return arma::dot(v_m - v_n, v_o - v_p);
-}
-
-std::vector<PairWiseConstraint*> GenerateMeshEdgeCollisionInfo (HalfEdgeMesh::HalfEdge const* ref_edge1, HalfEdgeMesh::HalfEdge const* ref_edge2, arma::vec3 const& ref_normal, MeshCollidable const& mesh1, MeshCollidable const& mesh2, unsigned const& rb_idx1, unsigned const& rb_idx2)
-{
-    arma::vec3 const& P1{mesh1.TransformedVertexPositions()[ref_edge1->opposite_edge->end_vert->idx]};
-    arma::vec3 const& P2{mesh1.TransformedVertexPositions()[ref_edge1->end_vert->idx]};
-    arma::vec3 const& P3{mesh2.TransformedVertexPositions()[ref_edge2->opposite_edge->end_vert->idx]};
-    arma::vec3 const& P4{mesh2.TransformedVertexPositions()[ref_edge2->end_vert->idx]};
-
-    double const d1343{d_mnop(P1, P3, P4, P3)};
-    double const d4321{d_mnop(P4, P3, P2, P1)};
-    double const d1321{d_mnop(P1, P3, P2, P1)};
-    double const d4343{d_mnop(P4, P3, P4, P3)};
-    double const d2121{d_mnop(P2, P1, P2, P1)};
-
-    double const mu_a{(d1343 * d4321 - d1321 * d4343) / (d2121 * d4343 - d4321 * d4321)};
-
-    arma::vec3 const intersection{P1 + mu_a * (P2 - P1)};
-     
-    return {new ContactConstraint{rb_idx1, rb_idx2, intersection, ref_normal}};
-}
-
 std::vector<PairWiseConstraint*> MeshMeshCollision (unsigned const& rb_idx1, unsigned const& rb_idx2, RigidBody* rb1, RigidBody* rb2)
 {
     //Only checks face collisions atm. TODO: CHECK EDGES ALSO
@@ -301,16 +267,19 @@ std::vector<PairWiseConstraint*> MeshMeshCollision (unsigned const& rb_idx1, uns
     if(query3 > 0.0)
         return {};
 
-    DEBUG_MSG("Collision between objects %u, %u", rb_idx1, rb_idx2);
+    bool is_max1{query1 > query2};
 
-    unsigned max_idx{query2 > query1 ? (query3 > query2 ? 2u : 1u) : 0u}; 
+    std::cout<<query1<<','<<query2<<','<<fabs(query1-query2)<<std::endl;
+    std::cout<<arma::norm(out_normal1)<<','<<arma::norm(out_normal2)<<std::endl;
+    if(is_max1)
+        std::cout<<"Collision between objects "<<rb_idx1<<','<<rb_idx2<<std::endl;
+    else
+        std::cout<<"Collision between objects "<<rb_idx2<<','<<rb_idx1<<std::endl;
 
-    if(max_idx == 0)
-        return GenerateMeshFaceCollisionInfo(out_face1, out_normal1, out_vert_idx1, coll1, coll2, rb_idx1, rb_idx2); 
-    else if(max_idx == 1)
-        return GenerateMeshFaceCollisionInfo(out_face2, out_normal2, out_vert_idx2, coll2, coll1, rb_idx2, rb_idx1); 
+    if(is_max1)
+        return GenerateMeshMeshInfo(out_face1, out_normal1, out_vert_idx1, coll1, coll2, rb_idx1, rb_idx2); 
     else 
-        return GenerateMeshEdgeCollisionInfo(out_edge1, out_edge2, out_normal3, *coll1, *coll2, rb_idx1, rb_idx2);
+        return GenerateMeshMeshInfo(out_face2, out_normal2, out_vert_idx2, coll2, coll1, rb_idx2, rb_idx1); 
 }
 
 bool Engine::CollisionDetection (BroadPhase& bp)
@@ -418,8 +387,10 @@ Engine::RunInfo Engine::Run (double& dt, BroadPhase& bp)
 
 void RigidBody::Update (double const& dt)
 {
+//    m_vel = m_vel * m_damping + dt * m_force * m_invMass;
     m_pos += dt * m_vel;
 
+//    m_angVel += m_invIntertia * m_torque * dt;
     m_quatOrientation += 0.5f * dt * m_angVel * m_quatOrientation;
     m_quatOrientation.Normalize();
 
@@ -466,3 +437,192 @@ inline void Spring::ResetDisplacement ()
     else
         m_length = 0.0f;
 }
+
+//OLD IMPULSE METHOD
+//
+//void Engine::UpdatePrimary (double const& dt, std::vector<std::pair<arma::vec3, arma::vec3>>& primary) 
+//{
+////    for(Entity* ent: m_ents)
+////    {
+////        ent->GetRigidBody()->SetForce(arma::vec3(0.0f));
+////        ent->GetRigidBody()->SetTorque(arma::vec3(0.0f));
+////    }
+////
+////    for(IForce* force: m_forces)
+////    {
+////        force->Apply(m_t);
+////    }
+//
+//    for(unsigned i = 0; i < m_ents.size(); ++i)
+//    {
+//        RigidBody* rb{m_ents[i]->GetRigidBody()};
+//        if(rb->InvMass() > DBL_EPSILON)
+//            rb->ApplyForce({0.0f, -rb->Mass() * m_grav, 0.0f});
+//
+//        primary[i].second = rb->Velocity() * rb->Damping() + dt * rb->Force() * rb->InvMass();
+//        primary[i].first = rb->Position() + dt * primary[i].second;
+//    }
+//
+////
+////    std::unordered_map<RigidBody*, std::vector<std::pair<arma::vec3, arma::vec3>>> impulses;
+////    for(unsigned i = 0; i < m_ents.size(); ++i)
+////    {
+////        RigidBody* rb{m_ents[i]->GetRigidBody()};
+////
+////        double rad{static_cast<SphereCollidable*>(rb->GetCollidable())->Radius()};
+////        for(unsigned j = i+1; j < m_ents.size(); ++j)
+////        {
+////            RigidBody* rb2{m_ents[j]->GetRigidBody()};
+////            double rad2{static_cast<SphereCollidable*>(rb2->GetCollidable())->Radius()};
+////            arma::vec3 diff{rb->Position() - rb2->Position()};
+////            double totalDist{arma::length(diff)};
+////
+////            if(totalDist > (rad+rad2)) //Are the objects not in contact?
+////                continue;
+////
+////            if(totalDist < rad+rad2-DBL_EPSILON) //Is inner-penetration occuring?
+////                if(!finalTry)
+////                    return false;
+////
+////            double dist{totalDist - (rad+rad2)};
+////            glm::vec3 normOnSphere2{1.0f, 0.0f, 0.0f};
+////            if(totalDist > 0.0f)
+////                normOnSphere2 = diff / totalDist;
+////
+////            glm::vec3 contactPt{(rb->Position() + rb2->Position() + (rad2 - rad) * normOnSphere2)/2.0f};
+////            double sepVel{glm::dot(normOnSphere2, rb->Velocity() - rb2->Velocity())};
+////
+////            if(sepVel > 0.0f) //Are objects moving apart from eachother?
+////                continue;
+////
+////            double newSepVel{-sepVel * rb->Restitution() * rb2->Restitution()};
+////            double deltaVel{newSepVel - sepVel};
+////            double totalInvMass{rb->InvMass() + rb2->InvMass()};
+////
+////            if(totalInvMass <= DBL_EPSILON) //Are both objects fixed?
+////                continue;
+////
+////			double impulse{deltaVel / totalInvMass};
+////            glm::vec3 impulsePerIMass{impulse * normOnSphere2};
+////            impulses[rb].push_back({impulsePerIMass, contactPt - rb->Position()});
+////            impulses[rb2].push_back({-impulsePerIMass, contactPt - rb2->Position()});
+////        }
+////    }
+////
+////    for(auto& impulsePair: impulses)
+////    {
+////        for(auto& impulse: impulsePair.second)
+////        {
+////            impulsePair.first->ApplyImpulseAtPoint(impulse.first, impulse.second);
+////        }
+////    }
+////
+////    for(unsigned i = 0; i < m_ents.size(); ++i)
+////    {
+////        RigidBody* rb{m_ents[i]->GetRigidBody()};
+////        rb->Update(dt);
+////    }
+////
+////    return true;
+//}
+//
+//OTHER OLD SOLVER
+//
+//void Engine::SolveConstraints (double& dt)
+//{
+//    if(m_ents.empty())
+//        return;
+//
+//    std::vector<Contact> contacts;
+//    static double const k_maxPenetration{-1e-3};
+//
+//    std::vector<std::pair<glm::vec3,glm::vec3>> primary(m_ents.size());
+//
+//    //TODO: FIX BISECTION
+//    unsigned i = 0;
+//    while(true)
+//    {
+//        UpdatePrimary(dt, primary);
+//        if(CollisionDetection(contacts, primary, k_maxPenetration))
+//            break;
+//
+//        dt /= 2.0f;
+//    }
+//
+//    for(Entity* ent: m_ents)
+//    {
+//        RigidBody* rb{ent->GetRigidBody()};
+//        rb->SetVelocity(rb->Velocity() * rb->Damping() + dt * rb->Force() * rb->InvMass());
+//        rb->SetAngularVelocity(rb->AngularVelocity() + rb->InverseInertia() * rb->Torque() * dt);
+//    }
+//
+//    for(Entity* ent: m_ents)
+//    {
+//        ent->GetRigidBody()->Update(dt); //For position and velocity, we could copy these values from primary 
+//    }
+//
+//    std::vector<Contact> restingContacts;
+//
+//    std::unordered_map<RigidBody*, std::vector<std::pair<glm::vec3, glm::vec3>>> impulses;
+//    for(Contact& contact: contacts)
+//    {
+//        RigidBody* rb1{contact.rb1}, * rb2{contact.rb2};
+//        double sepVel{glm::dot(contact.normalOn2, rb1->Velocity() - rb2->Velocity())};
+//
+//        std::cout<<"SEP VEL:"<<sepVel<<std::endl;
+//
+//
+//        if(sepVel > DBL_EPSILON) //Are objects moving apart from eachother?
+//            continue;
+//
+//        if(sepVel >= -DBL_EPSILON) //Resting contact
+//        {
+//            restingContacts.push_back(std::move(contact));
+//            continue;
+//        }
+//
+//        //Actual collision
+//        double newSepVel{-sepVel * rb1->Restitution() * rb2->Restitution()};
+//        double deltaVel{newSepVel - sepVel};
+//        double totalInvMass{rb1->InvMass() + rb2->InvMass()};
+//
+//        if(totalInvMass <= DBL_EPSILON) //Are both objects fixed?
+//            continue;
+//
+//        double impulse{deltaVel / totalInvMass};
+//        glm::vec3 impulsePerIMass{impulse * contact.normalOn2};
+//
+//        if(rb1->InvMass() > DBL_EPSILON)
+//            impulses[rb1].push_back({impulsePerIMass, contact.contactPt - rb1->Position()});
+//
+//        if(rb2->InvMass() > DBL_EPSILON)
+//            impulses[rb2].push_back({-impulsePerIMass, contact.contactPt - rb2->Position()});
+//    }
+//
+//    for(auto& impulsePair: impulses)
+//    {
+//        for(auto& impulse: impulsePair.second)
+//        {
+//            impulsePair.first->ApplyImpulseAtPoint(impulse.first, impulse.second);
+//            impulsePair.first->Update(dt);
+//        }
+//    }
+//
+//    size_t n{restingContacts.size()};
+//    arma::mat Amat(n, n);
+//    arma::vec Bvec(n);
+//    arma::vec Fvec(n);
+//
+////    ComputeMatrixA(Amat);
+////    ComputeVectorB(Bvec);
+////
+////    BaraffSolve(Amat, Bvec, Fvec);
+////
+////    for(unsigned i = 0; i < n; ++i)
+////    {
+////        restingContacts[i].rb1->SetForce(Fvec[i] * restingContacts[i].normalOn2);
+////    }
+//            
+//
+//    m_t += dt;
+//}

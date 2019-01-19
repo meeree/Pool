@@ -187,7 +187,14 @@ public:
 
 //    void UpdatePrimary (double const& dt, std::vector<std::pair<arma::vec3,arma::vec3>>& primary);
 //    void SolveConstraints (double& dt);
-    void Run (double& dt, BroadPhase& bp);
+
+    // Information returned by run 
+    struct RunInfo 
+    {
+        size_t num_constraints;
+    };
+
+    RunInfo Run (double& dt, BroadPhase& bp);
 
     void AddForceToSystem (IForce* const& force) {m_forces.push_back(force);}
     void AddForcesToSystem (std::vector<IForce*> const& forces) {m_forces.insert(m_forces.end(), forces.begin(), forces.end());}

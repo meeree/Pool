@@ -501,29 +501,29 @@ int main ()
 
 	std::vector<Entity*> spheres;
     
-//    spheres = Stack(30, 0.0, 1.3, {0.0, 0.0, 0.0});  
-//    spheres = RopeBride();  
+//    spheres = Stack(30, 0.0, 1.3, {0.0, 0.0, 5.0});  
+    spheres = RopeBride();  
 
 //    spheres.push_back(new Entity{MakeBox(30.0, glm::vec3{6.0, 30.0, 30.0}, {1.0, 1.0, 1.0, 1.0}, {-17.0, 0.0, 0.0}, {2.0, 0.0, 0.0})});
 //    spheres.back()->GetRigidBody()->SetAngularVelocity(0.01 * arma::vec3{1.0, 5.0, 1.0});
 //    spheres.push_back(new Entity{MakeBox(30.0, glm::vec3{6.0, 30.0, 30.0}, {1.0, 1.0, 1.0, 1.0}, {17.0, 0.0, 0.0}, {-2.0, 0.0, 2.0})});
 //    spheres.back()->GetRigidBody()->SetAngularVelocity(0.01 * arma::vec3{1.0, 5.0, 1.0});
 
-    spheres.push_back(new Entity{MakeBox(8.0, {1.0, 9.0, 1.0}, {1.0, 1.0, 1.0, 1.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0})});
-
-    spheres.push_back(new Entity{MakeBox(8.0, {1.0, 8.0, 1.0}, {1.0, 0.0, 0.0, 1.0}, {17.0, 0.0, 0.0}, {-1.0, 0.0, 0.0})});
-    spheres.back()->GetRigidBody()->SetAngularVelocity({1.0, 5.0, 1.0});
+//    spheres.push_back(new Entity{MakeBox(8.0, {1.0, 9.0, 1.0}, {1.0, 1.0, 1.0, 1.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0})});
+//
+//    spheres.push_back(new Entity{MakeBox(8.0, {1.0, 8.0, 1.0}, {1.0, 0.0, 0.0, 1.0}, {17.0, 0.0, 0.0}, {-1.0, 0.0, 0.0})});
+//    spheres.back()->GetRigidBody()->SetAngularVelocity({1.0, 5.0, 1.0});
 
 	unsigned n{(unsigned)spheres.size()};
 
     renderer.AddEntities(program, spheres);
 
     //Create physics engine
-    Engine engine{spheres, 20};
+    Engine engine{spheres, 10};
     renderer.SetEnginePtr(engine);
     renderer.SetProgram(&program);
 
-	engine.SetGravity(0.0);
+	engine.SetGravity(0.01);
 
 //	Spring s{spheres[n-3]->GetRigidBody(), spheres[n-2]->GetRigidBody(), 10.0};
 
@@ -565,8 +565,14 @@ int main ()
 	axes[1] = program.AddMesh(yAxis, GL_LINES);
 	axes[2] = program.AddMesh(zAxis, GL_LINES);
 
+    std::vector<GraphMesh> normals(6);
+
     //Continuously render OpenGL and update physics system 
     glfwSetTime(0.0);
+    double time_since_last_collision{3.0};
+    bool slow{false};
+    GLfloat color[4]{0.9, 0.9, 0.9, 1.0};
+
     while(true)
     {
         start = std::chrono::system_clock::now();
@@ -580,11 +586,12 @@ int main ()
             spring.Apply();
         }
 
+        Engine::RunInfo info;
         if(!renderer.Paused())
-            engine.Run(dt, bp);
+            info = engine.Run(dt, bp);
         
 		renderer.SetModelUniforms(engine.GetEntities());
-        if(!renderer.Render(program.Strip(), {0.9, 0.9, 0.9, 1.0}))
+        if(!renderer.Render(program.Strip(), color))
             break;
 
         for(unsigned i = 0; i < springMeshes.size(); ++i)
@@ -613,6 +620,27 @@ int main ()
             glDrawArrays(GL_LINES, indexer.First(), indexer.Count());
         }
 
+        if(info.num_constraints > 0)
+        {
+            for(int i = 0; i < 6; ++i)
+            {
+                arma::vec3 norm = static_cast<MeshCollidable*>(spheres[0]->GetRigidBody()->GetCollidable())->TransformedNormals()[i];
+                norm *= 10.0;
+                Mesh norm_mesh;
+                norm_mesh.positions = {{0.0, 0.0, 0.0}, {norm[0], norm[1], norm[2]}};
+                norm_mesh.colors = {{1.0, 1.0, 1.0, 1.0}, {1.0, 1.0, 1.0, 1.0}};
+                norm_mesh.normals = {{0.0, 1.0, 0.0}, {0.0, 1.0, 0.0}};
+                normals[i] = program.AddMesh(norm_mesh, GL_LINES);
+            }
+        }
+
+		glUniformMatrix4fv(5, 1, GL_FALSE, glm::value_ptr(glm::mat4x4(1.0)));
+        for(auto& nm: normals)
+        {
+            Indexer indexer{nm.GetSigIndexer()};
+            glDrawArrays(GL_LINES, indexer.First(), indexer.Count());
+        }
+
         glfwSwapBuffers(renderer.Window());
 
 		arma::vec3 momentum;
@@ -628,7 +656,25 @@ int main ()
 
         end = std::chrono::system_clock::now();
         dt = std::chrono::duration<float>(end-start).count();
+        time_since_last_collision += dt;
 
-//        std::cout<<"dt: "<<dt<<'s'<<std::endl;
+        if(info.num_constraints > 0)
+        {
+            time_since_last_collision = 0.0;
+            slow = true;
+        }
+
+        if(time_since_last_collision < 2.0)
+        {
+            color[0] = 0.0;
+            color[1] = 0.0;
+            color[2] = 1.0;
+        }
+        else
+        {
+            color[0] = 0.9;
+            color[1] = 0.9;
+            color[2] = 0.9;
+        }
     }
 }

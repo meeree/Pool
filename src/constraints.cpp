@@ -164,6 +164,8 @@ void GaussSeidelSolve (arma::sp_mat const& A, arma::vec& x, arma::mat const& b, 
     }
 }
 
+#define MAX_SHOCK_WAVE_INCS 30 //Don't want to get stuck in an infinite loop!!
+
 //See paper "Reflections on simultaneous impacts"
 void ConstraintSolver::GeneralizedReflections (std::vector<Entity*> const& ents, arma::vec& V, arma::vec& Fext, double const& dt) 
 {
@@ -197,7 +199,8 @@ void ConstraintSolver::GeneralizedReflections (std::vector<Entity*> const& ents,
     V += dt * Minv * Fext; //Update initial velocities
     
     std::map<std::pair<unsigned,unsigned>, double> newLambdaCache;
-    while(true)
+    size_t num_incs{0};
+    for(; num_incs <= MAX_SHOCK_WAVE_INCS; ++num_incs)
     {
         std::fill(violations, violations + s, std::make_pair(false, zero));
         sz = 0;
@@ -295,7 +298,7 @@ void ConstraintSolver::GeneralizedReflections (std::vector<Entity*> const& ents,
         arma::vec b{1.0/dt * bias - J * V * 1.0/dt};
         b *= 2.0f;
 
-   //     lambda = arma::spsolve(A, b);
+//        lambda = arma::spsolve(A, b);
 		GaussSeidelClampedSolve(A, lambda, b, lambdaMin, lambdaMax, m_solverIterations);
         lambda = arma::max(lambdaMin, arma::min(lambdaMax, lambda));
 

@@ -31,7 +31,7 @@ HalfEdgeMesh::HalfEdgeMesh (std::vector<arma::vec3> const& positions, std::vecto
 
     m_vertices.resize(vert_cnt);
     m_faces.resize(faces.size());
-    m_half_edges.resize(2 * vert_cnt);
+    m_half_edges.resize(vert_cnt);
     
     static const auto hash_func{[](std::pair<unsigned, unsigned> const& p){return p.first ^ p.second;} };
     std::unordered_map<std::pair<unsigned, unsigned>, HalfEdge*, decltype(hash_func)> edge_hash(vert_cnt, hash_func);
